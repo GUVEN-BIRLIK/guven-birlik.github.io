@@ -21,7 +21,13 @@ function haversineKm([lon1, lat1], [lon2, lat2]) {
   const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * RAD) * Math.cos(lat2 * RAD) * Math.sin(dLon / 2) ** 2;
   return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
-HUBS.forEach(h => { h.km = Math.round(haversineKm(ORIGIN.coord, h.coord) / 10) * 10; });
+/** Initial great-circle bearing from a to b, degrees clockwise from true north. */
+function bearingDeg([lon1, lat1], [lon2, lat2]) {
+  const p1 = lat1 * RAD, p2 = lat2 * RAD, dl = (lon2 - lon1) * RAD;
+  const y = Math.sin(dl) * Math.cos(p2), x = Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl);
+  return (Math.atan2(y, x) / RAD + 360) % 360;
+}
+HUBS.forEach(h => { h.km = Math.round(haversineKm(ORIGIN.coord, h.coord) / 10) * 10; h.bearing = Math.round(bearingDeg(ORIGIN.coord, h.coord)); });
 const MAX_KM = Math.max(...HUBS.map(h => h.km));
 
 /* ---------- Translations ---------- */
@@ -61,7 +67,7 @@ const en = {
   startProject: 'Start a conversation', ourSolutions: 'Our solutions', originCaption: 'At the crossroads of global trade',
   globeAria: 'Interactive 3D globe. Drag or use arrow keys to rotate. Use plus and minus to zoom.',
   rotateHint: 'DRAG TO ROTATE', zoomIn: 'Zoom in', zoomOut: 'Zoom out', reset: 'Centre on Istanbul', pause: 'Pause rotation', resume: 'Start rotation',
-  routesTitle: 'DIRECTIONS', regions: 'Trade regions', gaugeTitle: 'LOCAL TIME',
+  routesTitle: 'DIRECTIONS', regions: 'Trade regions', gaugeTitle: 'LOCAL TIME', bearingTitle: 'COURSE FROM ISTANBUL', rCourse: 'Course', rDistance: 'Distance', rLocal: 'Time',
   distTitle: 'DISTANCE FROM ISTANBUL', dayTitle: 'DAY AT DESTINATION', legendSun: 'sun elevation', legendOverlap: 'shared business hours with Istanbul',
   clocksTitle: 'WORLD TIME',
   consoleNote: 'Routes illustrate trade directions; this is not shipment tracking. Time, distances and the sun’s position are calculated live.',
@@ -117,7 +123,7 @@ const tr = {
   startProject: 'İş birliğine başlayalım', ourSolutions: 'Çözümlerimiz', originCaption: 'Küresel ticaret yollarının kesişiminde',
   globeAria: 'Etkileşimli 3B dünya. Döndürmek için sürükleyin veya ok tuşlarını kullanın. Yakınlaştırmak için artı ve eksi tuşlarını kullanın.',
   rotateHint: 'DÖNDÜRMEK İÇİN SÜRÜKLEYİN', zoomIn: 'Yakınlaştır', zoomOut: 'Uzaklaştır', reset: 'İstanbul’u merkeze al', pause: 'Döndürmeyi durdur', resume: 'Döndürmeyi başlat',
-  routesTitle: 'YÖNLER', regions: 'Ticaret bölgeleri', gaugeTitle: 'YEREL SAAT',
+  routesTitle: 'YÖNLER', regions: 'Ticaret bölgeleri', gaugeTitle: 'YEREL SAAT', bearingTitle: 'İSTANBUL’DAN ROTA', rCourse: 'Rota', rDistance: 'Mesafe', rLocal: 'Saat',
   distTitle: 'İSTANBUL’A UZAKLIK', dayTitle: 'VARIŞ NOKTASINDA GÜN', legendSun: 'güneş yüksekliği', legendOverlap: 'İstanbul ile ortak mesai saatleri',
   clocksTitle: 'DÜNYA SAATİ',
   consoleNote: 'Rotalar ticaret yönlerini gösteren bir illüstrasyondur, yük takibi değildir. Saat, mesafe ve güneşin konumu anlık hesaplanır.',
@@ -245,7 +251,7 @@ function renderRegionLists() {
     </button>`).join('');
   $('#region-options').innerHTML = HUBS.map((h, i) => `
     <button type="button" class="region" data-region="${h.key}" aria-pressed="false">
-      <span class="region-idx">0${i + 1}</span><span class="region-name">${t(h.key)}</span><span class="region-code">${h.code} · ≈${fmtKm(h.km)} km</span><span class="region-arrow" aria-hidden="true">↗</span>
+      <span class="region-idx">0${i + 1}</span><span class="region-name">${t(h.key)}</span><span class="region-code">${h.code} · ≈${fmtKm(h.km)} km</span><svg class="ic region-arrow" aria-hidden="true"><use href="#i-ne"/></svg>
     </button>`).join('');
   $$('[data-region]').forEach(btn => btn.addEventListener('click', () => setRegion(btn.dataset.region)));
   markRegion();
@@ -319,22 +325,45 @@ function renderDayChart() {
   svg.setAttribute('aria-label', `${t('dayAria')} — ${hub.city}: ${overlap} ${t('hours')}`);
 }
 
+/* Chronometer sub-dials: one analog face per city; hands move every second. */
+function dialFace() {
+  return `<svg class="sd" viewBox="0 0 64 64" aria-hidden="true"><circle class="sd-rim" cx="32" cy="32" r="31"/><circle class="sd-face" cx="32" cy="32" r="28.5"/><circle class="sd-min" cx="32" cy="32" r="26"/><circle class="sd-hr" cx="32" cy="32" r="26"/><line class="sd-h" x1="32" y1="34" x2="32" y2="18"/><line class="sd-m" x1="32" y1="35" x2="32" y2="10"/><line class="sd-s" x1="32" y1="38" x2="32" y2="8"/><circle class="sd-pin" cx="32" cy="32" r="2.2"/></svg>`;
+}
 function renderClocks() {
   const now = new Date();
   $('#clock-list').innerHTML = [ORIGIN, ...HUBS].map(h => {
     const off = tzOffsetMin(h.tz, now); const day = sunElevation(h.coord, now) > -0.833;
-    const active = h.key === GB.region ? ' active' : '', origin = h === ORIGIN ? ' origin' : '';
-    return `<li class="clock${active}${origin}"><span class="ck-code">${h.code}</span><span class="ck-city">${h.city}</span><span class="ck-utc">${utcLabel(off)}</span><span class="ck-dn ${day ? 'day' : 'night'}"><i></i>${t(day ? 'day' : 'night')}</span><b class="ck-time">${timeIn(h.tz, now)}</b></li>`;
+    const active = h.key === GB.region ? ' active' : '', origin = h === ORIGIN ? ' home' : '';
+    return `<li class="clock${active}${origin}" data-tz="${h.tz}">${dialFace()}<span class="ck-code">${h.code}</span><b class="ck-time seg" data-ghost="88:88">${timeIn(h.tz, now)}</b><span class="ck-utc">${utcLabel(off)} · <span class="ck-dn ${day ? 'day' : 'night'}">${t(day ? 'day' : 'night')}</span></span></li>`;
   }).join('');
+  setHands(now);
+}
+function setHands(now = new Date()) {
+  $$('#clock-list .clock').forEach(li => {
+    const [h, m, sec] = timeIn(li.dataset.tz, now, true).split(':').map(Number);
+    const rot = (sel, deg) => { li.querySelector(sel).style.transform = `rotate(${deg}deg)`; };
+    rot('.sd-h', (h % 12) * 30 + m * 0.5); rot('.sd-m', m * 6 + sec * 0.1); rot('.sd-s', sec * 6);
+  });
 }
 
+/* Readouts change in one step with a small overshoot, never a glide. */
+function stepText(el, text) {
+  if (el.textContent === text) return;
+  el.textContent = text;
+  if (reducedMotion || !el.animate) return;
+  el.animate([{ transform: 'translateY(-55%)', opacity: 0 }, { transform: 'translateY(8%)', opacity: 1, offset: 0.72 }, { transform: 'translateY(0)' }],
+    { duration: 340, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
+}
+
+let needleAngle = 0;
 function renderGauge() {
   const hub = hubByKey[GB.region], now = new Date();
-  const [hh, mm] = timeIn(hub.tz, now).split(':').map(Number);
-  const C = 2 * Math.PI * 56, frac = (hh * 60 + mm) / 1440;
-  $('#gauge-arc').style.strokeDasharray = `${(C * frac).toFixed(1)} ${C.toFixed(1)}`;
-  $('#gauge-time').textContent = timeIn(hub.tz, now);
-  $('#gauge-city').textContent = hub.city;
+  // shortest turn to the new course, so the needle never spins the long way round
+  needleAngle += ((hub.bearing - needleAngle + 540) % 360) - 180;
+  $('#cp-needle').style.transform = `rotate(${needleAngle}deg)`;
+  stepText($('#ro-bearing'), String(hub.bearing).padStart(3, '0'));
+  stepText($('#ro-km'), `≈${fmtKm(hub.km)}`);
+  stepText($('#gauge-time'), timeIn(hub.tz, now));
   $('#gauge-code').textContent = hub.code;
   const off = tzOffsetMin(hub.tz, now); $('#gauge-utc').textContent = utcLabel(off);
   const d = (off - tzOffsetMin(ORIGIN.tz, now)) / 60;
@@ -344,7 +373,7 @@ function renderGauge() {
 function renderRegionText() {
   const hub = hubByKey[GB.region];
   $('#region-description').textContent = t(regionDescKey[GB.region]);
-  $('#photo-target').textContent = `⟶ ${hub.city}`;
+  $('#photo-target').textContent = hub.city;
 }
 
 function renderAll() { renderDistChart(); renderDayChart(); renderClocks(); renderGauge(); renderRegionText(); }
@@ -355,6 +384,7 @@ function tick() {
   const now = new Date();
   $('#utc-clock').textContent = timeIn('UTC', now, true);
   if (now.getUTCMinutes() !== lastMinute) { lastMinute = now.getUTCMinutes(); renderClocks(); renderGauge(); renderDayChart(); }
+  else setHands(now);
 }
 
 /* ---------- Header, menu, nav highlighting ---------- */
@@ -386,7 +416,7 @@ function initMotion() {
     const io = new IntersectionObserver(entries => entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     items.forEach(el => io.observe(el));
   }
-  const track = $('.marquee-track'); if (track) track.innerHTML = track.innerHTML.repeat(4);
+  
 }
 
 /* ---------- Contact ---------- */
