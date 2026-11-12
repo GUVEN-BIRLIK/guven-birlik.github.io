@@ -446,3 +446,14 @@ setLanguage(language);
 tick(); setInterval(tick, 1000);
 // If the WebGL module never boots (very old browser, blocked script), show the static fallback sphere.
 setTimeout(() => { if (!GB.globeReady) document.getElementById('globe-stage').classList.add('globe-failed'); }, 9000);
+
+// Brand reel: play only while on screen; reduced-motion visitors get the still poster.
+(() => {
+  const video = document.querySelector('.brand-reel-video');
+  if (!video) return;
+  if (reducedMotion) { video.removeAttribute('autoplay'); video.pause(); return; }
+  if (!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) video.play().catch(() => {}); else video.pause();
+  }, { threshold: .15 }).observe(video);
+})();
