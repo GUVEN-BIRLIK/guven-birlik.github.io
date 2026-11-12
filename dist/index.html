@@ -124,11 +124,16 @@
             </div>
           </div>
 
-          <aside class="side-panels">
-            <div class="panel routes-panel">
-              <div class="panel-head"><span data-i18n="routesTitle">НАПРАВЛЕНИЯ</span><span class="mono dim">IST</span></div>
-              <div class="route-list" role="group" aria-label="Торговые направления" data-i18n-aria="regions" id="route-list"></div>
+          <div class="panel board">
+            <div class="panel-head"><span data-i18n="boardTitle">ТАБЛО НАПРАВЛЕНИЙ</span><span class="mono dim">İSTANBUL · UTC+3</span></div>
+            <div class="board-scroll">
+              <div class="board-grid" role="group" aria-label="Табло направлений" data-i18n-aria="boardTitle">
+                <div class="board-row board-hd" aria-hidden="true"><span data-i18n="bhDest">Направление</span><span data-i18n="bhCity">Пункт</span><span data-i18n="bhCourse">Курс</span><span data-i18n="bhKm">Км</span><span data-i18n="bhTime">Время</span><span data-i18n="bhStatus">Рабочий день</span></div>
+                <div id="board-rows"></div>
+              </div>
             </div>
+          </div>
+          <aside class="side-panels">
             <div class="panel compass-panel">
               <div class="panel-head"><span data-i18n="bearingTitle">КУРС ИЗ СТАМБУЛА</span><span class="mono dim" id="gauge-code">BER</span></div>
               <div class="compass">
@@ -159,6 +164,10 @@
               </dl>
               <p class="gauge-delta" id="gauge-delta"></p>
             </div>
+            <div class="panel clocks-panel">
+              <div class="panel-head"><span data-i18n="clocksTitle">МИРОВОЕ ВРЕМЯ</span><span class="mono dim">24H</span></div>
+              <ul class="clock-list" id="clock-list"></ul>
+            </div>
           </aside>
         </div>
 
@@ -171,10 +180,6 @@
             <div class="panel-head"><span data-i18n="dayTitle">СУТКИ В ТОЧКЕ НАЗНАЧЕНИЯ</span><span class="mono dim" id="day-code">BER</span></div>
             <svg class="chart" id="day-chart" viewBox="0 0 320 150" role="img" aria-label=""></svg>
             <div class="chart-legend"><span><i class="lg-line"></i><span data-i18n="legendSun">высота солнца</span></span><span><i class="lg-band"></i><span data-i18n="legendOverlap">общие рабочие часы с Стамбулом</span>: <b id="overlap-hours">—</b></span></div>
-          </div>
-          <div class="panel clocks-panel">
-            <div class="panel-head"><span data-i18n="clocksTitle">МИРОВОЕ ВРЕМЯ</span><span class="mono dim">24H</span></div>
-            <ul class="clock-list" id="clock-list"></ul>
           </div>
         </div>
         <p class="console-note"><span class="red-dot"></span><span data-i18n="consoleNote">Маршруты — иллюстрация направлений, а не отслеживание грузов. Время, расстояния и положение солнца рассчитываются в реальном времени.</span></p>
@@ -263,7 +268,7 @@
         <p class="reveal" data-i18n="networkText">Стамбул соединяет Европу и Азию. Отсюда начинается диалог с рынками и следующий этап вашего бизнеса.</p>
         <div class="region-options reveal" role="group" aria-label="Торговые направления" data-i18n-aria="regions" id="region-options"></div>
         <p class="region-description" id="region-description" aria-live="polite"></p>
-        <span class="network-footnote" data-i18n="networkFootnote">Географию и условия каждой поставки обсудим индивидуально.</span>
+        <span class="network-footnote" data-i18n="networkFootnote">Географию и условия каждой поставки обсудим индивидуально. Мы не работаем со странами и лицами, находящимися под международными санкциями, а также с юрисдикциями повышенного риска.</span>
       </div>
         </div>
       </div>

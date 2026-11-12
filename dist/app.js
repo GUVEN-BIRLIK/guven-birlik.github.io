@@ -9,10 +9,10 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const ORIGIN = { key: 'origin', code: 'IST', city: 'İSTANBUL', coord: [28.9784, 41.0082], tz: 'Europe/Istanbul' };
 const HUBS = [
   { key: 'europe',     code: 'BER', city: 'BERLIN',   coord: [13.405, 52.52],    tz: 'Europe/Berlin' },
-  { key: 'cis',        code: 'MOW', city: 'MOSCOW',   coord: [37.6173, 55.7558], tz: 'Europe/Moscow' },
+  { key: 'cis',        code: 'TAS', city: 'TASHKENT', coord: [69.2401, 41.2995], tz: 'Asia/Tashkent' },
   { key: 'middleEast', code: 'DXB', city: 'DUBAI',    coord: [55.2708, 25.2048], tz: 'Asia/Dubai' },
   { key: 'asia',       code: 'SHA', city: 'SHANGHAI', coord: [121.4737, 31.2304], tz: 'Asia/Shanghai' },
-  { key: 'africa',     code: 'LOS', city: 'LAGOS',    coord: [3.3792, 6.5244],   tz: 'Africa/Lagos' }
+  { key: 'africa',     code: 'CAS', city: 'CASABLANCA', coord: [-7.5898, 33.5731], tz: 'Africa/Casablanca' }
 ];
 const hubByKey = Object.fromEntries(HUBS.map(h => [h.key, h]));
 
@@ -41,13 +41,14 @@ Object.assign(ru, {
   navigation: 'Навигация', menu: 'Меню', regions: 'Торговые направления',
   globeAria: 'Интерактивный 3D-глобус. Вращайте мышью, пальцем или стрелками. Плюс и минус меняют масштаб.',
   zoomIn: 'Приблизить', zoomOut: 'Отдалить', reset: 'Вернуть Стамбул в центр', pause: 'Остановить вращение', resume: 'Включить вращение',
-  europe: 'Европа', cis: 'СНГ', middleEast: 'Ближний Восток', asia: 'Азия', africa: 'Африка',
+  europe: 'Европа', cis: 'Центральная Азия', middleEast: 'Ближний Восток', asia: 'Азия', africa: 'Африка',
   regionEurope: 'Европейское направление: обсудим ваш запрос на торговлю между Турцией и европейскими рынками.',
-  regionCis: 'Направление СНГ: расскажите о товарах и рынках, которые вас интересуют, — обсудим формат сотрудничества.',
+  regionCis: 'Центральноазиатское направление: расскажите о товарах и рынках, которые вас интересуют, — обсудим формат сотрудничества.',
   regionMiddleEast: 'Ближневосточное направление: обсудим возможности поставок и делового сотрудничества.',
   regionAsia: 'Азиатское направление: расскажите о потребностях в закупках или выходе на рынки Азии.',
   regionAfrica: 'Африканское направление: обсудим ваш запрос и возможные пути торгового взаимодействия.',
   day: 'ДЕНЬ', night: 'НОЧЬ', hours: 'ч',
+  stOpen: 'ИДЁТ', stClosed: 'ЗАКОНЧЕН', stWeekend: 'ВЫХОДНОЙ',
   deltaAhead: 'на {n} ч впереди Стамбула', deltaBehind: 'на {n} ч позади Стамбула', deltaSame: 'то же время, что в Стамбуле',
   distAria: 'Расстояние по дуге большого круга от Стамбула до ориентиров направлений',
   dayAria: 'Высота солнца в течение суток и общие рабочие часы со Стамбулом',
@@ -67,13 +68,13 @@ const en = {
   startProject: 'Start a conversation', ourSolutions: 'Our solutions', originCaption: 'At the crossroads of global trade',
   globeAria: 'Interactive 3D globe. Drag or use arrow keys to rotate. Use plus and minus to zoom.',
   rotateHint: 'DRAG TO ROTATE', zoomIn: 'Zoom in', zoomOut: 'Zoom out', reset: 'Centre on Istanbul', pause: 'Pause rotation', resume: 'Start rotation',
-  routesTitle: 'DIRECTIONS', regions: 'Trade regions', gaugeTitle: 'LOCAL TIME', bearingTitle: 'COURSE FROM ISTANBUL', rCourse: 'Course', rDistance: 'Distance', rLocal: 'Time',
+  routesTitle: 'DIRECTIONS', regions: 'Trade regions', gaugeTitle: 'LOCAL TIME', boardTitle: 'DIRECTIONS BOARD', bhDest: 'Direction', bhCity: 'Point', bhCourse: 'Course', bhKm: 'Km', bhTime: 'Time', bhStatus: 'Business day', stOpen: 'OPEN', stClosed: 'CLOSED', stWeekend: 'WEEKEND', bearingTitle: 'COURSE FROM ISTANBUL', rCourse: 'Course', rDistance: 'Distance', rLocal: 'Time',
   distTitle: 'DISTANCE FROM ISTANBUL', dayTitle: 'DAY AT DESTINATION', legendSun: 'sun elevation', legendOverlap: 'shared business hours with Istanbul',
   clocksTitle: 'WORLD TIME',
   consoleNote: 'Routes illustrate trade directions; this is not shipment tracking. Time, distances and the sun’s position are calculated live.',
-  europe: 'Europe', cis: 'CIS', middleEast: 'Middle East', asia: 'Asia', africa: 'Africa',
+  europe: 'Europe', cis: 'Central Asia', middleEast: 'Middle East', asia: 'Asia', africa: 'Africa',
   regionEurope: 'European direction: discuss your trade enquiry between Türkiye and European markets.',
-  regionCis: 'CIS direction: tell us which products and markets interest you, and we’ll discuss how to work together.',
+  regionCis: 'Central Asian direction: tell us which products and markets interest you, and we’ll discuss how to work together.',
   regionMiddleEast: 'Middle Eastern direction: discuss supply opportunities and business cooperation.',
   regionAsia: 'Asian direction: share your sourcing needs or your plans to reach markets in Asia.',
   regionAfrica: 'African direction: let’s discuss your enquiry and possible routes for trade cooperation.',
@@ -95,7 +96,7 @@ const en = {
   partnerTitle: 'Trade connections', partnerText: 'Connect your business needs with market opportunities. Start a conversation about sourcing and partnership.', partnerCta: 'Find a solution',
   networkLabel: 'AN INTERNATIONAL PERSPECTIVE', networkTitle: 'Türkiye at the centre.<br>Opportunity everywhere.',
   networkText: 'Istanbul connects Europe and Asia. It is a starting point for conversations with new markets and the next chapter of your business.',
-  networkFootnote: 'Destinations and supply terms are discussed individually for each project.',
+  networkFootnote: 'Destinations and supply terms are discussed individually for each project. We do not work with countries or parties under international sanctions, or with high-risk jurisdictions.',
   processLabel: 'A CLEAR PATH TO PARTNERSHIP', processTitle: 'From enquiry to a solution.', letsStart: 'Let’s start with a conversation',
   step1Title: 'Tell us what you need', step1Text: 'Share your product, quantity, destination and preferred timeline.',
   step2Title: 'Explore the details', step2Text: 'We clarify your requirements and discuss a suitable way to work together.',
@@ -122,13 +123,13 @@ const tr = {
   startProject: 'İş birliğine başlayalım', ourSolutions: 'Çözümlerimiz', originCaption: 'Küresel ticaret yollarının kesişiminde',
   globeAria: 'Etkileşimli 3B dünya. Döndürmek için sürükleyin veya ok tuşlarını kullanın. Yakınlaştırmak için artı ve eksi tuşlarını kullanın.',
   rotateHint: 'DÖNDÜRMEK İÇİN SÜRÜKLEYİN', zoomIn: 'Yakınlaştır', zoomOut: 'Uzaklaştır', reset: 'İstanbul’u merkeze al', pause: 'Döndürmeyi durdur', resume: 'Döndürmeyi başlat',
-  routesTitle: 'YÖNLER', regions: 'Ticaret bölgeleri', gaugeTitle: 'YEREL SAAT', bearingTitle: 'İSTANBUL’DAN ROTA', rCourse: 'Rota', rDistance: 'Mesafe', rLocal: 'Saat',
+  routesTitle: 'YÖNLER', regions: 'Ticaret bölgeleri', gaugeTitle: 'YEREL SAAT', boardTitle: 'YÖN PANOSU', bhDest: 'Yön', bhCity: 'Nokta', bhCourse: 'Rota', bhKm: 'Km', bhTime: 'Saat', bhStatus: 'İş günü', stOpen: 'AÇIK', stClosed: 'KAPALI', stWeekend: 'HAFTA SONU', bearingTitle: 'İSTANBUL’DAN ROTA', rCourse: 'Rota', rDistance: 'Mesafe', rLocal: 'Saat',
   distTitle: 'İSTANBUL’A UZAKLIK', dayTitle: 'VARIŞ NOKTASINDA GÜN', legendSun: 'güneş yüksekliği', legendOverlap: 'İstanbul ile ortak mesai saatleri',
   clocksTitle: 'DÜNYA SAATİ',
   consoleNote: 'Rotalar ticaret yönlerini gösteren bir illüstrasyondur, yük takibi değildir. Saat, mesafe ve güneşin konumu anlık hesaplanır.',
-  europe: 'Avrupa', cis: 'BDT', middleEast: 'Orta Doğu', asia: 'Asya', africa: 'Afrika',
+  europe: 'Avrupa', cis: 'Orta Asya', middleEast: 'Orta Doğu', asia: 'Asya', africa: 'Afrika',
   regionEurope: 'Avrupa yönü: Türkiye ve Avrupa pazarları arasındaki ticaret talebinizi görüşelim.',
-  regionCis: 'BDT yönü: ilgilendiğiniz ürünleri ve pazarları anlatın, iş birliği biçimini birlikte konuşalım.',
+  regionCis: 'Orta Asya yönü: ilgilendiğiniz ürünleri ve pazarları anlatın, iş birliği biçimini birlikte konuşalım.',
   regionMiddleEast: 'Orta Doğu yönü: tedarik fırsatlarını ve ticari iş birliğini konuşalım.',
   regionAsia: 'Asya yönü: tedarik ihtiyacınızı veya Asya pazarlarına açılma planınızı paylaşın.',
   regionAfrica: 'Afrika yönü: talebinizi ve olası ticari iş birliği yollarını görüşelim.',
@@ -150,7 +151,7 @@ const tr = {
   partnerTitle: 'Ticari bağlantılar', partnerText: 'İhtiyaçlarınız ile pazarın sunduğu fırsatları buluşturalım. Tedarik ve iş ortaklığı için diyaloğa başlayın.', partnerCta: 'Çözüm bulalım',
   networkLabel: 'ULUSLARARASI BAKIŞ', networkTitle: 'Merkezde Türkiye.<br>Her yerde fırsat.',
   networkText: 'İstanbul, Avrupa ile Asya’yı birbirine bağlar. Yeni pazarlarla diyaloğunuz ve işletmenizin sonraki adımı buradan başlar.',
-  networkFootnote: 'Her projenin teslimat bölgesi ve koşulları ayrıca görüşülür.',
+  networkFootnote: 'Her projenin teslimat bölgesi ve koşulları ayrıca görüşülür. Uluslararası yaptırım altındaki ülkeler ve taraflarla ya da yüksek riskli bölgelerle çalışmıyoruz.',
   processLabel: 'İŞ BİRLİĞİNE GİDEN AÇIK BİR YOL', processTitle: 'Talepten çözüme.', letsStart: 'Bir görüşmeyle başlayalım',
   step1Title: 'İhtiyacınızı anlatın', step1Text: 'Ürün, miktar, hedef bölge ve planladığınız zamanı paylaşın.',
   step2Title: 'Ayrıntıları konuşalım', step2Text: 'Gereksinimleri netleştirelim ve uygun iş birliği biçimini değerlendirelim.',
@@ -242,7 +243,7 @@ const regionDescKey = { europe: 'regionEurope', cis: 'regionCis', middleEast: 'r
 const fmtKm = km => new Intl.NumberFormat(locales[language]).format(km);
 
 function renderRegionLists() {
-  $('#route-list').innerHTML = HUBS.map((h, i) => `
+  if ($('#route-list')) $('#route-list').innerHTML = HUBS.map((h, i) => `
     <button type="button" class="route" data-region="${h.key}" aria-pressed="false">
       <span class="r-idx">0${i + 1}</span><span class="r-name">${t(h.key)}</span><span class="r-code">${h.code}</span>
       <span class="r-km">≈${fmtKm(h.km)} km</span><span class="r-bar"><i style="width:${(h.km / MAX_KM * 100).toFixed(1)}%"></i></span>
@@ -414,14 +415,14 @@ function renderRegionText() {
   $('#region-description').textContent = t(regionDescKey[GB.region]);
 }
 
-function renderAll() { renderDistChart(); renderDayChart(); renderClocks(); renderGauge(); renderRegionText(); }
+function renderAll() { renderDistChart(); renderDayChart(); renderClocks(); renderGauge(); renderRegionText(); renderBoard(); }
 
 /* ---------- Clock tick ---------- */
 let lastMinute = -1;
 function tick() {
   const now = new Date();
   $('#utc-clock').textContent = timeIn('UTC', now, true);
-  if (now.getUTCMinutes() !== lastMinute) { lastMinute = now.getUTCMinutes(); renderClocks(); renderGauge(); renderDayChart(); }
+  if (now.getUTCMinutes() !== lastMinute) { lastMinute = now.getUTCMinutes(); renderClocks(); renderGauge(); renderDayChart(); renderBoard(); }
   else setHands(now);
 }
 
@@ -485,6 +486,57 @@ function initContact() {
     const body = `${t('messageName')}: ${val('name')}\n${t('messageCompany')}: ${val('company')}\n${t('messageEmail')}: ${val('email')}\n${t('messageInterest')}: ${interest}\n\n${t('messageBody')}:\n${val('message')}`;
     location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     status.textContent = t('mailReady');
+  });
+}
+
+/* ---------- Split-flap directions board ---------- */
+// Business day = Mon–Fri, 09:00–18:00 local time at the destination (a convention, not a claim about any office).
+const FLAP_SET = 'ABCDEFGHIJKLMNOPRSTUVYZАБВГДЕЖЗИКЛМНОПРСТУФЦЧШЭЮЯ0123456789';
+const BOARD_W = { name: 16, city: 10, course: 4, km: 5, time: 5, status: 10 };
+function setFlaps(cell, text, width, delay = 0) {
+  const target = text.toLocaleUpperCase(language === 'tr' ? 'tr' : language).padEnd(width).slice(0, width);
+  if (cell.children.length !== width) cell.innerHTML = '<span class="flap">&nbsp;</span>'.repeat(width);
+  [...cell.children].forEach((el, i) => {
+    const ch = target[i];
+    if (el.dataset.c === ch) return;
+    el.dataset.c = ch;
+    const show = c => { el.textContent = c === ' ' ? ' ' : c; };
+    if (reducedMotion || !el.animate) { show(ch); return; }
+    let spins = ch === ' ' ? 1 : 3 + ((i * 7) % 4);
+    const step = () => {
+      show(spins-- > 0 ? FLAP_SET[(Math.random() * FLAP_SET.length) | 0] : ch);
+      el.animate([{ transform: 'perspective(70px) rotateX(-78deg)', filter: 'brightness(1.8)' }, { transform: 'none', filter: 'none' }], { duration: 70, easing: 'ease-out' });
+      if (spins >= 0) setTimeout(step, 58);
+    };
+    setTimeout(step, delay + i * 16);
+  });
+}
+function businessState(tz, now) {
+  const wd = new Intl.DateTimeFormat('en-GB', { timeZone: tz, weekday: 'short' }).format(now);
+  if (wd === 'Sat' || wd === 'Sun') return 'weekend';
+  const [hh, mm] = timeIn(tz, now).split(':').map(Number), m = hh * 60 + mm;
+  return m >= 540 && m < 1080 ? 'open' : 'closed';
+}
+let boardBuiltFor = '';
+function renderBoard() {
+  const wrap = $('#board-rows'); if (!wrap) return;
+  const now = new Date();
+  if (boardBuiltFor !== language) {
+    wrap.innerHTML = HUBS.map(h => `<button type="button" class="board-row" data-region="${h.key}" aria-pressed="false"><span class="bc bc-name"></span><span class="bc bc-city"></span><span class="bc bc-course"></span><span class="bc bc-km"></span><span class="bc bc-time"></span><span class="bc bc-status"></span></button>`).join('');
+    $$('.board-row[data-region]', wrap).forEach(btn => btn.addEventListener('click', () => setRegion(btn.dataset.region)));
+    boardBuiltFor = language;
+  }
+  HUBS.forEach((h, r) => {
+    const row = wrap.querySelector(`[data-region="${h.key}"]`), d = r * 90, st = businessState(h.tz, now);
+    const on = h.key === GB.region; row.classList.toggle('active', on); row.setAttribute('aria-pressed', on);
+    row.dataset.state = st;
+    setFlaps(row.querySelector('.bc-name'), t(h.key), BOARD_W.name, d);
+    setFlaps(row.querySelector('.bc-city'), h.city, BOARD_W.city, d + 60);
+    setFlaps(row.querySelector('.bc-course'), `${String(h.bearing).padStart(3, '0')}°`, BOARD_W.course, d + 120);
+    setFlaps(row.querySelector('.bc-km'), String(h.km), BOARD_W.km, d + 150);
+    setFlaps(row.querySelector('.bc-time'), timeIn(h.tz, now), BOARD_W.time, d + 180);
+    setFlaps(row.querySelector('.bc-status'), t(st === 'open' ? 'stOpen' : st === 'weekend' ? 'stWeekend' : 'stClosed'), BOARD_W.status, d + 220);
+    row.setAttribute('aria-label', `${t(h.key)} ${h.city}, ${h.bearing}°, ≈${fmtKm(h.km)} km, ${timeIn(h.tz, now)}, ${t(st === 'open' ? 'stOpen' : st === 'weekend' ? 'stWeekend' : 'stClosed')}`);
   });
 }
 

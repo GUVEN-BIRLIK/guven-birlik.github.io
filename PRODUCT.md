@@ -31,10 +31,14 @@ Visitors compare intermediaries before committing. They need to quickly understa
 
 - Static site: plain HTML/CSS/JS in `dist/`, deployed to Vercel (`*.vercel.app` temporary domain) from GitHub `malik-alaska2/guven-birlik-site`.
 - RU (default), EN and TR via `app.js` dictionaries.
-- WebGL globe (three.js r160, vendored) with illustrative trade directions from Istanbul: Berlin, Moscow, Dubai, Shanghai, Lagos.
+- WebGL globe (three.js r160, vendored) with illustrative trade directions from Istanbul: Berlin, Tashkent, Dubai, Shanghai, Casablanca.
 - Live, computed data only: distances, local times, sun position, shared business hours.
 - Contact: email only (guvenbirlikicvedisticaret@gmail.com) and office address. No phone or messenger numbers.
 - Some visitors' networks block `*.vercel.app`, so the site cannot be checked from the owner's own connection.
+
+## Compliance
+
+The company does not work with countries or parties under international sanctions, or with high-risk jurisdictions (owner's instruction). Directions, examples and copy must never feature such destinations. The site states this in the Geography footnote.
 
 ## Brand Commitments
 

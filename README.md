@@ -28,7 +28,7 @@ Drawing the 4096px land mask in the browser blocked the page for up to ~25 s on 
 
 - The logo is an inline SVG (a "G" drawn as a globe outline, with a spinning meridian and an orbit dot) used in the header, the footer and the intro splash. `assets/favicon.svg` is the static version. The intro splash shows once per browser session and is skipped when reduced motion is on.
 - Each content section is a glass "screen" with a HUD bar, matching the hero console.
-- Direction reference points (Berlin, Moscow, Dubai, Shanghai, Lagos) are set in `HUBS` in `app.js`.
+- Direction reference points (Berlin, Tashkent, Dubai, Shanghai, Casablanca) are set in `HUBS` in `app.js`.
 - Distances, local times, business-hour overlap and the sun's position are all calculated live. No customer numbers, certifications or operating statistics are claimed.
 - The routes illustrate trade directions. They are not shipment tracking.
 - The inquiry form opens the visitor's email app with a prepared message to guvenbirlikicvedisticaret@gmail.com. Nothing is sent to or stored on a server.
