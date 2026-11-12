@@ -1,6 +1,6 @@
 # GÜVEN BİRLİK
 
-Static company website in Russian, English and Turkish. White and blue theme, with a deep-navy "screen" in the hero that holds an interactive WebGL 3D globe and live data panels. There is no build step.
+Static company website in Russian, English and Turkish. White frosted-glass theme with blue lines and accents. The hero is a glass "screen" with an interactive WebGL 3D globe and live data panels. There is no build step.
 
 ## Local preview
 
@@ -15,7 +15,7 @@ Upload the contents of `dist/` to any static host. `.openai/hosting.json` record
 | Path | Purpose |
 |---|---|
 | `dist/index.html` | Markup and default Russian copy |
-| `dist/style.css` | Theme tokens (`:root` = light page, `.console` = dark screen), layout, responsive rules |
+| `dist/style.css` | Theme tokens (white glass + blue), layout, responsive rules |
 | `dist/app.js` | Translations, language switch, live panels (clocks, distances, sun chart), region selection, inquiry form |
 | `dist/globe.js` | WebGL globe (three.js r160): dotted continents, country borders, live day/night terminator, atmosphere, animated routes from Istanbul |
 | `dist/land-canvas.js` | Draws the land mask from `world.geojson`; used to bake the PNGs and as a runtime fallback |

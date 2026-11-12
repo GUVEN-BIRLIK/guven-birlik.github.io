@@ -9,7 +9,7 @@ const canvas = document.getElementById('globe');
 const labelsEl = document.getElementById('globe-labels');
 const loadingEl = document.getElementById('globe-loading');
 const RAD = Math.PI / 180;
-const RED = new THREE.Color('#3f7dff');
+const RED = new THREE.Color('#1a56f0');
 const reduced = GB.reducedMotion;
 const small = matchMedia('(max-width: 760px)').matches;
 
@@ -25,10 +25,10 @@ function failGracefully(reason) {
 }
 
 /* ---------- Textures ---------- */
-function glowTexture(size = 128, inner = 'rgba(255,255,255,1)', mid = 'rgba(80,140,255,.45)') {
+function glowTexture(size = 128, inner = 'rgba(26,86,240,1)', mid = 'rgba(26,86,240,.35)', outer = 'rgba(26,86,240,0)') {
   const c = document.createElement('canvas'); c.width = c.height = size; const g = c.getContext('2d');
   const grd = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-  grd.addColorStop(0, inner); grd.addColorStop(0.22, mid); grd.addColorStop(1, 'rgba(60,120,255,0)');
+  grd.addColorStop(0, inner); grd.addColorStop(0.22, mid); grd.addColorStop(1, outer);
   g.fillStyle = grd; g.fillRect(0, 0, size, size);
   const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; return tex;
 }
@@ -92,16 +92,17 @@ void main(){
   float ndv = max(dot(N, V), 0.0);
   float fres = pow(1.0 - ndv, 3.0);
 
-  vec3 ocean = mix(vec3(0.008, 0.016, 0.040), vec3(0.030, 0.060, 0.130), day);
-  ocean += vec3(0.15, 0.35, 1.0) * land.b * 0.10;
-  vec3 landFill = mix(vec3(0.02, 0.05, 0.13), vec3(0.16, 0.24, 0.42), day);
-  vec3 col = mix(ocean, landFill, land.r * 0.75);
-  vec3 dotCol = mix(vec3(0.30, 0.58, 1.0), vec3(0.88, 0.94, 1.0), day * 0.9);
-  col += dotCol * dotMask * landC * mix(0.80, 1.05, day);
-  col += vec3(0.25, 0.55, 1.0) * land.g * mix(0.95, 0.60, day);
-  col += vec3(0.4, 0.6, 1.0) * term * 0.05;
-  col *= 0.45 + 0.55 * pow(ndv, 0.6);
-  col += vec3(0.2, 0.45, 1.0) * fres * 0.55;
+  // Light "frosted glass" globe: pale sphere, blue dotted land, blue borders, blue rim
+  vec3 ocean = mix(vec3(0.83, 0.88, 0.97), vec3(0.96, 0.975, 1.0), day);
+  ocean = mix(ocean, vec3(0.74, 0.83, 1.0), land.b * 0.45);
+  vec3 landFill = mix(vec3(0.76, 0.83, 0.97), vec3(0.88, 0.92, 1.0), day);
+  vec3 col = mix(ocean, landFill, land.r * 0.7);
+  vec3 dotCol = mix(vec3(0.05, 0.20, 0.70), vec3(0.10, 0.36, 0.95), day);
+  col = mix(col, dotCol, dotMask * landC * 0.92);
+  col = mix(col, vec3(0.10, 0.34, 0.94), land.g * 0.55);
+  col = mix(col, vec3(0.55, 0.70, 1.0), term * 0.12);
+  col *= 0.86 + 0.14 * pow(ndv, 0.6);
+  col = mix(col, vec3(0.40, 0.60, 1.0), fres * 0.75);
   gl_FragColor = vec4(col, 1.0);
 }`;
 const atmoFrag = /* glsl */`
@@ -111,7 +112,7 @@ void main(){
   float d = dot(normalize(vN), normalize(vV));
   float a = smoothstep(0.0, 0.55, -d);
   a = pow(a, 1.8) * uStrength;
-  gl_FragColor = vec4(uColor * a, a);
+  gl_FragColor = vec4(uColor, a);
 }`;
 const arcVert = /* glsl */`
 varying vec2 vUv;
@@ -126,8 +127,8 @@ void main(){
   float dt = uHead - t;
   float comet = dt >= 0.0 ? pow(max(0.0, 1.0 - dt / 0.24), 2.4) : 0.0;
   float a = base + comet * mix(0.55, 1.6, uActive);
-  vec3 col = mix(uColor, vec3(0.85, 0.93, 1.0), comet * comet * uActive * 0.8);
-  gl_FragColor = vec4(col, a);
+  vec3 col = mix(uColor, vec3(0.0, 0.62, 1.0), comet * uActive * 0.7);
+  gl_FragColor = vec4(col, min(1.0, a));
 }`;
 
 /* ---------- Main ---------- */
@@ -156,11 +157,11 @@ async function main() {
 
   // Atmosphere shell + wide soft halo
   const atmo = new THREE.Mesh(new THREE.SphereGeometry(1.16, 64, 48), new THREE.ShaderMaterial({
-    vertexShader: globeVert, fragmentShader: atmoFrag, side: THREE.BackSide, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-    uniforms: { uColor: { value: new THREE.Color('#3f7dff') }, uStrength: { value: 0.55 } }
+    vertexShader: globeVert, fragmentShader: atmoFrag, side: THREE.BackSide, transparent: true, depthWrite: false, blending: THREE.NormalBlending,
+    uniforms: { uColor: { value: new THREE.Color('#2f6bff') }, uStrength: { value: 0.3 } }
   }));
   scene.add(atmo);
-  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(256, 'rgba(60,120,255,.24)', 'rgba(60,120,255,.10)'), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(256, 'rgba(26,86,240,.14)', 'rgba(26,86,240,.06)'), transparent: true, depthWrite: false, blending: THREE.NormalBlending }));
   halo.scale.setScalar(3.6); halo.renderOrder = -1; scene.add(halo); // depth-tested: hidden behind the globe's front face
 
   // Floating dust
@@ -168,12 +169,12 @@ async function main() {
   for (let i = 0; i < dustCount; i++) {
     const v = new THREE.Vector3().randomDirection().multiplyScalar(1.35 + Math.random() * 1.6);
     dustPos.set([v.x, v.y, v.z], i * 3);
-    const white = Math.random() < 0.25; dustCol.set(white ? [0.85, 0.92, 1] : [0.3, 0.55, 1], i * 3);
+    const white = Math.random() < 0.25; dustCol.set(white ? [0.22, 0.74, 0.97] : [0.1, 0.34, 0.94], i * 3);
   }
   const dustGeo = new THREE.BufferGeometry();
   dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
   dustGeo.setAttribute('color', new THREE.BufferAttribute(dustCol, 3));
-  const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ size: 0.022, map: glowTexture(64), vertexColors: true, transparent: true, opacity: 0.7, depthWrite: false, blending: THREE.AdditiveBlending }));
+  const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ size: 0.022, map: glowTexture(64, 'rgba(255,255,255,1)', 'rgba(255,255,255,.35)', 'rgba(255,255,255,0)'), vertexColors: true, transparent: true, opacity: 0.5, depthWrite: false, blending: THREE.NormalBlending }));
   scene.add(dust);
 
   // HUD orbit rings
@@ -182,15 +183,15 @@ async function main() {
     const pts = new THREE.EllipseCurve(0, 0, r, r, 0, Math.PI * 2).getPoints(220).map(p => new THREE.Vector3(p.x, 0, p.y));
     const geo = new THREE.BufferGeometry().setFromPoints(pts);
     const mat = dashed
-      ? new THREE.LineDashedMaterial({ color: RED, transparent: true, opacity, dashSize: 0.05, gapSize: 0.035, depthWrite: false, blending: THREE.AdditiveBlending })
-      : new THREE.LineBasicMaterial({ color: RED, transparent: true, opacity, depthWrite: false, blending: THREE.AdditiveBlending });
+      ? new THREE.LineDashedMaterial({ color: RED, transparent: true, opacity, dashSize: 0.05, gapSize: 0.035, depthWrite: false, blending: THREE.NormalBlending })
+      : new THREE.LineBasicMaterial({ color: RED, transparent: true, opacity, depthWrite: false, blending: THREE.NormalBlending });
     const line = new THREE.LineLoop(geo, mat); if (dashed) line.computeLineDistances();
     line.rotation.set(tiltX, 0, tiltZ); orbitGroup.add(line); return line;
   };
   const orbitA = makeOrbit(1.32, 1.28, 0.42, 0.42, false);
   makeOrbit(1.46, 1.12, -0.55, 0.28, true);
   const satTex = glowTexture(64);
-  const satellite = new THREE.Sprite(new THREE.SpriteMaterial({ map: satTex, color: 0xffffff, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+  const satellite = new THREE.Sprite(new THREE.SpriteMaterial({ map: satTex, color: 0xffffff, transparent: true, depthWrite: false, blending: THREE.NormalBlending }));
   satellite.scale.setScalar(0.07); orbitA.add(satellite);
 
   /* ---- Markers ---- */
@@ -200,13 +201,13 @@ async function main() {
     const v = toVec(hub.coord);
     const group = new THREE.Group(); group.position.copy(v); globe.add(group);
     group.lookAt(v.clone().multiplyScalar(2)); // +Z now points away from the surface
-    const dot = new THREE.Sprite(new THREE.SpriteMaterial({ map: markerTex, color: isOrigin ? 0xffffff : 0x7fb0ff, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+    const dot = new THREE.Sprite(new THREE.SpriteMaterial({ map: markerTex, color: 0xffffff, transparent: true, depthWrite: false, blending: THREE.NormalBlending }));
     dot.scale.setScalar(isOrigin ? 0.075 : 0.05); dot.position.z = 0.006; group.add(dot);
-    const ring = new THREE.Mesh(new THREE.RingGeometry(0.026, 0.031, 48), new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0.9, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending }));
+    const ring = new THREE.Mesh(new THREE.RingGeometry(0.026, 0.031, 48), new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0.9, side: THREE.DoubleSide, depthWrite: false, blending: THREE.NormalBlending }));
     ring.position.z = 0.003; group.add(ring);
     const beamGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, isOrigin ? 0.2 : 0.13)]);
-    beamGeo.setAttribute('color', new THREE.BufferAttribute(new Float32Array([0.45, 0.7, 1, 0.02, 0.05, 0.15]), 3));
-    const beam = new THREE.Line(beamGeo, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+    beamGeo.setAttribute('color', new THREE.BufferAttribute(new Float32Array([0.1, 0.34, 0.94, 1, 0.1, 0.34, 0.94, 0]), 4));
+    const beam = new THREE.Line(beamGeo, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, depthWrite: false, blending: THREE.NormalBlending }));
     group.add(beam);
     const label = document.createElement('div');
     label.className = 'g-label' + (isOrigin ? ' origin' : '');
@@ -230,12 +231,12 @@ async function main() {
     }
     const curve = new THREE.CatmullRomCurve3(pts);
     const mat = new THREE.ShaderMaterial({
-      vertexShader: arcVert, fragmentShader: arcFrag, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      vertexShader: arcVert, fragmentShader: arcFrag, transparent: true, depthWrite: false, blending: THREE.NormalBlending,
       uniforms: { uHead: { value: 0 }, uActive: { value: 0 }, uReveal: { value: 1 }, uColor: { value: RED.clone() } }
     });
     const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 160, small ? 0.0075 : 0.0062, 8, false), mat);
     globe.add(tube);
-    const head = new THREE.Sprite(new THREE.SpriteMaterial({ map: markerTex, color: 0xd6e6ff, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+    const head = new THREE.Sprite(new THREE.SpriteMaterial({ map: markerTex, color: 0xffffff, transparent: true, depthWrite: false, blending: THREE.NormalBlending }));
     head.scale.setScalar(0.06); globe.add(head);
     const mid = toLonLat(vo.clone().add(vb));
     arcs.set(h.key, { curve, mat, head, offset: i * 0.21, active: 0, reveal: 1, mid, ang });
@@ -396,9 +397,13 @@ async function main() {
       const opacity = Math.max(0, Math.min(1, facing * 7)) * (m.isOrigin ? 1 : 0.55 + 0.45 * m.active);
       tmp.multiplyScalar(1.04).project(camera);
       const x = (tmp.x * 0.5 + 0.5) * w, y = (-tmp.y * 0.5 + 0.5) * h;
-      m.label.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+      const on = m.isOrigin || m.active > 0.5;
+      const lw = on ? m.wActive : m.wIdle;
+      const flip = x + lw + 16 > w; // keep labels inside the stage near its right edge
+      m.label.style.transform = `translate(${(flip ? x - lw - 20 : x).toFixed(1)}px, ${y.toFixed(1)}px)`;
       m.label.style.opacity = opacity.toFixed(2);
       m.label.classList.toggle('active', m.active > 0.5);
+      m.label.classList.toggle('flip', flip);
     });
 
     if (!reduced) {
@@ -423,6 +428,11 @@ async function main() {
       m.label.innerHTML = m.isOrigin
         ? `<i></i><b>IST</b><span>İSTANBUL</span>`
         : `<i></i><b>${m.hub.code}</b><span>${m.hub.city} · ≈${nf().format(m.hub.km)} km</span>`;
+      // measure both states once, so the render loop never forces layout
+      const had = m.label.classList.contains('active');
+      m.label.classList.add('active'); m.wActive = m.label.offsetWidth;
+      m.label.classList.remove('active'); m.wIdle = m.label.offsetWidth;
+      m.label.classList.toggle('active', had);
     });
   }
   renderLabels(); GB.events.addEventListener('lang', renderLabels);
