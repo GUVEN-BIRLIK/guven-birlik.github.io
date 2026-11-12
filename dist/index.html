@@ -2,47 +2,288 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080a0e">
-  <meta name="description" content="GÜVEN BİRLİK — импорт, экспорт и международное торговое сотрудничество. Стамбул, Турция.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
   <title>GÜVEN BİRLİK — International Trade</title>
+  <meta name="description" content="GÜVEN BİRLİK — импорт, экспорт и международное торговое сотрудничество. Стамбул, Турция.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GÜVEN BİRLİK — International Trade">
+  <meta property="og:description" content="Импорт, экспорт и международное торговое сотрудничество. Стамбул, Турция.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;650;700;750;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/land-4096.png" as="image" media="(min-width: 761px)" crossorigin>
+  <link rel="preload" href="assets/land-2048.png" as="image" media="(max-width: 760px)" crossorigin>
+  <link rel="modulepreload" href="assets/vendor/three.module.min.js">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js')</script>
   <script src="app.js" defer></script>
+  <script src="globe.js" type="module"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "GÜVEN BİRLİK",
+    "legalName": "GÜVEN BİRLİK İÇ VE DIŞ TİCARET ANONİM ŞİRKETİ",
+    "email": "guvenbirlikicvedisticaret@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Topçular Mah. Maltepe Cad. No: 4/1 İç Kapı No: 18",
+      "addressLocality": "Eyüpsultan",
+      "addressRegion": "İstanbul",
+      "addressCountry": "TR"
+    }
+  }
+  </script>
 </head>
 <body>
-  <div class="page-grid" aria-hidden="true"></div>
-  <header class="header">
-    <a class="brand" href="#home" aria-label="Güven Birlik — Home"><span class="brand-mark">G<span></span></span><span class="brand-type">GÜVEN BİRLİK<small>INTERNATIONAL TRADE</small></span></a>
-    <nav class="nav" aria-label="Navigation"><a href="#about" data-i18n="navAbout">О компании</a><a href="#services" data-i18n="navServices">Решения</a><a href="#network" data-i18n="navNetwork">География</a><a href="#contact" data-i18n="navContact">Контакты</a></nav>
-    <div class="header-actions"><div class="languages" aria-label="Language"><button data-lang="ru" class="active" aria-pressed="true">RU</button><span>/</span><button data-lang="en" aria-pressed="false">EN</button><span>/</span><button data-lang="tr" aria-pressed="false">TR</button></div><a class="header-cta" href="#contact"><span data-i18n="discuss">Обсудить проект</span><span>↗</span></a><button class="menu-toggle" aria-expanded="false" aria-label="Menu"><span></span><span></span></button></div>
+  <a class="skip-link" href="#main" data-i18n="skip">Перейти к содержанию</a>
+  <div class="backdrop" aria-hidden="true"><div class="backdrop-grid"></div><div class="backdrop-glow"></div></div>
+
+  <header class="header" id="header">
+    <a class="brand" href="#home" aria-label="GÜVEN BİRLİK"><span class="brand-mark">G<i></i></span><span class="brand-type">GÜVEN BİRLİK<small>INTERNATIONAL TRADE</small></span></a>
+    <nav class="nav" id="nav" aria-label="Навигация" data-i18n-aria="navigation">
+      <a href="#about" data-i18n="navAbout">О компании</a>
+      <a href="#services" data-i18n="navServices">Решения</a>
+      <a href="#network" data-i18n="navNetwork">География</a>
+      <a href="#process" data-i18n="navProcess">Как работаем</a>
+      <a href="#contact" data-i18n="navContact">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <div class="languages" role="group" aria-label="Language"><button type="button" data-lang="ru" class="active" aria-pressed="true">RU</button><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="tr" aria-pressed="false">TR</button></div>
+      <a class="header-cta" href="#contact"><span data-i18n="discuss">Обсудить проект</span><span aria-hidden="true">↗</span></a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="nav" aria-label="Меню" data-i18n-aria="menu"><span></span><span></span></button>
+    </div>
   </header>
-  <main>
-    <section class="hero section-shell" id="home">
-      <div class="hero-main">
-        <div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span><span data-i18n="heroEyebrow">ИЗ СТАМБУЛА — В МИР</span></p><h1><span data-i18n="heroLine1">Мир ближе.</span><br><span class="accent" data-i18n="heroLine2">Бизнес шире.</span></h1><p class="hero-description" data-i18n="heroDescription">Соединяем рынки, людей и возможности. Импорт и экспорт с фокусом на ваш бизнес.</p><div class="hero-buttons"><a class="button button-red" href="#contact"><span data-i18n="startProject">Начать сотрудничество</span><span>↗</span></a><a class="text-link" href="#services"><span data-i18n="ourSolutions">Наши решения</span><span>↓</span></a></div><div class="origin"><span class="origin-cross">✳</span><div><strong>İSTANBUL, TÜRKİYE</strong><span data-i18n="originCaption">На пересечении мировых торговых путей</span></div></div></div>
-        <div class="globe-panel" aria-label="International trade routes illustration">
-          <div class="panel-top"><span><i class="red-dot"></i> GLOBAL CONNECTIONS</span><span class="mono muted">GB / 001</span></div>
-          <div class="globe-wrapper"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><canvas id="globe" tabindex="0" aria-label="Interactive 3D globe. Drag or use arrow keys to rotate; plus and minus to zoom."></canvas><span class="globe-coordinate coordinate-top">41°00′ N</span><span class="globe-coordinate coordinate-bottom">28°58′ E</span><div class="globe-controls"><span data-i18n="rotateHint">ПОТЯНИТЕ, ЧТОБЫ ВРАЩАТЬ</span><button type="button" id="globe-zoom-out" aria-label="Zoom out">−</button><button type="button" id="globe-zoom-in" aria-label="Zoom in">+</button><button type="button" id="globe-pause" aria-label="Pause globe rotation" aria-pressed="false">Ⅱ</button><button type="button" id="globe-reset" aria-label="Reset globe">↺</button></div></div>
-          <div class="route-summary"><span class="route-square">↗</span><div><small data-i18n="globeLabel">ВАШ ВЫХОД НА НОВЫЕ РЫНКИ</small><strong>TÜRKİYE <span>⟷</span> <span id="route-name">EUROPE</span></strong></div><div class="route-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+
+  <main id="main">
+    <!-- ============ HERO / CONSOLE ============ -->
+    <section class="hero" id="home">
+      <div class="console">
+        <div class="console-bar">
+          <span class="stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i></span>
+          <span class="console-title"><b>GB</b> // <span data-i18n="consoleTitle">СЕТЬ МЕЖДУНАРОДНОЙ ТОРГОВЛИ</span></span>
+          <span class="console-meta hide-sm">41.0082° N · 28.9784° E</span>
+          <span class="console-meta">UTC <b id="utc-clock">--:--:--</b></span>
+          <span class="console-meta live"><i class="red-dot"></i>LIVE</span>
+        </div>
+
+        <div class="console-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="red-dot"></span><span data-i18n="heroEyebrow">ИЗ СТАМБУЛА — В МИР</span></p>
+            <h1><span data-i18n="heroLine1">Мир ближе.</span> <span class="accent" data-i18n="heroLine2">Бизнес шире.</span></h1>
+            <p class="hero-description" data-i18n="heroDescription">Соединяем рынки, людей и возможности. Импорт и экспорт с фокусом на ваш бизнес.</p>
+            <div class="hero-buttons">
+              <a class="button button-red" href="#contact"><span data-i18n="startProject">Начать сотрудничество</span><span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="#services"><span data-i18n="ourSolutions">Наши решения</span><span aria-hidden="true">↓</span></a>
+            </div>
+            <div class="origin">
+              <span class="origin-cross" aria-hidden="true">✳</span>
+              <div><strong>İSTANBUL, TÜRKİYE</strong><span data-i18n="originCaption">На пересечении мировых торговых путей</span></div>
+            </div>
+          </div>
+
+          <div class="globe-stage" id="globe-stage">
+            <svg class="globe-hud" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <circle class="hud-ticks" cx="50" cy="50" r="46.5"/>
+              <circle class="hud-thin" cx="50" cy="50" r="44"/>
+              <g class="hud-spin"><circle class="hud-arc" cx="50" cy="50" r="48.5"/></g>
+              <g class="hud-spin reverse"><circle class="hud-arc2" cx="50" cy="50" r="42.2"/></g>
+              <path class="hud-cross" d="M50 0.5v4M50 95.5v4M0.5 50h4M95.5 50h4"/>
+            </svg>
+            <canvas id="globe" tabindex="0" role="img" aria-label="Интерактивный 3D-глобус" data-i18n-aria="globeAria"></canvas>
+            <div class="globe-labels" id="globe-labels" aria-hidden="true"></div>
+            <div class="globe-loading" id="globe-loading" aria-hidden="true"><span></span>LOADING GEO DATA</div>
+            <span class="stage-corner tl" aria-hidden="true"></span><span class="stage-corner tr" aria-hidden="true"></span><span class="stage-corner bl" aria-hidden="true"></span><span class="stage-corner br" aria-hidden="true"></span>
+            <span class="stage-readout top" aria-hidden="true">LAT <b id="readout-lat">41.0°</b> · LON <b id="readout-lon">29.0°</b></span>
+            <span class="stage-readout bottom" aria-hidden="true">ZOOM <b id="readout-zoom">1.00×</b></span>
+            <div class="globe-controls">
+              <span class="hint" data-i18n="rotateHint">ПОТЯНИТЕ, ЧТОБЫ ВРАЩАТЬ</span>
+              <button type="button" id="globe-zoom-out" aria-label="Отдалить" data-i18n-aria="zoomOut">−</button>
+              <button type="button" id="globe-zoom-in" aria-label="Приблизить" data-i18n-aria="zoomIn">+</button>
+              <button type="button" id="globe-pause" aria-label="Остановить вращение" aria-pressed="false">Ⅱ</button>
+              <button type="button" id="globe-reset" aria-label="Вернуть Стамбул в центр" data-i18n-aria="reset">↺</button>
+            </div>
+          </div>
+
+          <aside class="side-panels">
+            <div class="panel routes-panel">
+              <div class="panel-head"><span data-i18n="routesTitle">НАПРАВЛЕНИЯ</span><span class="mono dim">IST ⟶</span></div>
+              <div class="route-list" role="group" aria-label="Торговые направления" data-i18n-aria="regions" id="route-list"></div>
+            </div>
+            <div class="panel gauge-panel">
+              <div class="panel-head"><span data-i18n="gaugeTitle">МЕСТНОЕ ВРЕМЯ</span><span class="mono dim" id="gauge-code">BER</span></div>
+              <div class="gauge">
+                <svg viewBox="0 0 140 140" aria-hidden="true">
+                  <circle class="g-track" cx="70" cy="70" r="56"/>
+                  <circle class="g-ticks" cx="70" cy="70" r="64"/>
+                  <circle class="g-arc" id="gauge-arc" cx="70" cy="70" r="56"/>
+                  <g class="g-spin"><circle class="g-inner" cx="70" cy="70" r="46"/></g>
+                  <circle class="g-glow" cx="70" cy="70" r="56"/>
+                </svg>
+                <div class="gauge-center"><b id="gauge-time">--:--</b><span id="gauge-city">BERLIN</span><small id="gauge-utc">UTC+1</small></div>
+              </div>
+              <p class="gauge-delta" id="gauge-delta"></p>
+            </div>
+          </aside>
+        </div>
+
+        <div class="console-bottom">
+          <div class="panel chart-panel">
+            <div class="panel-head"><span data-i18n="distTitle">РАССТОЯНИЕ ОТ СТАМБУЛА</span><span class="mono dim">KM</span></div>
+            <svg class="chart" id="dist-chart" viewBox="0 0 320 150" role="img" aria-label=""></svg>
+          </div>
+          <div class="panel chart-panel">
+            <div class="panel-head"><span data-i18n="dayTitle">СУТКИ В ТОЧКЕ НАЗНАЧЕНИЯ</span><span class="mono dim" id="day-code">BER</span></div>
+            <svg class="chart" id="day-chart" viewBox="0 0 320 150" role="img" aria-label=""></svg>
+            <div class="chart-legend"><span><i class="lg-line"></i><span data-i18n="legendSun">высота солнца</span></span><span><i class="lg-band"></i><span data-i18n="legendOverlap">общие рабочие часы с Стамбулом</span>: <b id="overlap-hours">—</b></span></div>
+          </div>
+          <div class="panel clocks-panel">
+            <div class="panel-head"><span data-i18n="clocksTitle">МИРОВОЕ ВРЕМЯ</span><span class="mono dim">24H</span></div>
+            <ul class="clock-list" id="clock-list"></ul>
+          </div>
+        </div>
+        <p class="console-note"><span class="red-dot"></span><span data-i18n="consoleNote">Маршруты — иллюстрация направлений, а не отслеживание грузов. Время, расстояния и положение солнца рассчитываются в реальном времени.</span></p>
+      </div>
+      <div class="floor" aria-hidden="true"><div class="floor-line"></div><div class="floor-grid"></div></div>
+    </section>
+
+    <div class="trade-strip" aria-hidden="true"><div class="marquee"><div class="marquee-track">IMPORT <span>↗</span> EXPORT <span>↗</span> GLOBAL SOURCING <span>↗</span> INTERNATIONAL TRADE <span>↗</span> İSTANBUL ⟷ THE WORLD <span>↗</span></div></div></div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about section-shell" id="about">
+      <div class="section-label reveal"><span>01 /</span><span data-i18n="aboutLabel">О КОМПАНИИ</span></div>
+      <div class="about-content">
+        <h2 class="reveal" data-i18n="aboutTitle">Локальное понимание.<br>Международное мышление.</h2>
+        <div class="about-details reveal">
+          <p data-i18n="aboutText">GÜVEN BİRLİK İÇ VE DIŞ TİCARET ANONİM ŞİRKETİ — компания в Стамбуле, ориентированная на внутреннюю и международную торговлю. Мы помогаем выстраивать деловые связи между Турцией и зарубежными рынками.</p>
+          <p class="secondary-copy" data-i18n="aboutText2">Каждый проект начинается с понимания вашей задачи: что нужно поставить, откуда, куда и на каких условиях. Из этих деталей складывается решение для вашего бизнеса.</p>
+        </div>
+        <div class="pillars">
+          <article class="panel pillar reveal"><span class="pillar-index">A</span><h3 data-i18n="pillar1Title">Доверие</h3><p data-i18n="pillar1Text">GÜVEN по-турецки — «доверие». С этого принципа мы начинаем каждый разговор с партнёром.</p></article>
+          <article class="panel pillar reveal"><span class="pillar-index">B</span><h3 data-i18n="pillar2Title">Мост между рынками</h3><p data-i18n="pillar2Text">Стамбул соединяет Европу и Азию — удобная точка для диалога с самыми разными рынками.</p></article>
+          <article class="panel pillar reveal"><span class="pillar-index">C</span><h3 data-i18n="pillar3Title">Личный подход</h3><p data-i18n="pillar3Text">Решение под вашу задачу, а не шаблон. Понятный контакт и ясные следующие шаги.</p></article>
+        </div>
+        <div class="about-signature reveal"><span class="mini-cross">+</span><span data-i18n="aboutSignature">ОСНОВА СОТРУДНИЧЕСТВА — ДОВЕРИЕ</span><span class="wordmark">GÜVEN <span>means trust.</span></span></div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="services section-shell" id="services">
+      <div class="section-heading">
+        <div><div class="section-label reveal"><span>02 /</span><span data-i18n="solutionsLabel">ТОРГОВЫЕ РЕШЕНИЯ</span></div><h2 class="reveal" data-i18n="solutionsTitle">Ваш бизнес.<br>Без границ.</h2></div>
+        <p class="reveal" data-i18n="solutionsIntro">От первого запроса до согласованной поставки — выстраиваем понятный путь для вашего проекта.</p>
+      </div>
+      <div class="service-grid">
+        <a class="service-card panel reveal" href="#contact" data-service="import">
+          <div class="card-top"><span class="service-number">01 / IMP</span><span class="service-arrow" aria-hidden="true">↗</span></div>
+          <div class="service-art import-art" aria-hidden="true"><span class="box b1"></span><span class="box b2"></span><span class="box b3"></span><span class="art-arrow">↙</span></div>
+          <p class="card-kicker">INBOUND TRADE</p>
+          <h3 data-i18n="importTitle">Импорт</h3>
+          <p class="card-description" data-i18n="importText">Откройте новые возможности закупок. Обсудим товар, требования и условия поставки на ваш рынок.</p>
+          <span class="card-footer"><span data-i18n="importCta">Обсудить импорт</span><span aria-hidden="true">→</span></span>
+        </a>
+        <a class="service-card panel reveal" href="#contact" data-service="export">
+          <div class="card-top"><span class="service-number">02 / EXP</span><span class="service-arrow" aria-hidden="true">↗</span></div>
+          <div class="service-art export-art" aria-hidden="true"><span class="container-shape c1"></span><span class="container-shape c2"></span><span class="art-arrow">↗</span></div>
+          <p class="card-kicker">OUTBOUND TRADE</p>
+          <h3 data-i18n="exportTitle">Экспорт</h3>
+          <p class="card-description" data-i18n="exportText">Дайте вашему продукту международную перспективу. Определим направление и формат торгового сотрудничества.</p>
+          <span class="card-footer"><span data-i18n="exportCta">Обсудить экспорт</span><span aria-hidden="true">→</span></span>
+        </a>
+        <a class="service-card panel reveal" href="#contact" data-service="partnership">
+          <div class="card-top"><span class="service-number">03 / NET</span><span class="service-arrow" aria-hidden="true">↗</span></div>
+          <div class="service-art sourcing-art" aria-hidden="true"><span class="source-ring r1"></span><span class="source-ring r2"></span><span class="source-ring r3"></span><span class="source-center">+</span><span class="satellite s1"></span><span class="satellite s2"></span><span class="satellite s3"></span></div>
+          <p class="card-kicker">BUSINESS CONNECTIONS</p>
+          <h3 data-i18n="partnerTitle">Торговые связи</h3>
+          <p class="card-description" data-i18n="partnerText">Найдём точки соприкосновения между вашим запросом и рынком. Начните диалог о закупках и партнёрстве.</p>
+          <span class="card-footer"><span data-i18n="partnerCta">Найти решение</span><span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ NETWORK ============ -->
+    <section class="network section-shell" id="network">
+      <div class="network-visual reveal">
+        <img src="assets/port.jpg" alt="Контейнерное судно и портовые краны" data-i18n-alt="portAlt" loading="lazy" decoding="async" width="1300" height="1000">
+        <div class="photo-overlay"></div>
+        <div class="photo-scan"></div>
+        <div class="photo-tag"><span class="red-dot"></span>CONNECTED BY TRADE</div>
+        <div class="photo-caption"><span>İSTANBUL</span><span id="photo-target">⟶ EUROPE</span></div>
+        <span class="stage-corner tl"></span><span class="stage-corner br"></span>
+      </div>
+      <div class="network-copy">
+        <div class="section-label reveal"><span>03 /</span><span data-i18n="networkLabel">МЕЖДУНАРОДНЫЙ ГОРИЗОНТ</span></div>
+        <h2 class="reveal" data-i18n="networkTitle">Турция в центре.<br>Возможности повсюду.</h2>
+        <p class="reveal" data-i18n="networkText">Стамбул соединяет Европу и Азию. Отсюда начинается диалог с рынками и следующий этап вашего бизнеса.</p>
+        <div class="region-options reveal" role="group" aria-label="Торговые направления" data-i18n-aria="regions" id="region-options"></div>
+        <p class="region-description" id="region-description" aria-live="polite"></p>
+        <span class="network-footnote" data-i18n="networkFootnote">Географию и условия каждой поставки обсудим индивидуально.</span>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="process section-shell" id="process">
+      <div class="section-heading">
+        <div><div class="section-label reveal"><span>04 /</span><span data-i18n="processLabel">ПРОСТОЙ ПУТЬ К СОТРУДНИЧЕСТВУ</span></div><h2 class="reveal" data-i18n="processTitle">От запроса — к решению.</h2></div>
+        <a class="text-link reveal" href="#contact"><span data-i18n="letsStart">Начнём с разговора</span><span aria-hidden="true">↗</span></a>
+      </div>
+      <ol class="process-grid">
+        <li class="step reveal"><span class="step-node" aria-hidden="true"></span><span class="step-number">01</span><h3 data-i18n="step1Title">Расскажите о задаче</h3><p data-i18n="step1Text">Укажите товар, объём, направление и желаемые сроки.</p></li>
+        <li class="step reveal"><span class="step-node" aria-hidden="true"></span><span class="step-number">02</span><h3 data-i18n="step2Title">Обсудим детали</h3><p data-i18n="step2Text">Уточним требования и возможный формат сотрудничества.</p></li>
+        <li class="step reveal"><span class="step-node" aria-hidden="true"></span><span class="step-number">03</span><h3 data-i18n="step3Title">Согласуем следующий шаг</h3><p data-i18n="step3Text">Определим условия, порядок действий и контакт по проекту.</p></li>
+      </ol>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact section-shell" id="contact">
+      <div class="contact-intro">
+        <div class="section-label reveal"><span>05 /</span><span data-i18n="contactLabel">НАЧНЁМ ДИАЛОГ</span></div>
+        <h2 class="reveal"><span data-i18n="contactLine1">Ваш следующий</span><br><span data-i18n="contactLine2">рынок начинается</span><br><span class="accent" data-i18n="contactLine3">с контакта.</span></h2>
+        <div class="contact-email-row reveal">
+          <a class="contact-email" href="mailto:guvenbirlikicvedisticaret@gmail.com">guvenbirlikicvedisticaret@gmail.com <span aria-hidden="true">↗</span></a>
+          <button type="button" class="copy-button" id="copy-email" data-i18n="copy">Скопировать</button>
+        </div>
+        <div class="address panel reveal">
+          <div class="panel-head"><span data-i18n="office">ОФИС / İSTANBUL</span><span class="mono dim">41.05° N · 28.93° E</span></div>
+          <div class="address-body">
+            <address>TOPÇULAR MAH. MALTEPE CAD. NO: 4/1<br>İÇ KAPI NO: 18 EYÜPSULTAN / İSTANBUL<br>TÜRKİYE</address>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Top%C3%A7ular+Mahallesi+Maltepe+Caddesi+4%2F1+Ey%C3%BCpsultan+Istanbul" target="_blank" rel="noopener noreferrer" class="text-link"><span data-i18n="map">Открыть на карте</span><span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </div>
-      <div class="hero-bottom"><div class="hero-note"><span class="tiny-square"></span><span data-i18n="heroNote">МЕЖДУНАРОДНАЯ ТОРГОВЛЯ. ЛИЧНЫЙ ПОДХОД.</span></div><a class="scroll-link" href="#about"><span data-i18n="explore">УЗНАТЬ БОЛЬШЕ</span><span class="scroll-circle">↓</span></a></div>
+      <form id="inquiry-form" class="inquiry-form panel reveal" novalidate>
+        <div class="panel-head"><span data-i18n="formHead">ЗАПРОС / INQUIRY</span><span class="mono dim">GB-FORM</span></div>
+        <div class="form-body">
+          <h3 data-i18n="formTitle">Расскажите о вашем проекте</h3>
+          <div class="form-row">
+            <label><span data-i18n="nameLabel">Ваше имя</span><input name="name" autocomplete="name" required maxlength="100" data-i18n-ph="namePlaceholder" placeholder="Как к вам обращаться"></label>
+            <label><span data-i18n="companyLabel">Компания</span><input name="company" autocomplete="organization" maxlength="150" data-i18n-ph="companyPlaceholder" placeholder="Название компании"></label>
+          </div>
+          <label><span>Email</span><input name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@company.com"></label>
+          <label><span data-i18n="interestLabel">Что вас интересует?</span><select name="interest"><option value="import" data-i18n="importTitle">Импорт</option><option value="export" data-i18n="exportTitle">Экспорт</option><option value="partnership" data-i18n="partnerTitle">Торговые связи</option><option value="other" data-i18n="other">Другой вопрос</option></select></label>
+          <label><span data-i18n="messageLabel">Ваш запрос</span><textarea name="message" rows="4" required minlength="10" maxlength="4000" data-i18n-ph="messagePlaceholder" placeholder="Товар, объём, направление и сроки…"></textarea></label>
+          <p class="form-note" data-i18n="formNote">Кнопка откроет ваш почтовый сервис с готовым письмом. Отправьте его, чтобы связаться с нами.</p>
+          <button class="button button-red button-wide" type="submit"><span data-i18n="send">Подготовить запрос</span><span aria-hidden="true">↗</span></button>
+          <p id="form-status" aria-live="polite" class="form-status"></p>
+        </div>
+      </form>
     </section>
-    <div class="trade-strip" aria-hidden="true"><div>IMPORT <span>↗</span> EXPORT <span>↗</span> GLOBAL SOURCING <span>↗</span> INTERNATIONAL TRADE <span>↗</span> IMPORT <span>↗</span> EXPORT <span>↗</span></div></div>
-    <section class="about section-shell" id="about"><div class="section-label"><span>01 /</span><span data-i18n="aboutLabel">О КОМПАНИИ</span></div><div class="about-content"><h2 data-i18n="aboutTitle">Локальное понимание.<br>Международное мышление.</h2><div class="about-details"><p data-i18n="aboutText">GÜVEN BİRLİK İÇ VE DIŞ TİCARET ANONİM ŞİRKETİ — компания в Стамбуле, ориентированная на внутреннюю и международную торговлю. Мы помогаем выстраивать деловые связи между Турцией и зарубежными рынками.</p><p class="secondary-copy" data-i18n="aboutText2">Каждый проект начинается с понимания вашей задачи: что нужно поставить, откуда, куда и на каких условиях. Из этих деталей складывается решение для вашего бизнеса.</p><a class="text-link" href="#contact"><span data-i18n="meet">Давайте познакомимся</span><span>↗</span></a></div><div class="about-signature"><span class="mini-cross">+</span><span data-i18n="aboutSignature">ОСНОВА СОТРУДНИЧЕСТВА — ДОВЕРИЕ</span><span class="wordmark">GÜVEN <span>means trust.</span></span></div></div></section>
-    <section class="services section-shell" id="services"><div class="section-heading"><div><div class="section-label"><span>02 /</span><span data-i18n="solutionsLabel">ТОРГОВЫЕ РЕШЕНИЯ</span></div><h2 data-i18n="solutionsTitle">Ваш бизнес.<br>Без границ.</h2></div><p data-i18n="solutionsIntro">От первого запроса до согласованной поставки — выстраиваем понятный путь для вашего проекта.</p></div><div class="service-grid">
-      <a class="service-card" href="#contact" data-service="import"><div class="card-top"><span class="service-number">01</span><span class="service-arrow">↗</span></div><div class="service-art import-art" aria-hidden="true"><span class="box b1"></span><span class="box b2"></span><span class="box b3"></span><span class="art-arrow">↙</span><span class="art-line"></span></div><p class="card-kicker">INBOUND TRADE</p><h3 data-i18n="importTitle">Импорт</h3><p class="card-description" data-i18n="importText">Откройте новые возможности закупок. Обсудим товар, требования и условия поставки на ваш рынок.</p><span class="card-footer"><span data-i18n="importCta">Обсудить импорт</span><span>→</span></span></a>
-      <a class="service-card" href="#contact" data-service="export"><div class="card-top"><span class="service-number">02</span><span class="service-arrow">↗</span></div><div class="service-art export-art" aria-hidden="true"><span class="container-shape c1"></span><span class="container-shape c2"></span><span class="art-arrow">↗</span><span class="art-line"></span></div><p class="card-kicker">OUTBOUND TRADE</p><h3 data-i18n="exportTitle">Экспорт</h3><p class="card-description" data-i18n="exportText">Дайте вашему продукту международную перспективу. Определим направление и формат торгового сотрудничества.</p><span class="card-footer"><span data-i18n="exportCta">Обсудить экспорт</span><span>→</span></span></a>
-      <a class="service-card" href="#contact" data-service="partnership"><div class="card-top"><span class="service-number">03</span><span class="service-arrow">↗</span></div><div class="service-art sourcing-art" aria-hidden="true"><span class="source-ring r1"></span><span class="source-ring r2"></span><span class="source-ring r3"></span><span class="source-center">+</span><span class="satellite s1"></span><span class="satellite s2"></span><span class="satellite s3"></span></div><p class="card-kicker">BUSINESS CONNECTIONS</p><h3 data-i18n="partnerTitle">Торговые связи</h3><p class="card-description" data-i18n="partnerText">Найдём точки соприкосновения между вашим запросом и рынком. Начните диалог о закупках и партнёрстве.</p><span class="card-footer"><span data-i18n="partnerCta">Найти решение</span><span>→</span></span></a>
-    </div></section>
-    <section class="network section-shell" id="network"><div class="network-visual"><img src="assets/port.jpg" alt="Container ship and port cranes" loading="lazy" width="1300" height="1000"><div class="photo-overlay"></div><div class="photo-tag"><span class="status-dot"></span>CONNECTED BY TRADE</div><div class="photo-caption"><span>ISTANBUL</span><span>THE WORLD ↗</span></div><div class="image-corner tl"></div><div class="image-corner br"></div></div><div class="network-copy"><div class="section-label"><span>03 /</span><span data-i18n="networkLabel">МЕЖДУНАРОДНЫЙ ГОРИЗОНТ</span></div><h2 data-i18n="networkTitle">Турция в центре.<br>Возможности повсюду.</h2><p data-i18n="networkText">Стамбул соединяет Европу и Азию. Отсюда начинается диалог с рынками и следующий этап вашего бизнеса.</p><div class="region-options" role="group" aria-label="Trade regions"><button class="region active" data-region="europe" aria-pressed="true"><span>01</span><span data-i18n="europe">Европа</span><span>↗</span></button><button class="region" data-region="asia" aria-pressed="false"><span>02</span><span data-i18n="asia">Азия</span><span>↗</span></button><button class="region" data-region="middleEast" aria-pressed="false"><span>03</span><span data-i18n="middleEast">Ближний Восток</span><span>↗</span></button></div><p class="region-description" id="region-description" aria-live="polite"></p><span class="network-footnote" data-i18n="networkFootnote">Географию и условия каждой поставки обсудим индивидуально.</span></div></section>
-    <section class="process section-shell" id="process"><div class="section-heading"><div><div class="section-label"><span>04 /</span><span data-i18n="processLabel">ПРОСТОЙ ПУТЬ К СОТРУДНИЧЕСТВУ</span></div><h2 data-i18n="processTitle">От запроса — к решению.</h2></div><a class="text-link" href="#contact"><span data-i18n="letsStart">Начнём с разговора</span><span>↗</span></a></div><div class="process-grid"><article><span class="step-number">01<span>↗</span></span><h3 data-i18n="step1Title">Расскажите о задаче</h3><p data-i18n="step1Text">Укажите товар, объём, направление и желаемые сроки.</p></article><article><span class="step-number">02<span>↗</span></span><h3 data-i18n="step2Title">Обсудим детали</h3><p data-i18n="step2Text">Уточним требования и возможный формат сотрудничества.</p></article><article><span class="step-number">03<span>↗</span></span><h3 data-i18n="step3Title">Согласуем следующий шаг</h3><p data-i18n="step3Text">Определим условия, порядок действий и контакт по проекту.</p></article></div></section>
-    <section class="contact section-shell" id="contact"><div class="contact-intro"><div class="section-label"><span>05 /</span><span data-i18n="contactLabel">НАЧНЁМ ДИАЛОГ</span></div><h2><span data-i18n="contactLine1">Ваш следующий</span><br><span data-i18n="contactLine2">рынок начинается</span><br><span class="accent" data-i18n="contactLine3">с контакта.</span></h2><a class="contact-email" href="mailto:guvenbirlikicvedisticaret@gmail.com">guvenbirlikicvedisticaret@gmail.com <span>↗</span></a><div class="address"><span class="address-label" data-i18n="office">ОФИС / İSTANBUL</span><address>TOPÇULAR MAH. MALTEPE CAD. NO: 4/1<br>İÇ KAPI NO: 18 EYÜPSULTAN / İSTANBUL<br>TÜRKİYE</address><a href="https://www.google.com/maps/search/?api=1&query=Top%C3%A7ular+Mahallesi+Maltepe+Caddesi+4%2F1+Ey%C3%BCpsultan+Istanbul" target="_blank" rel="noopener noreferrer" class="text-link"><span data-i18n="map">Открыть на карте</span><span>↗</span></a></div></div><form id="inquiry-form" class="inquiry-form"><h3 data-i18n="formTitle">Расскажите о вашем проекте</h3><div class="form-row"><label><span data-i18n="nameLabel">Ваше имя</span><input name="name" autocomplete="name" required maxlength="100" data-placeholder="namePlaceholder" placeholder="Как к вам обращаться"></label><label><span data-i18n="companyLabel">Компания</span><input name="company" autocomplete="organization" maxlength="150" data-placeholder="companyPlaceholder" placeholder="Название компании"></label></div><label><span>Email</span><input name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@company.com"></label><label><span data-i18n="interestLabel">Что вас интересует?</span><select name="interest"><option value="import" data-i18n="importTitle">Импорт</option><option value="export" data-i18n="exportTitle">Экспорт</option><option value="partnership" data-i18n="partnerTitle">Торговые связи</option><option value="other" data-i18n="other">Другой вопрос</option></select></label><label><span data-i18n="messageLabel">Ваш запрос</span><textarea name="message" rows="3" required minlength="10" maxlength="4000" data-placeholder="messagePlaceholder" placeholder="Товар, объём, направление и сроки…"></textarea></label><p class="form-note" data-i18n="formNote">Кнопка откроет ваш почтовый сервис с готовым письмом. Отправьте его, чтобы связаться с нами.</p><button class="button button-red" type="submit"><span data-i18n="send">Подготовить запрос</span><span>↗</span></button><p id="form-status" aria-live="polite" class="form-status"></p></form></section>
   </main>
-  <footer class="footer section-shell"><div class="footer-top"><a class="brand" href="#home"><span class="brand-mark">G<span></span></span><span class="brand-type">GÜVEN BİRLİK<small>INTERNATIONAL TRADE</small></span></a><p>GÜVEN BİRLİK İÇ VE DIŞ TİCARET<br>ANONİM ŞİRKETİ</p><a href="#home" class="back-top"><span data-i18n="backTop">Наверх</span><span>↑</span></a></div><div class="footer-bottom"><span>© <span id="year">2026</span> GÜVEN BİRLİK. <span data-i18n="rights">Все права защищены.</span></span><span class="footer-tag">BUILT ON TRUST. CONNECTED TO THE WORLD.</span><span>İSTANBUL · TR</span></div></footer>
+
+  <footer class="footer section-shell">
+    <div class="footer-top">
+      <a class="brand" href="#home"><span class="brand-mark">G<i></i></span><span class="brand-type">GÜVEN BİRLİK<small>INTERNATIONAL TRADE</small></span></a>
+      <nav class="footer-nav" aria-label="Footer"><a href="#about" data-i18n="navAbout">О компании</a><a href="#services" data-i18n="navServices">Решения</a><a href="#network" data-i18n="navNetwork">География</a><a href="#contact" data-i18n="navContact">Контакты</a></nav>
+      <a href="#home" class="back-top"><span data-i18n="backTop">Наверх</span><span aria-hidden="true">↑</span></a>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> GÜVEN BİRLİK İÇ VE DIŞ TİCARET A.Ş. <span data-i18n="rights">Все права защищены.</span></span>
+      <span class="footer-tag">BUILT ON TRUST. CONNECTED TO THE WORLD.</span>
+      <span>İSTANBUL · TR</span>
+    </div>
+  </footer>
 </body>
 </html>
