@@ -450,6 +450,7 @@ async function main() {
   stage.classList.add('globe-ready');
   loadingEl?.classList.add('done');
   GB.globeReady = true;
+  GB.emit('globe-ready');
   start();
 }
 

@@ -18,7 +18,7 @@
   <link rel="preload" href="assets/land-2048.png" as="image" media="(max-width: 760px)" crossorigin>
   <link rel="modulepreload" href="assets/vendor/three.module.min.js">
   <link rel="stylesheet" href="style.css">
-  <script>document.documentElement.classList.add('js')</script>
+  <script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('gb-intro'))document.documentElement.classList.add('intro-seen');sessionStorage.setItem('gb-intro','1')}catch(e){}</script>
   <script src="app.js" defer></script>
   <script src="globe.js" type="module"></script>
   <script type="application/ld+json">
@@ -39,11 +39,12 @@
   </script>
 </head>
 <body>
+  <div class="intro" id="intro" aria-hidden="true"><div class="intro-inner"><svg class="logo logo-xl" viewBox="0 0 48 48" aria-hidden="true"><circle class="logo-ring" cx="24" cy="24" r="22.5"/><ellipse class="logo-mer" cx="24" cy="24" rx="7.5" ry="17"/><ellipse class="logo-mer m2" cx="24" cy="24" rx="7.5" ry="17"/><path class="logo-eq" d="M7 24h12"/><path class="logo-g" pathLength="1" d="M37.6 13.8A17 17 0 1 0 41 24H26.5"/><circle class="logo-dot" cx="37.6" cy="13.8" r="2.7"/></svg><div class="intro-word">GÜVEN BİRLİK<small>INTERNATIONAL TRADE · İSTANBUL</small></div><div class="intro-bar"><i></i></div></div></div>
   <a class="skip-link" href="#main" data-i18n="skip">Перейти к содержанию</a>
   <div class="backdrop" aria-hidden="true"><div class="backdrop-grid"></div><div class="backdrop-glow"></div></div>
 
   <header class="header" id="header">
-    <a class="brand" href="#home" aria-label="GÜVEN BİRLİK"><span class="brand-mark">G<i></i></span><span class="brand-type">GÜVEN BİRLİK<small>INTERNATIONAL TRADE</small></span></a>
+    <a class="brand" href="#home" aria-label="GÜVEN BİRLİK"><span class="brand-mark"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><circle class="logo-ring" cx="24" cy="24" r="22.5"/><ellipse class="logo-mer" cx="24" cy="24" rx="7.5" ry="17"/><ellipse class="logo-mer m2" cx="24" cy="24" rx="7.5" ry="17"/><path class="logo-eq" d="M7 24h12"/><path class="logo-g" pathLength="1" d="M37.6 13.8A17 17 0 1 0 41 24H26.5"/><circle class="logo-dot" cx="37.6" cy="13.8" r="2.7"/></svg></span><span class="brand-type">GÜVEN BİRLİK<small>INTERNATIONAL TRADE</small></span></a>
     <nav class="nav" id="nav" aria-label="Навигация" data-i18n-aria="navigation">
       <a href="#about" data-i18n="navAbout">О компании</a>
       <a href="#services" data-i18n="navServices">Решения</a>
@@ -153,8 +154,10 @@
     <div class="trade-strip" aria-hidden="true"><div class="marquee"><div class="marquee-track">IMPORT <span>↗</span> EXPORT <span>↗</span> GLOBAL SOURCING <span>↗</span> INTERNATIONAL TRADE <span>↗</span> İSTANBUL ⟷ THE WORLD <span>↗</span></div></div></div>
 
     <!-- ============ ABOUT ============ -->
-    <section class="about section-shell" id="about">
-      <div class="section-label reveal"><span>01 /</span><span data-i18n="aboutLabel">О КОМПАНИИ</span></div>
+    <section class="sec section-shell" id="about">
+      <div class="screen">
+        <div class="screen-bar"><span class="stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i></span><span class="console-title"><b>01</b> // <span data-i18n="aboutLabel">О КОМПАНИИ</span></span><span class="console-meta hide-sm">GB-SEC</span><span class="console-meta">SEC <b>01</b> / 05</span><span class="console-meta live"><i class="red-dot"></i></span></div>
+        <div class="about">
       <div class="about-content">
         <h2 class="reveal" data-i18n="aboutTitle">Локальное понимание.<br>Международное мышление.</h2>
         <div class="about-details reveal">
@@ -168,12 +171,17 @@
         </div>
         <div class="about-signature reveal"><span class="mini-cross">+</span><span data-i18n="aboutSignature">ОСНОВА СОТРУДНИЧЕСТВА — ДОВЕРИЕ</span><span class="wordmark">GÜVEN <span>means trust.</span></span></div>
       </div>
+        </div>
+      </div>
     </section>
 
     <!-- ============ SERVICES ============ -->
-    <section class="services section-shell" id="services">
+    <section class="sec section-shell" id="services">
+      <div class="screen">
+        <div class="screen-bar"><span class="stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i></span><span class="console-title"><b>02</b> // <span data-i18n="solutionsLabel">ТОРГОВЫЕ РЕШЕНИЯ</span></span><span class="console-meta hide-sm">GB-SEC</span><span class="console-meta">SEC <b>02</b> / 05</span><span class="console-meta live"><i class="red-dot"></i></span></div>
+        <div class="services">
       <div class="section-heading">
-        <div><div class="section-label reveal"><span>02 /</span><span data-i18n="solutionsLabel">ТОРГОВЫЕ РЕШЕНИЯ</span></div><h2 class="reveal" data-i18n="solutionsTitle">Ваш бизнес.<br>Без границ.</h2></div>
+        <div><h2 class="reveal" data-i18n="solutionsTitle">Ваш бизнес.<br>Без границ.</h2></div>
         <p class="reveal" data-i18n="solutionsIntro">От первого запроса до согласованной поставки — выстраиваем понятный путь для вашего проекта.</p>
       </div>
       <div class="service-grid">
@@ -202,10 +210,15 @@
           <span class="card-footer"><span data-i18n="partnerCta">Найти решение</span><span aria-hidden="true">→</span></span>
         </a>
       </div>
+        </div>
+      </div>
     </section>
 
     <!-- ============ NETWORK ============ -->
-    <section class="network section-shell" id="network">
+    <section class="sec section-shell" id="network">
+      <div class="screen">
+        <div class="screen-bar"><span class="stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i></span><span class="console-title"><b>03</b> // <span data-i18n="networkLabel">МЕЖДУНАРОДНЫЙ ГОРИЗОНТ</span></span><span class="console-meta hide-sm">GB-SEC</span><span class="console-meta">SEC <b>03</b> / 05</span><span class="console-meta live"><i class="red-dot"></i></span></div>
+        <div class="network">
       <div class="network-visual reveal">
         <img src="assets/port.jpg" alt="Контейнерное судно и портовые краны" data-i18n-alt="portAlt" loading="lazy" decoding="async" width="1300" height="1000">
         <div class="photo-overlay"></div>
@@ -215,32 +228,40 @@
         <span class="stage-corner tl"></span><span class="stage-corner br"></span>
       </div>
       <div class="network-copy">
-        <div class="section-label reveal"><span>03 /</span><span data-i18n="networkLabel">МЕЖДУНАРОДНЫЙ ГОРИЗОНТ</span></div>
         <h2 class="reveal" data-i18n="networkTitle">Турция в центре.<br>Возможности повсюду.</h2>
         <p class="reveal" data-i18n="networkText">Стамбул соединяет Европу и Азию. Отсюда начинается диалог с рынками и следующий этап вашего бизнеса.</p>
         <div class="region-options reveal" role="group" aria-label="Торговые направления" data-i18n-aria="regions" id="region-options"></div>
         <p class="region-description" id="region-description" aria-live="polite"></p>
         <span class="network-footnote" data-i18n="networkFootnote">Географию и условия каждой поставки обсудим индивидуально.</span>
       </div>
+        </div>
+      </div>
     </section>
 
     <!-- ============ PROCESS ============ -->
-    <section class="process section-shell" id="process">
+    <section class="sec section-shell" id="process">
+      <div class="screen">
+        <div class="screen-bar"><span class="stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i></span><span class="console-title"><b>04</b> // <span data-i18n="processLabel">ПРОСТОЙ ПУТЬ К СОТРУДНИЧЕСТВУ</span></span><span class="console-meta hide-sm">GB-SEC</span><span class="console-meta">SEC <b>04</b> / 05</span><span class="console-meta live"><i class="red-dot"></i></span></div>
+        <div class="process">
       <div class="section-heading">
-        <div><div class="section-label reveal"><span>04 /</span><span data-i18n="processLabel">ПРОСТОЙ ПУТЬ К СОТРУДНИЧЕСТВУ</span></div><h2 class="reveal" data-i18n="processTitle">От запроса — к решению.</h2></div>
+        <div><h2 class="reveal" data-i18n="processTitle">От запроса — к решению.</h2></div>
         <a class="text-link reveal" href="#contact"><span data-i18n="letsStart">Начнём с разговора</span><span aria-hidden="true">↗</span></a>
       </div>
       <ol class="process-grid">
-        <li class="step reveal"><span class="step-node" aria-hidden="true"></span><span class="step-number">01</span><h3 data-i18n="step1Title">Расскажите о задаче</h3><p data-i18n="step1Text">Укажите товар, объём, направление и желаемые сроки.</p></li>
-        <li class="step reveal"><span class="step-node" aria-hidden="true"></span><span class="step-number">02</span><h3 data-i18n="step2Title">Обсудим детали</h3><p data-i18n="step2Text">Уточним требования и возможный формат сотрудничества.</p></li>
-        <li class="step reveal"><span class="step-node" aria-hidden="true"></span><span class="step-number">03</span><h3 data-i18n="step3Title">Согласуем следующий шаг</h3><p data-i18n="step3Text">Определим условия, порядок действий и контакт по проекту.</p></li>
+        <li class="step panel reveal"><span class="step-node" aria-hidden="true"></span><span class="step-number">01</span><h3 data-i18n="step1Title">Расскажите о задаче</h3><p data-i18n="step1Text">Укажите товар, объём, направление и желаемые сроки.</p></li>
+        <li class="step panel reveal"><span class="step-node" aria-hidden="true"></span><span class="step-number">02</span><h3 data-i18n="step2Title">Обсудим детали</h3><p data-i18n="step2Text">Уточним требования и возможный формат сотрудничества.</p></li>
+        <li class="step panel reveal"><span class="step-node" aria-hidden="true"></span><span class="step-number">03</span><h3 data-i18n="step3Title">Согласуем следующий шаг</h3><p data-i18n="step3Text">Определим условия, порядок действий и контакт по проекту.</p></li>
       </ol>
+        </div>
+      </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
-    <section class="contact section-shell" id="contact">
+    <section class="sec section-shell" id="contact">
+      <div class="screen">
+        <div class="screen-bar"><span class="stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i></span><span class="console-title"><b>05</b> // <span data-i18n="contactLabel">НАЧНЁМ ДИАЛОГ</span></span><span class="console-meta hide-sm">GB-SEC</span><span class="console-meta">SEC <b>05</b> / 05</span><span class="console-meta live"><i class="red-dot"></i></span></div>
+        <div class="contact">
       <div class="contact-intro">
-        <div class="section-label reveal"><span>05 /</span><span data-i18n="contactLabel">НАЧНЁМ ДИАЛОГ</span></div>
         <h2 class="reveal"><span data-i18n="contactLine1">Ваш следующий</span><br><span data-i18n="contactLine2">рынок начинается</span><br><span class="accent" data-i18n="contactLine3">с контакта.</span></h2>
         <div class="contact-email-row reveal">
           <a class="contact-email" href="mailto:guvenbirlikicvedisticaret@gmail.com">guvenbirlikicvedisticaret@gmail.com <span aria-hidden="true">↗</span></a>
@@ -270,12 +291,15 @@
           <p id="form-status" aria-live="polite" class="form-status"></p>
         </div>
       </form>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer class="footer section-shell">
+    <div class="screen footer-screen">
     <div class="footer-top">
-      <a class="brand" href="#home"><span class="brand-mark">G<i></i></span><span class="brand-type">GÜVEN BİRLİK<small>INTERNATIONAL TRADE</small></span></a>
+      <a class="brand" href="#home"><span class="brand-mark"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><circle class="logo-ring" cx="24" cy="24" r="22.5"/><ellipse class="logo-mer" cx="24" cy="24" rx="7.5" ry="17"/><ellipse class="logo-mer m2" cx="24" cy="24" rx="7.5" ry="17"/><path class="logo-eq" d="M7 24h12"/><path class="logo-g" pathLength="1" d="M37.6 13.8A17 17 0 1 0 41 24H26.5"/><circle class="logo-dot" cx="37.6" cy="13.8" r="2.7"/></svg></span><span class="brand-type">GÜVEN BİRLİK<small>INTERNATIONAL TRADE</small></span></a>
       <nav class="footer-nav" aria-label="Footer"><a href="#about" data-i18n="navAbout">О компании</a><a href="#services" data-i18n="navServices">Решения</a><a href="#network" data-i18n="navNetwork">География</a><a href="#contact" data-i18n="navContact">Контакты</a></nav>
       <a href="#home" class="back-top"><span data-i18n="backTop">Наверх</span><span aria-hidden="true">↑</span></a>
     </div>
@@ -283,6 +307,7 @@
       <span>© <span id="year">2026</span> GÜVEN BİRLİK İÇ VE DIŞ TİCARET A.Ş. <span data-i18n="rights">Все права защищены.</span></span>
       <span class="footer-tag">BUILT ON TRUST. CONNECTED TO THE WORLD.</span>
       <span>İSTANBUL · TR</span>
+    </div>
     </div>
   </footer>
 </body>
