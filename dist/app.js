@@ -93,7 +93,6 @@ const en = {
   importTitle: 'Import', importText: 'Explore new sourcing opportunities. Let’s discuss the product, requirements and supply terms for your market.', importCta: 'Discuss import',
   exportTitle: 'Export', exportText: 'Give your product an international perspective. Define your target market and the right form of trade cooperation.', exportCta: 'Discuss export',
   partnerTitle: 'Trade connections', partnerText: 'Connect your business needs with market opportunities. Start a conversation about sourcing and partnership.', partnerCta: 'Find a solution',
-  portAlt: 'Container ship and port cranes',
   networkLabel: 'AN INTERNATIONAL PERSPECTIVE', networkTitle: 'Türkiye at the centre.<br>Opportunity everywhere.',
   networkText: 'Istanbul connects Europe and Asia. It is a starting point for conversations with new markets and the next chapter of your business.',
   networkFootnote: 'Destinations and supply terms are discussed individually for each project.',
@@ -149,7 +148,6 @@ const tr = {
   importTitle: 'İthalat', importText: 'Yeni satın alma fırsatlarını keşfedin. Pazarınıza yönelik ürün, gereksinim ve tedarik koşullarını konuşalım.', importCta: 'İthalatı görüşelim',
   exportTitle: 'İhracat', exportText: 'Ürününüze uluslararası bir perspektif kazandırın. Hedef pazarı ve ticari iş birliği biçimini birlikte belirleyelim.', exportCta: 'İhracatı görüşelim',
   partnerTitle: 'Ticari bağlantılar', partnerText: 'İhtiyaçlarınız ile pazarın sunduğu fırsatları buluşturalım. Tedarik ve iş ortaklığı için diyaloğa başlayın.', partnerCta: 'Çözüm bulalım',
-  portAlt: 'Konteyner gemisi ve liman vinçleri',
   networkLabel: 'ULUSLARARASI BAKIŞ', networkTitle: 'Merkezde Türkiye.<br>Her yerde fırsat.',
   networkText: 'İstanbul, Avrupa ile Asya’yı birbirine bağlar. Yeni pazarlarla diyaloğunuz ve işletmenizin sonraki adımı buradan başlar.',
   networkFootnote: 'Her projenin teslimat bölgesi ve koşulları ayrıca görüşülür.',
@@ -254,6 +252,10 @@ function renderRegionLists() {
       <span class="region-idx">0${i + 1}</span><span class="region-name">${t(h.key)}</span><span class="region-code">${h.code} · ≈${fmtKm(h.km)} km</span><svg class="ic region-arrow" aria-hidden="true"><use href="#i-ne"/></svg>
     </button>`).join('');
   $$('[data-region]').forEach(btn => btn.addEventListener('click', () => setRegion(btn.dataset.region)));
+  // Rows in the Geography plate set the course, then bring the instrument into view to show it turning.
+  $$('#region-options [data-region]').forEach(btn => btn.addEventListener('click', () => {
+    $('#globe-stage').scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+  }));
   markRegion();
 }
 function markRegion() {
@@ -355,12 +357,49 @@ function stepText(el, text) {
     { duration: 340, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
 }
 
-let needleAngle = 0;
+/* Compass needle as a damped spring, like a liquid-filled compass: it swings onto the course,
+   overshoots and settles in a few decaying oscillations, jolts when the page is scrolled,
+   and keeps a faint living sway. Runs only while the compass is on screen. */
+const needle = { el: null, angle: 0, vel: 0, target: 0, raf: 0, last: 0, visible: false };
+const NEEDLE_K = 38;   // stiffness → ~1 s swing period
+const NEEDLE_C = 4.3;  // damping   → ζ≈0.35: a clear overshoot, then a couple of small swings
+function applyNeedle() { needle.el.style.transform = `rotate(${needle.angle.toFixed(2)}deg)`; }
+function needleStep(t) {
+  needle.raf = 0;
+  const dt = Math.min(0.05, needle.last ? (t - needle.last) / 1000 : 1 / 60); needle.last = t;
+  const sec = t / 1000;
+  const sway = 0.9 * Math.sin(sec * 0.83) + 0.5 * Math.sin(sec * 2.1 + 1.3);
+  const acc = NEEDLE_K * (needle.target + sway - needle.angle) - NEEDLE_C * needle.vel;
+  needle.vel += acc * dt; needle.angle += needle.vel * dt;
+  applyNeedle();
+  if (needle.visible && !document.hidden) needle.raf = requestAnimationFrame(needleStep);
+}
+function wakeNeedle() { if (!needle.raf && needle.visible && !document.hidden) { needle.last = 0; needle.raf = requestAnimationFrame(needleStep); } }
+function setNeedleTarget(bearing) {
+  if (!needle.el) needle.el = $('#cp-needle');
+  needle.target += ((bearing - needle.target + 540) % 360) - 180; // shortest way round
+  if (reducedMotion) { needle.angle = needle.target; applyNeedle(); return; }
+  wakeNeedle();
+}
+function initNeedle() {
+  if (reducedMotion) return;
+  needle.el = $('#cp-needle');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) => { needle.visible = en.isIntersecting; wakeNeedle(); }).observe($('.compass'));
+  } else { needle.visible = true; }
+  let lastY = scrollY;
+  addEventListener('scroll', () => {
+    const dy = scrollY - lastY; lastY = scrollY;
+    needle.vel += Math.max(-160, Math.min(160, dy * 1.6)); // moving the instrument jolts the card
+    wakeNeedle();
+  }, { passive: true });
+  document.addEventListener('visibilitychange', wakeNeedle);
+}
+
 function renderGauge() {
   const hub = hubByKey[GB.region], now = new Date();
   // shortest turn to the new course, so the needle never spins the long way round
-  needleAngle += ((hub.bearing - needleAngle + 540) % 360) - 180;
-  $('#cp-needle').style.transform = `rotate(${needleAngle}deg)`;
+  setNeedleTarget(hub.bearing);
   stepText($('#ro-bearing'), String(hub.bearing).padStart(3, '0'));
   stepText($('#ro-km'), `≈${fmtKm(hub.km)}`);
   stepText($('#gauge-time'), timeIn(hub.tz, now));
@@ -373,7 +412,6 @@ function renderGauge() {
 function renderRegionText() {
   const hub = hubByKey[GB.region];
   $('#region-description').textContent = t(regionDescKey[GB.region]);
-  $('#photo-target').textContent = hub.city;
 }
 
 function renderAll() { renderDistChart(); renderDayChart(); renderClocks(); renderGauge(); renderRegionText(); }
@@ -469,6 +507,7 @@ $('#year').textContent = new Date().getFullYear();
 $$('[data-lang]').forEach(b => b.addEventListener('click', () => setLanguage(b.dataset.lang)));
 try { const saved = localStorage.getItem('gb-language'); if (translations[saved]) language = saved; } catch { /* ignore */ }
 initIntro();
+initNeedle();
 initChrome();
 initMotion();
 initContact();

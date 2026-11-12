@@ -35,7 +35,6 @@ Drawing the 4096px land mask in the browser blocked the page for up to ~25 s on 
 
 ## Assets
 
-- Port photograph: Unsplash, https://images.unsplash.com/photo-1578575437130-527eed3abbec
 - Geographic data: D3 Graph Gallery world GeoJSON, https://github.com/holtzy/D3-graph-gallery/blob/master/DATA/world.geojson
 - three.js: MIT licence
 - Fonts: Unbounded, Manrope and JetBrains Mono via Google Fonts, with system font fallbacks

@@ -1,0 +1,623 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-12T23:30:00Z",
+  "title": "Design System: GÜVEN BİRLİK",
+  "extensions": {
+    "colorMeta": {
+      "lume": {
+        "role": "primary",
+        "displayName": "Lume Blue",
+        "canonical": "#4d94ff",
+        "tonalRamp": [
+          "#00003a",
+          "#002157",
+          "#003c8e",
+          "#115bc1",
+          "#397fe8",
+          "#6fa6f9",
+          "#a9cbff",
+          "#e5efff"
+        ]
+      },
+      "lume-hot": {
+        "role": "primary",
+        "displayName": "Hot Lume",
+        "canonical": "#8fbcff",
+        "tonalRamp": [
+          "#000333",
+          "#002254",
+          "#19407a",
+          "#38619d",
+          "#5983c2",
+          "#7aa7e8",
+          "#abcbfc",
+          "#e5efff"
+        ]
+      },
+      "action-blue": {
+        "role": "primary",
+        "displayName": "Action Blue",
+        "canonical": "#2160dc",
+        "tonalRamp": [
+          "#000039",
+          "#001b63",
+          "#03369a",
+          "#1655d0",
+          "#397af8",
+          "#72a3ff",
+          "#adcafe",
+          "#e6effe"
+        ]
+      },
+      "action-blue-top": {
+        "role": "primary",
+        "displayName": "Action Blue, Lit Top",
+        "canonical": "#3a7ff2",
+        "tonalRamp": [
+          "#000039",
+          "#001f5a",
+          "#003a94",
+          "#1159c8",
+          "#387df0",
+          "#73a5f8",
+          "#abcbff",
+          "#e6efff"
+        ]
+      },
+      "action-blue-deep": {
+        "role": "primary",
+        "displayName": "Action Blue, Deep Foot",
+        "canonical": "#1747b4",
+        "tonalRamp": [
+          "#000038",
+          "#00037a",
+          "#05339f",
+          "#2657c6",
+          "#467bed",
+          "#76a3fd",
+          "#afcafd",
+          "#e7effe"
+        ]
+      },
+      "steel-bright": {
+        "role": "secondary",
+        "displayName": "Polished Steel Highlight",
+        "canonical": "#f1f4f9",
+        "tonalRamp": [
+          "#090b0e",
+          "#232529",
+          "#404246",
+          "#5f6166",
+          "#808287",
+          "#a2a5aa",
+          "#c6c9ce",
+          "#eceff4"
+        ]
+      },
+      "steel-mid": {
+        "role": "secondary",
+        "displayName": "Brushed Steel",
+        "canonical": "#c3cbd8",
+        "tonalRamp": [
+          "#070b14",
+          "#1f252f",
+          "#3c424d",
+          "#5b626d",
+          "#7b838f",
+          "#9ea6b2",
+          "#c2cad7",
+          "#e7effc"
+        ]
+      },
+      "steel-shadow": {
+        "role": "secondary",
+        "displayName": "Steel Shadow",
+        "canonical": "#8a95a8",
+        "tonalRamp": [
+          "#050b18",
+          "#1d2534",
+          "#394253",
+          "#586273",
+          "#788395",
+          "#9aa6b9",
+          "#becade",
+          "#e6effe"
+        ]
+      },
+      "abyss-ground": {
+        "role": "neutral",
+        "displayName": "Abyss Ground",
+        "canonical": "#00021c",
+        "tonalRamp": [
+          "#010825",
+          "#152444",
+          "#304164",
+          "#4f6186",
+          "#6f82a9",
+          "#91a5ce",
+          "#b4caf3",
+          "#e7efff"
+        ]
+      },
+      "dial-centre": {
+        "role": "neutral",
+        "displayName": "Dial Navy, Lit Centre",
+        "canonical": "#112453",
+        "tonalRamp": [
+          "#000330",
+          "#0e2150",
+          "#2a4071",
+          "#486094",
+          "#6881b8",
+          "#89a4de",
+          "#b1c9fb",
+          "#e7efff"
+        ]
+      },
+      "dial-field": {
+        "role": "neutral",
+        "displayName": "Dial Navy Field",
+        "canonical": "#0a1738",
+        "tonalRamp": [
+          "#010727",
+          "#152345",
+          "#304166",
+          "#4f6188",
+          "#6f82ab",
+          "#91a5d0",
+          "#b4c9f6",
+          "#e7effe"
+        ]
+      },
+      "dial-rim": {
+        "role": "neutral",
+        "displayName": "Dial Navy Rim",
+        "canonical": "#061029",
+        "tonalRamp": [
+          "#020921",
+          "#18243f",
+          "#34425f",
+          "#526180",
+          "#7282a3",
+          "#94a5c7",
+          "#b8c9ed",
+          "#e7efff"
+        ]
+      },
+      "instrument-well": {
+        "role": "neutral",
+        "displayName": "Instrument Well",
+        "canonical": "#050d24",
+        "tonalRamp": [
+          "#030920",
+          "#19243d",
+          "#35425d",
+          "#53617e",
+          "#7482a1",
+          "#96a5c5",
+          "#bac9eb",
+          "#e7efff"
+        ]
+      },
+      "ink-text": {
+        "role": "neutral",
+        "displayName": "Cool Ink",
+        "canonical": "#e9eef7",
+        "tonalRamp": [
+          "#080b11",
+          "#22252c",
+          "#3e4249",
+          "#5d6169",
+          "#7e828b",
+          "#a1a5ae",
+          "#c4c9d2",
+          "#eaeff8"
+        ]
+      },
+      "ink-secondary": {
+        "role": "neutral",
+        "displayName": "Secondary Ink",
+        "canonical": "#b9c4d8",
+        "tonalRamp": [
+          "#050b18",
+          "#1d2534",
+          "#394253",
+          "#586273",
+          "#798395",
+          "#9ba5b9",
+          "#bfcade",
+          "#e7effe"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#8d9cbb",
+        "tonalRamp": [
+          "#03091f",
+          "#19243d",
+          "#35425c",
+          "#54617e",
+          "#7482a0",
+          "#96a5c5",
+          "#bac9ea",
+          "#e7efff"
+        ]
+      },
+      "ink-dim": {
+        "role": "neutral",
+        "displayName": "Dim Index Ink",
+        "canonical": "#7788ad",
+        "tonalRamp": [
+          "#020824",
+          "#172442",
+          "#334162",
+          "#516184",
+          "#7182a7",
+          "#93a5cb",
+          "#b7c9f1",
+          "#e7effe"
+        ]
+      },
+      "lit-white": {
+        "role": "neutral",
+        "displayName": "Lit White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "fault-red": {
+        "role": "error",
+        "displayName": "Fault Red",
+        "canonical": "#ff7a8a",
+        "tonalRamp": [
+          "#210003",
+          "#4c0014",
+          "#7e0328",
+          "#a92a44",
+          "#d15063",
+          "#f97585",
+          "#feb1b7",
+          "#fee8e9"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Lume Hairline",
+        "canonical": "rgba(143, 188, 255, .13)",
+        "tonalRamp": [
+          "rgba(143, 188, 255, .04)",
+          "rgba(143, 188, 255, .07)",
+          "rgba(143, 188, 255, .10)",
+          "rgba(143, 188, 255, .13)",
+          "rgba(143, 188, 255, .18)",
+          "rgba(143, 188, 255, .22)",
+          "rgba(143, 188, 255, .26)",
+          "rgba(143, 188, 255, .35)"
+        ]
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Strong Lume Hairline",
+        "canonical": "rgba(143, 188, 255, .26)",
+        "tonalRamp": [
+          "rgba(143, 188, 255, .10)",
+          "rgba(143, 188, 255, .13)",
+          "rgba(143, 188, 255, .18)",
+          "rgba(143, 188, 255, .22)",
+          "rgba(143, 188, 255, .26)",
+          "rgba(143, 188, 255, .32)",
+          "rgba(143, 188, 255, .38)",
+          "rgba(143, 188, 255, .50)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Chrome Display",
+        "purpose": "Hero h1 only; Unbounded caps with the chrome gradient repeated per line."
+      },
+      "headline": {
+        "displayName": "Chrome Headline",
+        "purpose": "Section h2; chrome gradient per line, text-wrap balance."
+      },
+      "title": {
+        "displayName": "Steel Title",
+        "purpose": "Card, step and form titles in flat steel-bright: 17px pillars, 18px steps, 20px form, 23px solutions."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running copy in secondary ink, with a 40-54ch measure."
+      },
+      "label": {
+        "displayName": "Instrument Label",
+        "purpose": "Uppercase panel heads, bar titles, readout terms and form labels."
+      },
+      "mono": {
+        "displayName": "Data Mono",
+        "purpose": "Indices, codes, coordinates, km, UTC offsets and the address, with tabular figures."
+      },
+      "segment": {
+        "displayName": "Seven-Segment",
+        "purpose": "Live clocks and gauge readouts (12px meta, 15px clocks, 18px readouts), always over an unlit 8-ghost layer."
+      }
+    },
+    "shadows": [
+      {
+        "name": "lume-pin",
+        "value": "0 0 8px #4d94ff",
+        "purpose": "Glow on pins, markers, active route bars and rules."
+      },
+      {
+        "name": "lume-text",
+        "value": "0 0 10px rgba(77, 148, 255, .75)",
+        "purpose": "text-shadow for lit seven-segment digits and the blue city line."
+      },
+      {
+        "name": "emblem-halo",
+        "value": "drop-shadow(0 6px 14px rgba(29, 86, 220, .55))",
+        "purpose": "filter on the header emblem at rest."
+      },
+      {
+        "name": "chrome-drop",
+        "value": "drop-shadow(0 1px 0 rgba(0, 0, 0, .6))",
+        "purpose": "filter under chrome lettering."
+      },
+      {
+        "name": "instrument-drop",
+        "value": "drop-shadow(0 10px 22px rgba(0, 0, 0, .55))",
+        "purpose": "filter under the compass instrument only."
+      },
+      {
+        "name": "well",
+        "value": "inset 0 2px 8px rgba(0, 0, 0, .45)",
+        "purpose": "Input recess."
+      },
+      {
+        "name": "focus-ring",
+        "value": "inset 0 2px 8px rgba(0, 0, 0, .45), 0 0 0 3px rgba(77, 148, 255, .22)",
+        "purpose": "Input focus."
+      },
+      {
+        "name": "floor-line",
+        "value": "0 0 14px 2px rgba(77, 148, 255, .8), 0 0 60px 12px rgba(29, 86, 220, .35)",
+        "purpose": "Glossy floor line under the hero console."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Default for reveals (800ms, 14px rise), hovers, presses and readout steps."
+      },
+      {
+        "name": "needle-spring",
+        "value": "damped spring k=38, c=4.3 (damping ratio about 0.35, period about 1 s)",
+        "purpose": "Signature motion. The compass needle swings to the course by the shortest way round, overshoots by about 30%, and settles in decaying swings. A scroll adds an impulse of 1.6 deg/s per px (capped at 160 deg/s). The sway is 0.9 sin(0.83t) + 0.5 sin(2.1t + 1.3) deg. It runs only on screen with the tab visible, and snaps under reduced motion."
+      },
+      {
+        "name": "readout-step",
+        "value": "340ms keyframes translateY(-55%) -> 8% at 72% -> 0, ease-out",
+        "purpose": "Changing readouts step in with one overshoot. They never glide or count."
+      },
+      {
+        "name": "brand-light-pass",
+        "value": "7s infinite, 1.6s delay",
+        "purpose": "Header lockup: a glint over the bezel, an anamorphic flare, then light through the chrome wordmark."
+      },
+      {
+        "name": "press",
+        "value": "scale(.97) over 160ms ease-out",
+        "purpose": "Button and control press."
+      },
+      {
+        "name": "ease-settle",
+        "value": "cubic-bezier(0.34, 1.42, 0.5, 1)",
+        "purpose": "Declared in style.css but currently unused. It formerly drove the needle, which the spring has replaced."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all animation and transition durations .01ms",
+        "purpose": "prefers-reduced-motion collapses all motion and skips the intro."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1280px"
+      },
+      {
+        "name": "tablet",
+        "value": "1100px"
+      },
+      {
+        "name": "menu",
+        "value": "980px"
+      },
+      {
+        "name": "phone",
+        "value": "760px"
+      },
+      {
+        "name": "narrow",
+        "value": "380px"
+      }
+    ],
+    "shapes": {
+      "chamfer": {
+        "screen": "30px (18px mobile)",
+        "footer": "22px",
+        "panel": "14px",
+        "button": "9px",
+        "control": "6px",
+        "mark": "3px-7px"
+      },
+      "rim": {
+        "screen": "2.5px",
+        "footer": "2px",
+        "panel": "1.5px"
+      }
+    },
+    "assets": [
+      {
+        "path": "dist/assets/emblem-176.png",
+        "purpose": "Header emblem and shine mask; cut from the client logo."
+      },
+      {
+        "path": "dist/assets/emblem-320.png",
+        "purpose": "Intro emblem and shine mask; cut from the client logo."
+      },
+      {
+        "path": "dist/assets/brand/logo-reel.mp4",
+        "purpose": "The delivered animated logo reel (poster: logo-reel-poster.jpg)."
+      },
+      {
+        "path": "dist/assets/fonts/DSEG7Classic-Bold.woff2",
+        "purpose": "Seven-segment face, OFL (DSEG-LICENSE.txt)."
+      }
+    ],
+    "acceptedDeviations": [
+      "Card grids kept: the About A/B/C pillars, the three Solutions cards with isometric line art and the three Process steps stay as bezel cards. The user declined \"cards to instrument scales\".",
+      "Bezels are CSS (a steel gradient rim, a clip-path chamfer, the navy dial in ::before), not a raster steel 9-slice from the emblem. The user declined \"frames from the logo steel\"."
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single primary action: octagon-chamfered, lit action-blue fill, arrow at the far end.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#contact\"><span>Start cooperation</span><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 11.5l7-7M6 4.5h5.5V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; padding: 16px 22px; font: 700 13.5px/1.2 'Manrope', Arial, sans-serif; letter-spacing: .01em; color: #fff; text-decoration: none; background: linear-gradient(180deg, #3a7ff2 0%, #2160dc 45%, #1747b4 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.4); clip-path: polygon(9px 0, calc(100% - 9px) 0, 100% 9px, 100% calc(100% - 9px), calc(100% - 9px) 100%, 9px 100%, 0 calc(100% - 9px), 0 9px); transition: transform .16s cubic-bezier(0.23,1,0.32,1), filter .2s; } .ds-btn-primary svg { width: 16px; height: 16px; } .ds-btn-primary:hover { filter: brightness(1.12); } .ds-btn-primary:active { transform: scale(.97); } .ds-btn-primary:focus-visible { outline: 2px solid #8fbcff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Link",
+      "kind": "button",
+      "refersTo": "button-text-link",
+      "description": "Secondary action: steel text with a hot-lume arrow that nudges on hover.",
+      "html": "<a class=\"ds-text-link\" href=\"#services\"><span>Our solutions</span><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 11.5l7-7M6 4.5h5.5V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-text-link { display: inline-flex; align-items: center; gap: 10px; font: 700 13.5px 'Manrope', Arial, sans-serif; color: #f1f4f9; text-decoration: none; text-underline-offset: .22em; } .ds-text-link svg { width: 16px; height: 16px; color: #8fbcff; transition: transform .25s cubic-bezier(0.23,1,0.32,1); } .ds-text-link:hover { text-decoration: underline; text-decoration-color: rgba(77,148,255,.6); } .ds-text-link:hover svg { transform: translate(2px,-2px); } .ds-text-link:focus-visible { outline: 2px solid #8fbcff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Bezel Panel",
+      "kind": "card",
+      "refersTo": "panel-bezel",
+      "description": "The octagonal CSS steel bezel around a navy dial, with a label head and minute track. Frames every panel.",
+      "html": "<div class=\"ds-bezel\"><div class=\"ds-bezel-head\"><span>Course from Istanbul</span><span class=\"ds-bezel-code\">BER</span></div><p class=\"ds-bezel-body\">Picking a direction turns the instrument to the real course, distance and local time.</p></div>",
+      "css": ".ds-bezel { --c: 14px; position: relative; isolation: isolate; max-width: 360px; clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c)); background: repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, transparent 1px 3px), linear-gradient(135deg, #eef2f7 0%, #8f99ab 17%, #dfe5ee 33%, #5d687c 52%, #c7cfdb 69%, #7b8699 86%, #e9edf3 100%); color: #e9eef7; font: 15px/1.7 'Manrope', Arial, sans-serif; } .ds-bezel::before { --ci: calc(var(--c) - .63px); content: ''; position: absolute; inset: 1.5px; z-index: -1; clip-path: polygon(var(--ci) 0, calc(100% - var(--ci)) 0, 100% var(--ci), 100% calc(100% - var(--ci)), calc(100% - var(--ci)) 100%, var(--ci) 100%, 0 calc(100% - var(--ci)), 0 var(--ci)); background: repeating-radial-gradient(circle at 50% 0%, rgba(255,255,255,.016) 0 1px, transparent 1px 4px), radial-gradient(120% 90% at 50% 0%, #112453 0%, #0a1738 55%, #061029 100%); } .ds-bezel-head { position: relative; display: flex; justify-content: space-between; gap: 12px; padding: 13px 18px 15px; border-bottom: 1px solid rgba(143,188,255,.13); font: 700 11px 'Manrope', Arial, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #c3cbd8; } .ds-bezel-head::after { content: ''; position: absolute; left: 18px; bottom: -1px; width: 96px; height: 5px; background: repeating-linear-gradient(90deg, #8fbcff 0 1px, transparent 1px 8px); opacity: .7; } .ds-bezel-code { font: 500 11px 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: none; color: #7788ad; } .ds-bezel-body { margin: 0; padding: 20px 22px 24px; color: #b9c4d8; font-size: 14.5px; }"
+    },
+    {
+      "name": "Inquiry Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Recessed instrument-well field with an uppercase label; lume ring on focus.",
+      "html": "<label class=\"ds-field\"><span>Product and volume</span><input type=\"text\" placeholder=\"Product, quantity, destination\"></label>",
+      "css": ".ds-field { display: block; max-width: 360px; } .ds-field > span { display: block; margin-bottom: 8px; font: 700 10.5px 'Manrope', Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #8d9cbb; } .ds-field input { width: 100%; box-sizing: border-box; padding: 13px 14px; font: 14.5px 'Manrope', Arial, sans-serif; color: #e9eef7; border-radius: 0; background: #050d24; border: 1px solid rgba(143,188,255,.22); box-shadow: inset 0 2px 8px rgba(0,0,0,.45); transition: border-color .2s, box-shadow .2s; } .ds-field input::placeholder { color: #7182a8; } .ds-field input:focus-visible { outline: none; border-color: #4d94ff; box-shadow: inset 0 2px 8px rgba(0,0,0,.45), 0 0 0 3px rgba(77,148,255,.22); } .ds-field input[aria-invalid='true'] { border-color: #ff7a8a; box-shadow: inset 0 2px 8px rgba(0,0,0,.45), 0 0 0 3px rgba(255,122,138,.18); }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Manrope links whose glowing lume underline sweeps in from the left.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#about\" class=\"is-current\">About</a><a href=\"#services\">Solutions</a><a href=\"#network\">Directions</a><a href=\"#contact\">Contact</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 30px; font: 600 13.5px 'Manrope', Arial, sans-serif; } .ds-nav a { position: relative; padding: 6px 0; color: #b9c4d8; text-decoration: none; transition: color .2s; } .ds-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: #4d94ff; box-shadow: 0 0 8px #4d94ff; transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(0.23,1,0.32,1); } .ds-nav a:hover, .ds-nav a.is-current { color: #fff; } .ds-nav a:hover::after, .ds-nav a.is-current::after { transform: scaleX(1); } .ds-nav a:focus-visible { outline: 2px solid #8fbcff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Language Switch",
+      "kind": "chip",
+      "refersTo": "language-switch-active",
+      "description": "Mono RU/EN/TR trio in a hairline frame; the active one gets a lume wash and underline.",
+      "html": "<div class=\"ds-lang\"><button class=\"is-active\" type=\"button\">RU</button><button type=\"button\">EN</button><button type=\"button\">TR</button></div>",
+      "css": ".ds-lang { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid rgba(143,188,255,.26); font: 600 11px 'JetBrains Mono', monospace; } .ds-lang button { font: inherit; padding: 5px 8px; border: 0; background: none; color: #8d9cbb; cursor: pointer; transition: color .2s, background .2s; } .ds-lang button:hover { color: #fff; } .ds-lang button.is-active { color: #fff; background: rgba(77,148,255,.2); box-shadow: inset 0 -1.5px 0 #4d94ff; } .ds-lang button:focus-visible { outline: 2px solid #8fbcff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Seven-Segment Readout",
+      "kind": "custom",
+      "refersTo": "readout-segment",
+      "description": "DSEG7 lit digits over an unlit 8-ghost layer with lume glow. Needs the DSEG7 face from dist/assets/fonts.",
+      "html": "<dl class=\"ds-readout\"><div><dt>Course</dt><dd><b class=\"ds-seg\" data-ghost=\"888\">312</b><i>°</i></dd></div><div><dt>Local time</dt><dd><b class=\"ds-seg\" data-ghost=\"88:88\">14:07</b></dd></div></dl>",
+      "css": ".ds-readout { display: grid; grid-template-columns: repeat(2, 1fr); margin: 0; padding: 14px; background: #0a1738; border-top: 1px solid rgba(143,188,255,.13); } .ds-readout > div { text-align: center; } .ds-readout > div + div { border-left: 1px solid rgba(143,188,255,.13); } .ds-readout dt { font: 700 10.5px 'Manrope', Arial, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #8d9cbb; } .ds-readout dd { margin: 6px 0 0; } .ds-readout i { font: 500 17px 'JetBrains Mono', monospace; font-style: normal; color: #8fbcff; margin-left: 2px; } .ds-seg { position: relative; display: inline-block; font: 700 18px 'DSEG7', 'JetBrains Mono', monospace; letter-spacing: .04em; color: #dbe9ff; text-shadow: 0 0 10px rgba(77,148,255,.75); } .ds-seg::before { content: attr(data-ghost); position: absolute; left: 0; top: 0; color: rgba(77,148,255,.1); text-shadow: none; }"
+    },
+    {
+      "name": "Route Row",
+      "kind": "custom",
+      "refersTo": "route-row",
+      "description": "Direction list row: mono index, name, code, km and a distance bar; the active row is lit with a lume edge and wash.",
+      "html": "<div class=\"ds-routes\"><button class=\"ds-route is-active\" type=\"button\"><span class=\"ds-r-idx\">01</span><span class=\"ds-r-name\">Berlin</span><span class=\"ds-r-code\">BER</span><span class=\"ds-r-km\">≈ 1 740 km</span><span class=\"ds-r-bar\"><i style=\"width:22%\"></i></span></button><button class=\"ds-route\" type=\"button\"><span class=\"ds-r-idx\">02</span><span class=\"ds-r-name\">Shanghai</span><span class=\"ds-r-code\">SHA</span><span class=\"ds-r-km\">≈ 8 040 km</span><span class=\"ds-r-bar\"><i style=\"width:100%\"></i></span></button></div>",
+      "css": ".ds-routes { display: flex; flex-direction: column; max-width: 320px; padding: 6px 8px 8px; background: #0a1738; } .ds-route { display: grid; grid-template-columns: 26px 1fr auto; grid-template-areas: 'idx name code' 'idx km km' 'bar bar bar'; align-items: center; column-gap: 8px; row-gap: 2px; padding: 10px 10px 11px; text-align: left; border: 0; background: none; cursor: pointer; font-family: 'Manrope', Arial, sans-serif; transition: background .2s; } .ds-route + .ds-route { border-top: 1px solid rgba(143,188,255,.13); } .ds-route:hover { background: rgba(77,148,255,.06); } .ds-route:focus-visible { outline: 2px solid #8fbcff; outline-offset: 3px; } .ds-route.is-active { background: linear-gradient(90deg, rgba(77,148,255,.2), transparent 85%); box-shadow: inset 1px 0 0 #4d94ff; } .ds-r-idx { grid-area: idx; align-self: start; padding-top: 4px; font: 500 11px 'JetBrains Mono', monospace; color: #7788ad; } .ds-r-name { grid-area: name; font-size: 14.5px; font-weight: 700; color: #b9c4d8; } .ds-r-code { grid-area: code; font: 600 10px 'JetBrains Mono', monospace; letter-spacing: .1em; color: #7788ad; } .ds-r-km { grid-area: km; font: 500 11px 'JetBrains Mono', monospace; color: #8d9cbb; } .ds-r-bar { grid-area: bar; display: block; height: 2px; margin-top: 7px; background: rgba(143,188,255,.1); } .ds-r-bar i { display: block; height: 100%; background: rgba(77,148,255,.45); } .ds-route.is-active .ds-r-name { color: #fff; } .ds-route.is-active .ds-r-idx, .ds-route.is-active .ds-r-code { color: #8fbcff; } .ds-route.is-active .ds-r-bar i { background: #4d94ff; box-shadow: 0 0 8px #4d94ff; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Compass Chronometer",
+    "overview": "The site is the compass dial from the client's logo, enlarged into a working instrument. A deep navy dial ground carries a blue lume glow and a fine guilloché sunburst centred above the fold. Every panel is a brushed-steel octagonal bezel around a navy dial face. Headings are cut in chrome. Indices, ticks, pins and active states glow in luminous blue. Istanbul is the centre pin, and every number on screen is a real reading: a bearing, a distance, a local time, a sun position.\n\nThe system is dark-only (`color-scheme: dark`) and dense like an instrument face. Hairline rules, minute tracks and tick rings divide space instead of whitespace slabs. Lit marks are always drawn over their unlit counterparts. Seven-segment digits sit over a ghost 88:88 layer, and the minute tracks draw lit ticks over faint ones. Motion is physical and mechanical. The compass needle behaves like the card of a liquid-filled compass: it swings onto the course, overshoots, and settles in a few decaying swings. Readouts step to their new value instead of gliding. Everything else eases out exponentially and stops.\n\nThe world is pinned by binding brand assets, not by taste: the emblem rasters `assets/emblem-176.png` and `assets/emblem-320.png`, cut from the client logo; the logo reel `assets/brand/logo-reel.mp4` with its poster; and the DSEG7 Classic Bold seven-segment face (`assets/fonts/DSEG7Classic-Bold.woff2`, OFL, licence shipped alongside).",
+    "keyCharacteristics": [
+      "Navy dial ground with one central lume glow and a conic guilloché sunburst.",
+      "Octagonal steel bezels (CSS clip-path chamfer, steel gradient rim, navy dial in `::before`) on every panel.",
+      "Chrome gradient lettering on the wordmark, h1, h2 and intro word only.",
+      "Luminous blue for indices, ticks, pins, active states and the single primary action.",
+      "Unlit layers drawn under lit ones: ghost seven-segment digits, faint minute ticks.",
+      "One signature motion: the needle as a damped spring that swings, overshoots and settles."
+    ],
+    "rules": [
+      {
+        "name": "The One Lume Rule",
+        "body": "Blue is the only hue that glows. Glow (`text-shadow` / `drop-shadow` / `box-shadow` in lume RGB) belongs to lume-coloured marks and lit readouts. Steel and ink never glow.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Flat White Rule",
+        "body": "There are no white or light surfaces anywhere. White appears only as lit text, needle tips and chrome highlights.",
+        "section": "colors"
+      },
+      {
+        "name": "The Chrome Lettering Rule",
+        "body": "The chrome gradient (white to #dfe5ee to #8a95a8 to #f3f6fa to #b6bfcd, top to bottom, with a 1px dark drop) is the logo's wordmark and is used on the wordmark, h1, h2 and intro word only. It repeats per line (`background-size: 100% 1.2em; repeat-y`), so every line of a multi-line heading reads as its own chrome bar. Titles below h2 are flat steel.",
+        "section": "typography"
+      },
+      {
+        "name": "The Unlit Segment Rule",
+        "body": "Every seven-segment readout carries its ghost (`data-ghost=\"88:88\"`, `888`, `88:88:88`) at 10% lume behind the lit digits. A segment readout without its unlit layer is wrong.",
+        "section": "typography"
+      },
+      {
+        "name": "The Glow Is Light Rule",
+        "body": "A shadow in this system is either light emitted by lume or a material recess. Hard offset shadows have no place in this world.",
+        "section": "elevation"
+      },
+      {
+        "name": "The CSS Bezel Rule",
+        "body": "Bezels are drawn in CSS: a steel gradient rim with a brushed stripe, a clip-path chamfer, and the navy dial painted in `::before`. They are not a raster brushed-steel 9-slice cut from the emblem. This is a user-accepted deviation: the user was offered \"frames from the logo's steel\" and declined it. The emblem raster appears only as the emblem itself.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Octagon Bezel Rule",
+        "body": "Anything that frames content is an octagon with a steel rim. Nothing gets a rounded-rectangle frame.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** frame every content panel in the octagon steel bezel: chamfer 14px for panels, 30px for screens, and a 1.5px to 2.5px rim painted around the navy dial.",
+      "**Do** set h1, h2 and the wordmark in Unbounded caps with the chrome gradient repeated per line. Set titles below h2 in flat steel-bright.",
+      "**Do** keep lume as the only glowing hue, and give lit marks their unlit counterpart (ghost 88:88 digits, faint minor ticks).",
+      "**Do** use JetBrains Mono or DSEG7 with tabular figures for every number, code and coordinate.",
+      "**Do** move pointers as a damped spring (an underdamped ratio of about 0.35, with a period of about 1 s) that overshoots and settles, pause it off screen, and snap it under reduced motion. Step readouts. Use `--ease-out` (`cubic-bezier(0.23, 1, 0.32, 1)`) for everything else, and collapse all motion under `prefers-reduced-motion`.",
+      "**Do** draw icons as 16px stroked SVG symbols (1.6 stroke, round caps) in `currentColor`, usually hot-lume."
+    ],
+    "donts": [
+      "**Don't** place a white or light surface anywhere. White is only for lit text and highlights.",
+      "**Don't** frame content in rounded rectangles. The reel's 14px radius is a delivered exception and is not a pattern.",
+      "**Don't** apply the chrome gradient to body copy, labels, titles below h2 or numerals.",
+      "**Don't** let readouts glide or count up. They step, and only the needle overshoots.",
+      "**Don't** add a second accent hue. Fault red exists only for invalid fields.",
+      "**Don't** put an unframed card grid on the dial. Card grids are allowed only as the accepted bezel cards."
+    ]
+  }
+}
