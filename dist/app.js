@@ -929,13 +929,11 @@ function initIntro() {
   const el = $('#intro');
   if (!el) return;
   if (document.documentElement.classList.contains('intro-seen') || reducedMotion) { el.remove(); return; }
-  const start = performance.now(); let closed = false;
-  const close = () => {
-    if (closed) return; closed = true;
-    setTimeout(() => { el.classList.add('done'); setTimeout(() => el.remove(), 800); }, Math.max(0, 1500 - (performance.now() - start)));
-  };
-  GB.events.addEventListener('globe-ready', close, { once: true });
-  setTimeout(close, 2600); // never hold the page hostage to a slow globe
+  document.documentElement.classList.add('intro-on');
+  // 3 s of loading, a lume flash along the seam, then the doors part: top half up, bottom half down
+  setTimeout(() => el.classList.add('seam'), 2850);
+  setTimeout(() => el.classList.add('open'), 3050);
+  setTimeout(() => { el.remove(); document.documentElement.classList.remove('intro-on'); }, 4300);
 }
 
 /* ---------- Boot ---------- */

@@ -1025,3 +1025,30 @@ h2 .accent, .hero h1 .accent { color: transparent; text-shadow: none; }
 .cp-lubber { fill: var(--lume-hot); filter: drop-shadow(0 0 3px var(--lume)); }
 .cp-glassy { pointer-events: none; }
 .compass .cp-pin { fill: var(--lume); filter: drop-shadow(0 0 5px var(--lume)); }
+
+/* ---------- Intro as lift doors ---------- */
+.js .intro { display: block; background: none; transition: none; }
+.intro.done { opacity: 1; visibility: visible; }
+.intro-on body { overflow: hidden; }
+.intro-door { position: absolute; left: 0; right: 0; height: 50%; overflow: hidden; will-change: transform;
+  transition: transform 1.15s cubic-bezier(.76, 0, .24, 1); }
+.intro-door.top { top: 0; }
+.intro-door.bottom { bottom: 0; }
+.intro-scene { position: absolute; left: 0; right: 0; height: 100vh; height: 100dvh; display: grid; place-items: center;
+  background: radial-gradient(circle 46vmax at 50% 50%, rgba(29, 86, 220, .5), transparent 70%), var(--ground); }
+.intro-door.top .intro-scene { top: 0; }
+.intro-door.bottom .intro-scene { bottom: 0; }
+/* steel door edges meeting at the seam */
+.intro-door.top::after, .intro-door.bottom::before { content: ''; position: absolute; left: 0; right: 0; height: 3px; z-index: 2;
+  background: linear-gradient(90deg, #5d687c, #eef2f7 30%, #8f99ab 50%, #eef2f7 70%, #5d687c); opacity: 0; transition: opacity .2s; }
+.intro-door.top::after { bottom: 0; } .intro-door.bottom::before { top: 0; }
+.intro-seam { position: absolute; left: 0; right: 0; top: 50%; height: 2px; transform: translateY(-50%) scaleX(0); z-index: 3; pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--lume) 15%, #fff 50%, var(--lume) 85%, transparent);
+  box-shadow: 0 0 18px 3px rgba(var(--lume-rgb), .9), 0 0 60px 10px rgba(29, 86, 220, .6); transition: transform .35s var(--ease-out), opacity .4s; }
+.intro.seam .intro-seam { transform: translateY(-50%) scaleX(1); }
+.intro.seam .intro-door.top::after, .intro.seam .intro-door.bottom::before { opacity: 1; }
+.intro.open .intro-door.top { transform: translateY(-100%); }
+.intro.open .intro-door.bottom { transform: translateY(100%); }
+.intro.open .intro-seam { opacity: 0; transition-delay: .15s; }
+/* loading bar now fills over the full 3 s */
+.intro-bar i { animation: introBar 2.7s cubic-bezier(.4, 0, .2, 1) .15s both; }
