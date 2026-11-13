@@ -151,24 +151,33 @@
             <div class="panel compass-panel">
               <div class="panel-head"><span data-i18n="bearingTitle">КУРС ИЗ СТАМБУЛА</span><span class="mono dim" id="gauge-code">BER</span></div>
               <div class="compass">
-                <svg viewBox="0 0 200 200" aria-hidden="true">
+                <svg viewBox="0 0 220 220" aria-hidden="true">
                   <defs>
-                    <radialGradient id="cp-face" cx=".5" cy=".42" r=".6"><stop offset="0" stop-color="#16306b"/><stop offset=".7" stop-color="#0a1a42"/><stop offset="1" stop-color="#050e28"/></radialGradient>
-                    <linearGradient id="cp-steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f7fb"/><stop offset=".3" stop-color="#8b95a7"/><stop offset=".55" stop-color="#e6ebf2"/><stop offset=".8" stop-color="#5d687c"/><stop offset="1" stop-color="#c9d0dc"/></linearGradient>
-                    <linearGradient id="cp-needle-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7cb4ff"/><stop offset=".5" stop-color="#3d8bff"/><stop offset=".5" stop-color="#1c56d6"/><stop offset="1" stop-color="#123c9e"/></linearGradient>
+                    <linearGradient id="cp-steelA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6f8fb"/><stop offset=".22" stop-color="#9aa4b6"/><stop offset=".45" stop-color="#eef2f7"/><stop offset=".7" stop-color="#5b6679"/><stop offset="1" stop-color="#d6dce6"/></linearGradient>
+                    <linearGradient id="cp-steelB" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#f1f4f9"/><stop offset=".3" stop-color="#7f8a9e"/><stop offset=".55" stop-color="#dfe5ee"/><stop offset=".8" stop-color="#4f596c"/><stop offset="1" stop-color="#c9d0dc"/></linearGradient>
+                    <radialGradient id="cp-dial" cx=".5" cy=".4" r=".62"><stop offset="0" stop-color="#1a3a82"/><stop offset=".55" stop-color="#0c1f4d"/><stop offset="1" stop-color="#050e28"/></radialGradient>
+                    <radialGradient id="cp-hub" cx=".38" cy=".32" r=".7"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#b9c2d0"/><stop offset="1" stop-color="#55607a"/></radialGradient>
+                    <linearGradient id="cp-glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+                    <filter id="cp-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                   </defs>
-                  <circle class="cp-rim" cx="100" cy="100" r="96"/>
-                  <circle class="cp-face" cx="100" cy="100" r="91"/>
-                  <circle class="cp-ticks" cx="100" cy="100" r="84"/>
-                  <circle class="cp-ticks-maj" cx="100" cy="100" r="84"/>
-                  <polygon class="cp-rose" points="100.0,30.0 104.2,89.8 131.1,68.9 110.2,95.8 170.0,100.0 110.2,104.2 131.1,131.1 104.2,110.2 100.0,170.0 95.8,110.2 68.9,131.1 89.8,104.2 30.0,100.0 89.8,95.8 68.9,68.9 95.8,89.8"/>
-                  <text class="cp-card" x="100" y="31">N</text><text class="cp-card" x="171" y="104">E</text><text class="cp-card" x="100" y="177">S</text><text class="cp-card" x="29" y="104">W</text>
-                  <g class="cp-needle" id="cp-needle">
-                    <path d="M100 30 L109 100 L100 108 L91 100 Z" fill="url(#cp-needle-grad)"/>
-                    <path class="cp-tail" d="M100 170 L106 100 L94 100 Z"/>
-                  </g>
-                  <circle cx="100" cy="100" r="10" fill="url(#cp-steel)"/>
-                  <circle class="cp-pin" cx="100" cy="100" r="4"/>
+                  <polygon points="151.33,10.22 209.78,68.67 209.78,151.33 151.33,209.78 68.67,209.78 10.22,151.33 10.22,68.67 68.67,10.22" fill="url(#cp-steelA)"/>
+                  <polygon points="148.65,16.69 203.31,71.35 203.31,148.65 148.65,203.31 71.35,203.31 16.69,148.65 16.69,71.35 71.35,16.69" fill="#3a4458"/>
+                  <polygon points="147.89,18.54 201.46,72.11 201.46,147.89 147.89,201.46 72.11,201.46 18.54,147.89 18.54,72.11 72.11,18.54" fill="url(#cp-steelB)"/>
+                  <circle cx="110" cy="110" r="90" fill="#0a1534"/>
+                  <circle cx="110" cy="110" r="88" fill="url(#cp-dial)"/>
+                  <circle class="cp-ring" cx="110" cy="110" r="78"/>
+                  <circle class="cp-course" id="cp-course" cx="110" cy="110" r="78"/>
+                  <circle class="cp-ticks" cx="110" cy="110" r="84"/>
+                  <circle class="cp-ticks-maj" cx="110" cy="110" r="84"/>
+                  <text class="cp-deg" x="144.5" y="52.6">030</text><text class="cp-deg" x="169.8" y="77.9">060</text><text class="cp-deg" x="169.8" y="146.9">120</text><text class="cp-deg" x="144.5" y="172.2">150</text><text class="cp-deg" x="75.5" y="172.2">210</text><text class="cp-deg" x="50.2" y="146.9">240</text><text class="cp-deg" x="50.2" y="77.9">300</text><text class="cp-deg" x="75.5" y="52.6">330</text>
+                  <g class="cp-rose"><polygon class="rose-l" points="110.00,110.00 103.64,103.64 110.00,52.00"/><polygon class="rose-d" points="110.00,110.00 110.00,52.00 116.36,103.64"/><polygon class="rose-ls" points="110.00,110.00 110.00,101.00 136.87,83.13"/><polygon class="rose-ds" points="110.00,110.00 136.87,83.13 119.00,110.00"/><polygon class="rose-l" points="110.00,110.00 116.36,103.64 168.00,110.00"/><polygon class="rose-d" points="110.00,110.00 168.00,110.00 116.36,116.36"/><polygon class="rose-ls" points="110.00,110.00 119.00,110.00 136.87,136.87"/><polygon class="rose-ds" points="110.00,110.00 136.87,136.87 110.00,119.00"/><polygon class="rose-l" points="110.00,110.00 116.36,116.36 110.00,168.00"/><polygon class="rose-d" points="110.00,110.00 110.00,168.00 103.64,116.36"/><polygon class="rose-ls" points="110.00,110.00 110.00,119.00 83.13,136.87"/><polygon class="rose-ds" points="110.00,110.00 83.13,136.87 101.00,110.00"/><polygon class="rose-l" points="110.00,110.00 103.64,116.36 52.00,110.00"/><polygon class="rose-d" points="110.00,110.00 52.00,110.00 103.64,103.64"/><polygon class="rose-ls" points="110.00,110.00 101.00,110.00 83.13,83.13"/><polygon class="rose-ds" points="110.00,110.00 83.13,83.13 110.00,101.00"/></g>
+                  <text class="cp-card n" x="110.0" y="58.0">N</text><text class="cp-card" x="166.0" y="114.0">E</text><text class="cp-card" x="110.0" y="170.0">S</text><text class="cp-card" x="54.0" y="114.0">W</text>
+                  <g class="cp-bug" id="cp-bug"><polygon points="110.00,31.00 104.50,21.00 115.50,21.00"/></g>
+                  <g class="cp-needle" id="cp-needle" filter="url(#cp-glow)"><polygon fill="#a9cbff" points="110.00,34.00 103.00,110.00 110.00,110.00"/><polygon fill="#2f6ee8" points="110.00,34.00 110.00,110.00 117.00,110.00"/><polygon fill="#eef2f7" points="110.00,158.00 104.50,110.00 110.00,110.00"/><polygon fill="#7d889b" points="110.00,158.00 110.00,110.00 115.50,110.00"/></g>
+                  <circle cx="110" cy="110" r="11" fill="url(#cp-hub)"/>
+                  <circle cx="110" cy="110" r="4.2" class="cp-pin"/>
+                  <path class="cp-glassy" d="M 34.1 69.6 A 86 86 0 0 1 185.9 69.6 Q 110 70 34.1 69.6 Z" fill="url(#cp-glass)"/>
+                  <polygon class="cp-lubber" points="110.00,9.00 104.00,1.00 116.00,1.00"/>
                 </svg>
               </div>
               <dl class="readouts">

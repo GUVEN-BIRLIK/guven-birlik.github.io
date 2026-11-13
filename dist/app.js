@@ -687,6 +687,16 @@ function renderGauge() {
   const hub = hubByKey[GB.region], now = new Date();
   // shortest turn to the new course, so the needle never spins the long way round
   setNeedleTarget(hub.bearing);
+  // the lit course arc from N and the target bug on the ring (the needle swings around it)
+  const CIRC = 2 * Math.PI * 78;
+  const arc = $('#cp-course');
+  if (arc) {
+    // shortest way from N: clockwise up to 180°, otherwise counter-clockwise
+    const cw = hub.bearing <= 180, span = cw ? hub.bearing : 360 - hub.bearing;
+    arc.style.strokeDasharray = `${(CIRC * span / 360).toFixed(1)} ${CIRC.toFixed(1)}`;
+    arc.style.transform = `rotate(${cw ? -90 : -90 + hub.bearing}deg)`;
+  }
+  const bug = $('#cp-bug'); if (bug) bug.style.transform = `rotate(${needle.target}deg)`;
   stepText($('#ro-bearing'), String(hub.bearing).padStart(3, '0'));
   stepText($('#ro-km'), `≈${fmtKm(hub.km)}`);
   stepText($('#gauge-time'), timeIn(hub.tz, now));
