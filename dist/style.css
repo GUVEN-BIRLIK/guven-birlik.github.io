@@ -406,7 +406,7 @@ img { max-width: 100%; display: block; }
 .ck-code { font: 700 11px var(--mono); letter-spacing: .12em; color: var(--dim); }
 .clock.active .ck-code, .clock.home .ck-code { color: var(--lume-hot); }
 .ck-time { font: 500 16px/1.2 var(--mono); color: #fff; font-variant-numeric: tabular-nums; }
-.ck-utc { font: 500 10.5px var(--mono); color: var(--dim); white-space: nowrap; }
+.ck-utc { font: 500 10.5px var(--mono); color: var(--dim); }
 .ck-dn.day { color: #ffe3a6; }
 .console-note { display: flex; align-items: center; gap: 10px; padding: 14px 32px 18px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
 
