@@ -451,6 +451,8 @@ Object.assign(tr, {
   incExport: 'Alıcı arama · Pazar gereklilikleri · Anlaşma belgeleri',
   incReexport: 'Numuneler · Fabrika denetimi · Fotoğraflı rapor'
 });
+Object.assign(en, { mapHead: 'OFFICE ON THE MAP' });
+Object.assign(tr, { mapHead: 'HARİTADA OFİS' });
 const translations = { ru, en, tr };
 const locales = { ru: 'ru-RU', en: 'en-GB', tr: 'tr-TR' };
 let language = 'ru';
