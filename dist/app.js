@@ -176,7 +176,7 @@ Object.assign(en, {
   navGoods: 'Goods',
   navFaq: 'FAQ',
   heroDescription: 'Import and export from Istanbul. We find and vet the supplier, run the deal by the rules and check the quality of the lot — you get one contact and clear terms.',
-  heroMeta: 'Partners in 30+ countries · reply to enquiries within 2–4 business hours',
+  heroMeta: 'Partners in 30+ countries · reply to enquiries within 1–2 business hours',
   aboutText: 'GÜVEN BİRLİK İÇ VE DIŞ TİCARET A.Ş. is a trading company from Istanbul. We run import and export deals — from finding a supplier to a signed contract and an inspected lot.',
   aboutText2: 'We are accountable for the outcome of the whole deal, not for a single stage of it. So we first understand the task — product, volume, market, timing — and only then propose a solution.',
   pillar1Title: 'One contact, one accountability',
@@ -247,10 +247,10 @@ Object.assign(en, {
   q5: 'Is there a minimum order?',
   a5: 'There is no hard minimum. If a small lot doesn’t make economic sense, we will say so plainly.',
   q6: 'How fast do you reply?',
-  a6: 'Within 2–4 business hours of receiving your enquiry.',
+  a6: 'Within 1–2 business hours of receiving your enquiry.',
   q7: 'Which countries don’t you work with?',
   a7: 'Countries and parties under international sanctions, and high-risk jurisdictions.',
-  contactResponse: 'We reply within 2–4 business hours. Describe the task — we’ll come back with an answer on price, timing and feasibility.',
+  contactResponse: 'We reply within 1–2 business hours. Describe the task — we’ll come back with an answer on price, timing and feasibility.',
   messagePlaceholder: 'Product, quantity, destination market and timing…',
   metaDescription: 'GÜVEN BİRLİK — import and export from Istanbul: supplier sourcing and vetting, deals by the rules, quality control. Partners in 30+ countries.'
 });
@@ -258,7 +258,7 @@ Object.assign(tr, {
   navGoods: 'Ürünler',
   navFaq: 'SSS',
   heroDescription: 'İstanbul’dan ithalat ve ihracat. Tedarikçiyi bulur ve doğrularız, anlaşmayı kurallara uygun yürütür, partinin kalitesini kontrol ederiz — tek muhatap, net koşullar.',
-  heroMeta: '30+ ülkede iş ortakları · taleplere 2–4 iş saati içinde yanıt',
+  heroMeta: '30+ ülkede iş ortakları · taleplere 1–2 iş saati içinde yanıt',
   aboutText: 'GÜVEN BİRLİK İÇ VE DIŞ TİCARET A.Ş., İstanbul merkezli bir ticaret şirketidir. İthalat ve ihracat işlemlerini tedarikçi aramasından imzalı sözleşmeye ve denetlenmiş partiye kadar yürütürüz.',
   aboutText2: 'Tek bir aşamadan değil, anlaşmanın bütün sonucundan sorumluyuz. Bu yüzden önce işi anlarız — ürün, miktar, pazar, zamanlama — ve ancak sonra bir çözüm öneririz.',
   pillar1Title: 'Tek muhatap, tek sorumluluk',
@@ -329,12 +329,12 @@ Object.assign(tr, {
   q5: 'Asgari sipariş var mı?',
   a5: 'Katı bir alt sınır yok. Küçük bir parti ekonomik olarak anlamlı değilse bunu açıkça söyleriz.',
   q6: 'Ne kadar hızlı yanıt veriyorsunuz?',
-  a6: 'Talebiniz ulaştıktan sonra 2–4 iş saati içinde.',
+  a6: 'Talebiniz ulaştıktan sonra 1–2 iş saati içinde.',
   q7: 'Hangi ülkelerle çalışmıyorsunuz?',
   a7: 'Uluslararası yaptırım altındaki ülkeler ve taraflarla, ayrıca yüksek riskli bölgelerle.',
-  contactResponse: '2–4 iş saati içinde yanıt veriyoruz. İşinizi anlatın — fiyat, süre ve uygulanabilirlik hakkında dönüş yapalım.',
+  contactResponse: '1–2 iş saati içinde yanıt veriyoruz. İşinizi anlatın — fiyat, süre ve uygulanabilirlik hakkında dönüş yapalım.',
   messagePlaceholder: 'Ürün, miktar, hedef pazar ve zamanlama…',
-  metaDescription: 'GÜVEN BİRLİK İç ve Dış Ticaret A.Ş. — İstanbul merkezli ithalat ve ihracat şirketi. Tedarikçi bulma ve doğrulama, sözleşme, kalite kontrol. 30+ ülkede iş ortakları, taleplere 2–4 iş saatinde yanıt.'
+  metaDescription: 'GÜVEN BİRLİK İç ve Dış Ticaret A.Ş. — İstanbul merkezli ithalat ve ihracat şirketi. Tedarikçi bulma ve doğrulama, sözleşme, kalite kontrol. 30+ ülkede iş ortakları, taleplere 1–2 iş saatinde yanıt.'
 });
 
 Object.assign(en, {
@@ -400,7 +400,7 @@ Object.assign(en, {
   dsReachV: 'Partners in 30+ countries',
   dsLangs: 'Languages',
   dsReply: 'Enquiry reply',
-  dsReplyV: '2–4 business hours',
+  dsReplyV: '1–2 business hours',
   dsCompliance: 'Compliance',
   dsComplianceV: 'No sanctioned countries or high-risk jurisdictions'
 });
@@ -417,7 +417,7 @@ Object.assign(tr, {
   dsReachV: '30+ ülkede iş ortakları',
   dsLangs: 'Diller',
   dsReply: 'Talebe yanıt',
-  dsReplyV: '2–4 iş saati',
+  dsReplyV: '1–2 iş saati',
   dsCompliance: 'Uyum',
   dsComplianceV: 'Yaptırım altındaki ülkeler ve yüksek riskli bölgeler hariç'
 });
