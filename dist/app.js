@@ -746,10 +746,11 @@ function initMotion() {
 
 /* ---------- Process: the six stages light up in sequence when the plate comes into view ---------- */
 function initSteps() {
-  const grid = $('.process-grid'); if (!grid) return;
-  if (reducedMotion || !('IntersectionObserver' in window)) { grid.classList.add('lit'); return; }
-  const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { grid.classList.add('lit'); io.disconnect(); } }, { threshold: 0.25 });
-  io.observe(grid);
+  // card groups light up in sequence the first time they come into view
+  const groups = $$('.process-grid, .pillars, .service-grid, .goods-scale');
+  if (reducedMotion || !('IntersectionObserver' in window)) { groups.forEach(g => g.classList.add('lit')); return; }
+  const io = new IntersectionObserver(entries => entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('lit'); io.unobserve(en.target); } }), { threshold: 0.2 });
+  groups.forEach(g => io.observe(g));
 }
 
 /* ---------- Contact ---------- */
@@ -808,6 +809,12 @@ function renderBuilder() {
 function updateDraft() { const o = $('#b-draft'); if (o) o.textContent = builder.goods ? builderText(false) : t('bDraftEmpty'); }
 function initBuilder() {
   if (!$('#b-type')) return;
+  // a goods row picks that group in the builder and brings the builder into view
+  $$('.good[data-good]').forEach(row => {
+    const pick = () => { builder.goods = +row.dataset.good; renderBuilder(); $('.builder').scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' }); };
+    row.addEventListener('click', pick);
+    row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+  });
   $('#b-volume').addEventListener('input', updateDraft);
   $('#b-timing').addEventListener('change', updateDraft);
   $('#b-apply').addEventListener('click', () => {
