@@ -655,7 +655,7 @@ function needleStep(t) {
   needle.raf = 0;
   const dt = Math.min(0.05, needle.last ? (t - needle.last) / 1000 : 1 / 60); needle.last = t;
   const sec = t / 1000;
-  const sway = 0.9 * Math.sin(sec * 0.83) + 0.5 * Math.sin(sec * 2.1 + 1.3);
+  const sway = 0.45 * Math.sin(sec * 0.83) + 0.25 * Math.sin(sec * 2.1 + 1.3);
   const acc = NEEDLE_K * (needle.target + sway - needle.angle) - NEEDLE_C * needle.vel;
   needle.vel += acc * dt; needle.angle += needle.vel * dt;
   applyNeedle();
@@ -677,7 +677,7 @@ function initNeedle() {
   let lastY = scrollY;
   addEventListener('scroll', () => {
     const dy = scrollY - lastY; lastY = scrollY;
-    needle.vel += Math.max(-160, Math.min(160, dy * 1.6)); // moving the instrument jolts the card
+    needle.vel += Math.max(-70, Math.min(70, dy * 0.6)); // moving the instrument jolts the card
     wakeNeedle();
   }, { passive: true });
   document.addEventListener('visibilitychange', wakeNeedle);
