@@ -44,7 +44,7 @@ Object.assign(ru, {
   europe: 'Европа', cis: 'Центральная Азия', middleEast: 'Ближний Восток', asia: 'Азия', africa: 'Африка',
   regionEurope: 'Европа: Германия, Италия, Польша, Нидерланды, Испания. Закупки в ЕС и сбыт турецких товаров на европейских рынках.',
   regionCis: 'Центральная Азия: Узбекистан, Казахстан, Кыргызстан. Поставки турецких товаров и встречные закупки.',
-  regionMiddleEast: 'Персидский залив: ОАЭ, Саудовская Аравия, Катар. В том числе сделки с реэкспортом через Турцию.',
+  regionMiddleEast: 'Персидский залив: ОАЭ, Саудовская Аравия, Катар. Поставки турецких товаров и закупки для ваших проектов в регионе.',
   regionAsia: 'Китай и Юго-Восточная Азия: Китай, Вьетнам, Индия. Проверка поставщика и инспекция партии на месте.',
   regionAfrica: 'Северная Африка: Марокко. Обсудим ваш запрос и подходящий формат торгового сотрудничества.',
   day: 'ДЕНЬ', night: 'НОЧЬ', hours: 'ч',
@@ -58,7 +58,7 @@ Object.assign(ru, {
   errName: 'Укажите, как к вам обращаться.', errEmail: 'Проверьте адрес электронной почты.', errMessage: 'Опишите запрос — хотя бы 10 символов.',
   mailReady: 'Письмо подготовлено. Отправьте его в открывшемся почтовом сервисе. Если он не открылся, напишите на email слева.',
   subject: 'Торговый запрос', messageName: 'Имя', messageCompany: 'Компания', messageEmail: 'Email', messageInterest: 'Направление', messageBody: 'Запрос',
-  metaDescription: 'GÜVEN BİRLİK — импорт, экспорт и реэкспорт из Стамбула: поиск и проверка поставщиков, сделка по правилам, контроль качества. Партнёры в 30+ странах.'
+  metaDescription: 'GÜVEN BİRLİK — импорт и экспорт из Стамбула: поиск и проверка поставщиков, сделка по правилам, контроль качества. Партнёры в 30+ странах.'
 });
 
 const en = {
@@ -175,9 +175,9 @@ const tr = {
 Object.assign(en, {
   navGoods: 'Goods',
   navFaq: 'FAQ',
-  heroDescription: 'Import, export and re-export from Istanbul. We find and vet the supplier, run the deal by the rules and check the quality of the lot — you get one contact and clear terms.',
+  heroDescription: 'Import and export from Istanbul. We find and vet the supplier, run the deal by the rules and check the quality of the lot — you get one contact and clear terms.',
   heroMeta: 'Partners in 30+ countries · reply to enquiries within 2–4 business hours',
-  aboutText: 'GÜVEN BİRLİK İÇ VE DIŞ TİCARET A.Ş. is a trading company from Istanbul. We run import, export and re-export deals — from finding a supplier to a signed contract and an inspected lot.',
+  aboutText: 'GÜVEN BİRLİK İÇ VE DIŞ TİCARET A.Ş. is a trading company from Istanbul. We run import and export deals — from finding a supplier to a signed contract and an inspected lot.',
   aboutText2: 'We are accountable for the outcome of the whole deal, not for a single stage of it. So we first understand the task — product, volume, market, timing — and only then propose a solution.',
   pillar1Title: 'One contact, one accountability',
   pillar1Text: 'Supplier search, vetting, contract and quality control sit with one partner. No need to coordinate several middlemen.',
@@ -188,13 +188,13 @@ Object.assign(en, {
   pillar4Title: 'Transparent pricing',
   pillar4Text: 'Goods, certification and our fee as separate lines. No “other charges” line.',
   pillar5Title: 'Istanbul as the hub',
-  pillar5Text: 'Access to Türkiye, the EU, the Gulf, Central Asia and China, including re-export schemes through Türkiye.',
+  pillar5Text: 'Access to Türkiye, the EU, the Gulf, Central Asia and China — from one place, with one partner.',
   solutionsIntro: 'We don’t sell “just goods”. We run the deal: we match a supplier to your requirements, vet it and make sure the lot matches the contract.',
   importText: 'Sourcing in and through Türkiye: finding and vetting the manufacturer, price negotiation, contract and quality control of the lot.',
   exportText: 'Taking Turkish products abroad: finding buyers, checking the destination market’s requirements, terms and deal paperwork.',
-  partnerTitle: 'Re-export',
-  partnerText: 'Deals where Türkiye is the midpoint: goods from China, Asia or the EU for a buyer in a third country, properly documented.',
-  partnerCta: 'Discuss re-export',
+  partnerTitle: 'Quality control',
+  partnerText: 'Samples, factory audit and pre-shipment inspection — you see the goods before paying the balance, not after.',
+  partnerCta: 'Discuss quality control',
   goodsTitle: 'Goods we work with',
   goodsIntro: 'We focus on categories where classification, market requirements and production lead times decide the deal.',
   g1Title: 'Raw materials',
@@ -218,7 +218,7 @@ Object.assign(en, {
   networkText: 'Istanbul connects Europe and Asia. Our partners are in 30+ countries — from the EU and the Gulf to Central Asia and China. Pick a direction and the instrument shows the course.',
   regionEurope: 'Europe: Germany, Italy, Poland, the Netherlands, Spain. Sourcing in the EU and selling Turkish goods on European markets.',
   regionCis: 'Central Asia: Uzbekistan, Kazakhstan, Kyrgyzstan. Supplying Turkish goods and counter-purchases.',
-  regionMiddleEast: 'The Gulf: UAE, Saudi Arabia, Qatar. Including deals with re-export through Türkiye.',
+  regionMiddleEast: 'The Gulf: UAE, Saudi Arabia, Qatar. Supplying Turkish goods and sourcing for your projects in the region.',
   regionAsia: 'China and South-East Asia: China, Vietnam, India. Supplier vetting and on-site inspection of the lot.',
   regionAfrica: 'North Africa: Morocco. Let’s discuss your enquiry and a suitable form of trade cooperation.',
   processTitle: 'Six steps of a deal.',
@@ -252,14 +252,14 @@ Object.assign(en, {
   a7: 'Countries and parties under international sanctions, and high-risk jurisdictions.',
   contactResponse: 'We reply within 2–4 business hours. Describe the task — we’ll come back with an answer on price, timing and feasibility.',
   messagePlaceholder: 'Product, quantity, destination market and timing…',
-  metaDescription: 'GÜVEN BİRLİK — import, export and re-export from Istanbul: supplier sourcing and vetting, deals by the rules, quality control. Partners in 30+ countries.'
+  metaDescription: 'GÜVEN BİRLİK — import and export from Istanbul: supplier sourcing and vetting, deals by the rules, quality control. Partners in 30+ countries.'
 });
 Object.assign(tr, {
   navGoods: 'Ürünler',
   navFaq: 'SSS',
-  heroDescription: 'İstanbul’dan ithalat, ihracat ve reeksport. Tedarikçiyi bulur ve doğrularız, anlaşmayı kurallara uygun yürütür, partinin kalitesini kontrol ederiz — tek muhatap, net koşullar.',
+  heroDescription: 'İstanbul’dan ithalat ve ihracat. Tedarikçiyi bulur ve doğrularız, anlaşmayı kurallara uygun yürütür, partinin kalitesini kontrol ederiz — tek muhatap, net koşullar.',
   heroMeta: '30+ ülkede iş ortakları · taleplere 2–4 iş saati içinde yanıt',
-  aboutText: 'GÜVEN BİRLİK İÇ VE DIŞ TİCARET A.Ş., İstanbul merkezli bir ticaret şirketidir. İthalat, ihracat ve reeksport işlemlerini tedarikçi aramasından imzalı sözleşmeye ve denetlenmiş partiye kadar yürütürüz.',
+  aboutText: 'GÜVEN BİRLİK İÇ VE DIŞ TİCARET A.Ş., İstanbul merkezli bir ticaret şirketidir. İthalat ve ihracat işlemlerini tedarikçi aramasından imzalı sözleşmeye ve denetlenmiş partiye kadar yürütürüz.',
   aboutText2: 'Tek bir aşamadan değil, anlaşmanın bütün sonucundan sorumluyuz. Bu yüzden önce işi anlarız — ürün, miktar, pazar, zamanlama — ve ancak sonra bir çözüm öneririz.',
   pillar1Title: 'Tek muhatap, tek sorumluluk',
   pillar1Text: 'Tedarikçi arama, doğrulama, sözleşme ve kalite kontrol tek ortakta. Birden çok aracıyı koordine etmenize gerek yok.',
@@ -270,13 +270,13 @@ Object.assign(tr, {
   pillar4Title: 'Şeffaf fiyat',
   pillar4Text: 'Ürün, sertifikasyon ve hizmet bedelimiz ayrı satırlarda. “Diğer giderler” satırı yok.',
   pillar5Title: 'Merkez olarak İstanbul',
-  pillar5Text: 'Türkiye, AB, Körfez, Orta Asya ve Çin pazarlarına erişim; Türkiye üzerinden reeksport çözümleri dahil.',
+  pillar5Text: 'Türkiye, AB, Körfez, Orta Asya ve Çin pazarlarına tek noktadan, tek ortakla erişim.',
   solutionsIntro: '“Sadece ürün” satmıyoruz. Anlaşmayı yürütüyoruz: gereksinimlerinize uygun tedarikçiyi bulur, doğrular ve partinin sözleşmeye uygunluğundan sorumlu oluruz.',
   importText: 'Türkiye’de ve Türkiye üzerinden satın alma: üreticiyi bulma ve doğrulama, fiyat görüşmesi, sözleşme ve parti kalite kontrolü.',
   exportText: 'Türk ürününü yurt dışına taşımak: alıcı bulma, hedef pazarın gerekliliklerini kontrol etme, koşullar ve anlaşma belgeleri.',
-  partnerTitle: 'Reeksport',
-  partnerText: 'Türkiye’nin ara nokta olduğu anlaşmalar: Çin, Asya veya AB’den gelen ürünün üçüncü bir ülkedeki alıcıya doğru belgelerle satışı.',
-  partnerCta: 'Reeksportu görüşelim',
+  partnerTitle: 'Kalite kontrol',
+  partnerText: 'Numuneler, fabrika denetimi ve sevkiyat öncesi parti kontrolü — ürünü kalan ödemeden önce görürsünüz, sonra değil.',
+  partnerCta: 'Kalite kontrolü görüşelim',
   goodsTitle: 'Çalıştığımız ürünler',
   goodsIntro: 'Anlaşmanın sonucunu sınıflandırma, pazar gereklilikleri ve üretim sürelerinin belirlediği kategorilere odaklanırız.',
   g1Title: 'Hammadde',
@@ -300,7 +300,7 @@ Object.assign(tr, {
   networkText: 'İstanbul Avrupa ile Asya’yı birleştirir. İş ortaklarımız 30+ ülkede — AB ve Körfez’den Orta Asya ve Çin’e. Bir yön seçin, cihaz rotayı göstersin.',
   regionEurope: 'Avrupa: Almanya, İtalya, Polonya, Hollanda, İspanya. AB’den satın alma ve Türk ürünlerinin Avrupa pazarlarında satışı.',
   regionCis: 'Orta Asya: Özbekistan, Kazakistan, Kırgızistan. Türk ürünlerinin tedariki ve karşılıklı alımlar.',
-  regionMiddleEast: 'Körfez: BAE, Suudi Arabistan, Katar. Türkiye üzerinden reeksport anlaşmaları dahil.',
+  regionMiddleEast: 'Körfez: BAE, Suudi Arabistan, Katar. Türk ürünlerinin tedariki ve bölgedeki projeleriniz için satın alma.',
   regionAsia: 'Çin ve Güneydoğu Asya: Çin, Vietnam, Hindistan. Tedarikçi doğrulama ve yerinde parti denetimi.',
   regionAfrica: 'Kuzey Afrika: Fas. Talebinizi ve uygun ticari iş birliği biçimini görüşelim.',
   processTitle: 'Anlaşmanın altı adımı.',
@@ -334,12 +334,12 @@ Object.assign(tr, {
   a7: 'Uluslararası yaptırım altındaki ülkeler ve taraflarla, ayrıca yüksek riskli bölgelerle.',
   contactResponse: '2–4 iş saati içinde yanıt veriyoruz. İşinizi anlatın — fiyat, süre ve uygulanabilirlik hakkında dönüş yapalım.',
   messagePlaceholder: 'Ürün, miktar, hedef pazar ve zamanlama…',
-  metaDescription: 'GÜVEN BİRLİK — İstanbul’dan ithalat, ihracat ve reeksport: tedarikçi bulma ve doğrulama, kurallara uygun anlaşma, kalite kontrol. 30+ ülkede iş ortakları.'
+  metaDescription: 'GÜVEN BİRLİK — İstanbul’dan ithalat ve ihracat: tedarikçi bulma ve doğrulama, kurallara uygun anlaşma, kalite kontrol. 30+ ülkede iş ortakları.'
 });
 
 Object.assign(en, {
   builderTitle: 'ENQUIRY BUILDER',
-  bType: 'Deal type',
+  bType: 'Service',
   bGoods: 'Product group',
   bMarket: 'Market',
   bVolume: 'Lot size',
@@ -364,7 +364,7 @@ Object.assign(en, {
 });
 Object.assign(tr, {
   builderTitle: 'TALEP OLUŞTURUCU',
-  bType: 'İşlem türü',
+  bType: 'Hizmet',
   bGoods: 'Ürün grubu',
   bMarket: 'Pazar',
   bVolume: 'Parti büyüklüğü',
@@ -395,7 +395,7 @@ Object.assign(en, {
   dsOffice: 'Office',
   dsOfficeV: 'Eyüpsultan, Istanbul',
   dsDeals: 'Deals',
-  dsDealsV: 'Import · Export · Re-export',
+  dsDealsV: 'Import · Export · Quality control',
   dsReach: 'Reach',
   dsReachV: 'Partners in 30+ countries',
   dsLangs: 'Languages',
@@ -412,7 +412,7 @@ Object.assign(tr, {
   dsOffice: 'Ofis',
   dsOfficeV: 'Eyüpsultan, İstanbul',
   dsDeals: 'İşlemler',
-  dsDealsV: 'İthalat · İhracat · Reeksport',
+  dsDealsV: 'İthalat · İhracat · Kalite kontrol',
   dsReach: 'Erişim',
   dsReachV: '30+ ülkede iş ortakları',
   dsLangs: 'Diller',
@@ -428,13 +428,13 @@ Object.assign(en, {
   fTrMaker: 'Maker in Türkiye',
   fBuyerSearch: 'Finding buyers',
   fBuyerAbroad: 'Buyer abroad',
-  fOrigin: 'Goods from China / EU',
-  fViaTr: 'Via Türkiye',
-  fThird: 'Your market',
+  fOrigin: 'Production',
+  fViaTr: 'Inspection',
+  fThird: 'Report to you',
   incLabel: 'Included',
   incImport: 'Supplier vetting · Contract · Lot inspection',
   incExport: 'Finding buyers · Market requirements · Deal paperwork',
-  incReexport: 'Scheme via Türkiye · Documents · Lot control'
+  incReexport: 'Samples · Factory audit · Photo report'
 });
 Object.assign(tr, {
   fSupplier: 'Tedarikçi',
@@ -443,13 +443,13 @@ Object.assign(tr, {
   fTrMaker: 'Türkiye’deki üretici',
   fBuyerSearch: 'Alıcı arama',
   fBuyerAbroad: 'Yurt dışındaki alıcı',
-  fOrigin: 'Çin / AB’den ürün',
-  fViaTr: 'Türkiye üzerinden',
-  fThird: 'Sizin pazarınız',
+  fOrigin: 'Üretim',
+  fViaTr: 'Denetim',
+  fThird: 'Size rapor',
   incLabel: 'Dahil',
   incImport: 'Tedarikçi doğrulama · Sözleşme · Parti denetimi',
   incExport: 'Alıcı arama · Pazar gereklilikleri · Anlaşma belgeleri',
-  incReexport: 'Türkiye üzerinden çözüm · Belgeler · Parti kontrolü'
+  incReexport: 'Numuneler · Fabrika denetimi · Fotoğraflı rapor'
 });
 const translations = { ru, en, tr };
 const locales = { ru: 'ru-RU', en: 'en-GB', tr: 'tr-TR' };
@@ -742,6 +742,14 @@ function initMotion() {
   
 }
 
+/* ---------- Process: the six stages light up in sequence when the plate comes into view ---------- */
+function initSteps() {
+  const grid = $('.process-grid'); if (!grid) return;
+  if (reducedMotion || !('IntersectionObserver' in window)) { grid.classList.add('lit'); return; }
+  const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { grid.classList.add('lit'); io.disconnect(); } }, { threshold: 0.25 });
+  io.observe(grid);
+}
+
 /* ---------- Contact ---------- */
 function initContact() {
   $$('[data-service]').forEach(link => link.addEventListener('click', () => { $('[name="interest"]').value = link.dataset.service; }));
@@ -916,6 +924,7 @@ $$('[data-lang]').forEach(b => b.addEventListener('click', () => setLanguage(b.d
 try { const saved = localStorage.getItem('gb-language'); if (translations[saved]) language = saved; } catch { /* ignore */ }
 initIntro();
 initNeedle();
+initSteps();
 initBuilder();
 initChrome();
 initMotion();
