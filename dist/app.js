@@ -930,8 +930,14 @@ function initIntro() {
   if (!el) return;
   if (document.documentElement.classList.contains('intro-seen') || reducedMotion) { el.remove(); return; }
   document.documentElement.classList.add('intro-on');
+  // split line runs through the centre of the compass star, not the middle of the screen
+  const setSplit = () => {
+    const em = el.querySelector('.intro-door.top .intro-emblem'); if (!em) return;
+    const r = em.getBoundingClientRect(); el.style.setProperty('--split', `${(r.top + r.height / 2).toFixed(1)}px`);
+  };
+  setSplit(); addEventListener('resize', setSplit);
   // 3 s of loading, a lume flash along the seam, then the doors part: top half up, bottom half down
-  setTimeout(() => el.classList.add('seam'), 2850);
+  setTimeout(() => { setSplit(); el.classList.add('seam'); }, 2850);
   setTimeout(() => el.classList.add('open'), 3050);
   setTimeout(() => { el.remove(); document.documentElement.classList.remove('intro-on'); }, 4300);
 }

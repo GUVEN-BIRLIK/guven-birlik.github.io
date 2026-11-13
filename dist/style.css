@@ -1052,3 +1052,10 @@ h2 .accent, .hero h1 .accent { color: transparent; text-shadow: none; }
 .intro.open .intro-seam { opacity: 0; transition-delay: .15s; }
 /* loading bar now fills over the full 3 s */
 .intro-bar i { animation: introBar 2.7s cubic-bezier(.4, 0, .2, 1) .15s both; }
+
+/* doors split at --split (centre of the star), set by script; 50% without it */
+.intro { --split: 50vh; }
+.intro-door.top { height: var(--split); }
+.intro-door.bottom { top: var(--split); bottom: 0; height: auto; }
+.intro-door.bottom .intro-scene { top: calc(-1 * var(--split)); bottom: auto; }
+.intro-seam { top: var(--split); }
