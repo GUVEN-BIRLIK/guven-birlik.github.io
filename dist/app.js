@@ -814,7 +814,7 @@ function initBuilder() {
 function renderWindows() {
   const svg = $('#windows-chart'); if (!svg) return;
   const now = new Date(), offIst = tzOffsetMin(ORIGIN.tz, now);
-  const W = 520, X0 = 92, X1 = 508, top = 30, rowH = 34, rows = [ORIGIN, ...HUBS];
+  const W = 520, X0 = 92, X1 = 508, top = 36, rowH = 56, rows = [ORIGIN, ...HUBS];
   const x = h => X0 + (X1 - X0) * h / 24;
   const nowH = (timeIn(ORIGIN.tz, now).split(':').map(Number)).reduce((a, b, i) => a + (i ? b / 60 : b), 0);
   const isWeekend = tz => ['Sat', 'Sun'].includes(new Intl.DateTimeFormat('en-GB', { timeZone: tz, weekday: 'short' }).format(now));
