@@ -62,6 +62,7 @@ void main(){
 }`;
 const globeFrag = /* glsl */`
 uniform sampler2D uLand; uniform vec3 uSun; uniform float uDot;
+uniform float uTime; uniform float uMotion; uniform vec3 uOrigin; uniform vec3 uFocus;
 varying vec3 vObj; varying vec3 vN; varying vec3 vV;
 const float PI = 3.141592653589793;
 vec2 uvOf(float lon, float lat){ return vec2(lon / (2.0 * PI) + 0.5, lat / PI + 0.5); }
@@ -100,6 +101,28 @@ void main(){
   col += dotCol * dotMask * landC * mix(0.80, 1.05, day);
   col += vec3(0.25, 0.55, 1.0) * land.g * mix(0.95, 0.60, day);
   col += vec3(0.4, 0.6, 1.0) * term * 0.05;
+  // graticule every 15°, ocean only
+  float gStep = PI / 12.0;
+  float gLa = abs(fract(lat / gStep + 0.5) - 0.5), gLo = abs(fract(lon / gStep + 0.5) - 0.5);
+  float gw = fwidth(lat / gStep) * 1.2;
+  float grid = max(1.0 - smoothstep(0.0, gw, gLa), (1.0 - smoothstep(0.0, gw, gLo)) * step(abs(lat), 1.45));
+  col += vec3(0.25, 0.5, 1.0) * grid * 0.07 * (1.0 - land.r);
+  // radar sweep: a meridian band that lights the dots as it passes
+  float sweepLon = mod(uTime * 0.22, 2.0 * PI) - PI;
+  float dl = abs(mod(lon - sweepLon + PI, 2.0 * PI) - PI);
+  float sweep = exp(-dl * dl * 90.0) * uMotion;
+  float trail = exp(-max(0.0, mod(sweepLon - lon + 2.0 * PI, 2.0 * PI)) * 2.2) * uMotion;
+  col += vec3(0.75, 0.88, 1.0) * dotMask * landC * (sweep * 1.1 + trail * 0.25);
+  col += vec3(0.2, 0.5, 1.0) * sweep * 0.06;
+  // sonar ripples from Istanbul and the selected market
+  float ro = acos(clamp(dot(n, uOrigin), -1.0, 1.0)), rf = acos(clamp(dot(n, uFocus), -1.0, 1.0));
+  float ripO = smoothstep(0.82, 1.0, sin(ro * 46.0 - uTime * 3.2)) * exp(-ro * 4.0);
+  float ripF = smoothstep(0.82, 1.0, sin(rf * 46.0 - uTime * 3.2)) * exp(-rf * 4.0);
+  col += vec3(0.55, 0.78, 1.0) * (ripO + ripF) * uMotion * (0.22 + 0.7 * dotMask * landC);
+  // night-side shimmer on the land lattice
+  float hsh = fract(sin(dot(vec2(latC, lonC), vec2(12.9898, 78.233))) * 43758.5453);
+  float tw = smoothstep(0.86, 1.0, sin(uTime * 1.3 + hsh * 60.0) * 0.5 + 0.5) * (1.0 - day) * uMotion;
+  col += vec3(0.7, 0.86, 1.0) * dotMask * landC * tw * 0.7;
   col *= 0.45 + 0.55 * pow(ndv, 0.6);
   col += vec3(0.2, 0.45, 1.0) * fres * 0.55;
   gl_FragColor = vec4(col, 1.0);
@@ -149,7 +172,8 @@ async function main() {
   const sphereGeo = new THREE.SphereGeometry(1, small ? 96 : 128, small ? 64 : 96);
   const globeMat = new THREE.ShaderMaterial({
     vertexShader: globeVert, fragmentShader: globeFrag,
-    uniforms: { uLand: { value: landTex }, uSun: { value: new THREE.Vector3(1, 0, 0) }, uDot: { value: small ? 1.45 : 1.1 } },
+    uniforms: { uLand: { value: landTex }, uSun: { value: new THREE.Vector3(1, 0, 0) }, uDot: { value: small ? 1.45 : 1.1 },
+      uTime: { value: 0 }, uMotion: { value: reduced ? 0 : 1 }, uOrigin: { value: toVec(GB.origin.coord) }, uFocus: { value: toVec(GB.origin.coord) } },
     extensions: { derivatives: true }
   });
   globe.add(new THREE.Mesh(sphereGeo, globeMat));
@@ -208,10 +232,19 @@ async function main() {
     beamGeo.setAttribute('color', new THREE.BufferAttribute(new Float32Array([0.45, 0.7, 1, 0.02, 0.05, 0.15]), 3));
     const beam = new THREE.Line(beamGeo, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
     group.add(beam);
+    const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.0042, 0.0042, 1, 12, 1, true), new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
+      uniforms: { uOpacity: { value: 0 }, uColor: { value: new THREE.Color(isOrigin ? '#dbe9ff' : '#6fa8ff') } },
+      vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+      fragmentShader: 'uniform float uOpacity; uniform vec3 uColor; varying vec2 vUv; void main(){ float a = pow(1.0 - vUv.y, 1.6) * uOpacity; gl_FragColor = vec4(uColor * a, a); }'
+    }));
+    pillar.rotation.x = Math.PI / 2; group.add(pillar);
+    const halo2 = new THREE.Mesh(new THREE.RingGeometry(0.034, 0.037, 48), new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending }));
+    halo2.position.z = 0.002; group.add(halo2);
     const label = document.createElement('div');
     label.className = 'g-label' + (isOrigin ? ' origin' : '');
     labelsEl.appendChild(label);
-    const m = { hub, v, group, dot, ring, beam, label, isOrigin, active: isOrigin ? 1 : 0, phase: Math.random() * Math.PI * 2 };
+    const m = { hub, v, group, dot, ring, beam, pillar, halo2, label, isOrigin, active: isOrigin ? 1 : 0, phase: Math.random() * Math.PI * 2 };
     markers.set(hub.key, m); return m;
   };
   addMarker(GB.origin, true);
@@ -364,6 +397,8 @@ async function main() {
 
     // Arcs
     const animT = reduced ? 0 : time;
+    globeMat.uniforms.uTime.value = animT / 1000;
+    const fm = markers.get(GB.region); if (fm) globeMat.uniforms.uFocus.value.lerp(fm.v, 1 - Math.exp(-dt / 300)).normalize();
     arcs.forEach((a, key) => {
       const isActive = key === GB.region ? 1 : 0;
       a.active += (isActive - a.active) * (1 - Math.exp(-dt / 250));
@@ -390,6 +425,11 @@ async function main() {
       m.ring.scale.setScalar(s); m.ring.material.opacity = (0.25 + 0.6 * m.active) * (1.15 - pulse * 0.8);
       m.beam.material.opacity = 0.15 + 0.85 * m.active; m.beam.scale.z = 0.4 + 0.6 * m.active;
       m.dot.material.opacity = 0.55 + 0.45 * m.active;
+      const len = (m.isOrigin ? 0.2 : 0.06) + (m.isOrigin ? 0 : 0.2) * m.active;
+      m.pillar.scale.y = len; m.pillar.position.z = len / 2;
+      m.pillar.material.uniforms.uOpacity.value = (m.isOrigin ? 0.9 : 0.25 + 0.75 * m.active) * (0.85 + 0.15 * pulse);
+      const p2 = reduced ? 0.4 : ((animT * 0.0006 + m.phase) % 1);
+      m.halo2.scale.setScalar(1 + p2 * 2.6); m.halo2.material.opacity = m.active * (1 - p2) * 0.8;
 
       m.group.getWorldPosition(tmp);
       const facing = tmp.dot(camDir) - 1 / camera.position.length();
