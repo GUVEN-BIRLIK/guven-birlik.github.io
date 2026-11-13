@@ -852,13 +852,16 @@ h2 .accent, .hero h1 .accent { color: transparent; text-shadow: none; }
 @media (max-width: 760px) { .builder-body { padding: 14px 12px 16px; } .b-split { grid-template-columns: 1fr; } .seg-switch button { font-size: 12px; padding: 9px 4px; } }
 
 /* ---------- Company dossier ---------- */
-.about-content > .dossier { grid-area: dossier; margin-top: 32px; }
+.about-content > .dossier { grid-area: dossier; margin-top: 32px; align-self: stretch; display: flex; flex-direction: column; }
+.about-content > .dossier .dossier-list { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.about-content > .pillars { align-self: stretch; grid-auto-rows: 1fr; }
 .dossier-list { margin: 0; padding: 4px 18px 10px; }
 .dossier-list > div { display: grid; grid-template-columns: 170px 1fr; gap: 16px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); }
 .dossier-list > div:last-child { border-bottom: 0; }
 .dossier-list dt { font: 700 10.5px var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .dossier-list dd { margin: 0; font-size: 14.5px; font-weight: 600; color: var(--text); }
 .dossier-list > div:first-child dd { font: 700 13px var(--mono); letter-spacing: .04em; color: var(--lume-hot); }
+@media (max-width: 1100px) { .about-content > .pillars { grid-auto-rows: auto; } }
 @media (max-width: 760px) { .dossier-list > div { grid-template-columns: 1fr; gap: 4px; } }
 
 /* ---------- Deal-flow diagrams on the service cards ---------- */
