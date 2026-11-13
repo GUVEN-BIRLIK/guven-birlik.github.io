@@ -334,7 +334,7 @@ Object.assign(tr, {
   a7: 'Uluslararası yaptırım altındaki ülkeler ve taraflarla, ayrıca yüksek riskli bölgelerle.',
   contactResponse: '2–4 iş saati içinde yanıt veriyoruz. İşinizi anlatın — fiyat, süre ve uygulanabilirlik hakkında dönüş yapalım.',
   messagePlaceholder: 'Ürün, miktar, hedef pazar ve zamanlama…',
-  metaDescription: 'GÜVEN BİRLİK — İstanbul’dan ithalat ve ihracat: tedarikçi bulma ve doğrulama, kurallara uygun anlaşma, kalite kontrol. 30+ ülkede iş ortakları.'
+  metaDescription: 'GÜVEN BİRLİK İç ve Dış Ticaret A.Ş. — İstanbul merkezli ithalat ve ihracat şirketi. Tedarikçi bulma ve doğrulama, sözleşme, kalite kontrol. 30+ ülkede iş ortakları, taleplere 2–4 iş saatinde yanıt.'
 });
 
 Object.assign(en, {
@@ -515,6 +515,7 @@ function setLanguage(lang) {
   $$('[data-i18n-alt]').forEach(el => { el.alt = t(el.dataset.i18nAlt); });
   $$('[data-lang]').forEach(el => { const on = el.dataset.lang === lang; el.classList.toggle('active', on); el.setAttribute('aria-pressed', on); });
   $('meta[name="description"]').content = t('metaDescription');
+  document.title = lang === 'en' ? 'GÜVEN BİRLİK İç ve Dış Ticaret A.Ş. | Import & Export from Istanbul' : 'GÜVEN BİRLİK İç ve Dış Ticaret A.Ş. | İstanbul İthalat ve İhracat';
   $('#form-status').textContent = '';
   try { localStorage.setItem('gb-language', lang); } catch { /* storage unavailable */ }
   renderRegionLists();
