@@ -13,7 +13,7 @@ Two sides of cross-border trade, both evaluating GÜVEN BİRLİK as an intermedi
 - **Foreign buyers** (CIS, Europe, Middle East, Asia, Africa) looking for a reliable partner or supplier in Türkiye.
 - **Turkish producers** looking for a route to export markets.
 
-Both arrive with a concrete need (a product, a volume, a destination, a timeline) and decide whether to start a conversation. The site is read in Russian, English and Turkish.
+Both arrive with a concrete need (a product, a volume, a destination, a timeline) and decide whether to start a conversation. The site is read in Turkish and English.
 
 ## Product Purpose
 
@@ -30,7 +30,7 @@ Visitors compare intermediaries before committing. They need to quickly understa
 ## Capabilities and Constraints
 
 - Static site: plain HTML/CSS/JS in `dist/`, deployed to Vercel (`*.vercel.app` temporary domain) from GitHub `malik-alaska2/guven-birlik-site`.
-- RU (default), EN and TR via `app.js` dictionaries.
+- TR (default) and EN via `app.js` dictionaries; the markup itself is Turkish. Russian was removed at the owner's request.
 - WebGL globe (three.js r160, vendored) with illustrative trade directions from Istanbul: Berlin, Tashkent, Dubai, Shanghai, Casablanca.
 - Live, computed data only: distances, local times, sun position, shared business hours.
 - Contact: email only (guvenbirlikicvedisticaret@gmail.com) and office address. No phone or messenger numbers.

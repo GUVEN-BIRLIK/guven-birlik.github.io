@@ -453,10 +453,10 @@ Object.assign(tr, {
 });
 Object.assign(en, { mapHead: 'OFFICE ON THE MAP' });
 Object.assign(tr, { mapHead: 'HARİTADA OFİS' });
-const translations = { ru, en, tr };
-const locales = { ru: 'ru-RU', en: 'en-GB', tr: 'tr-TR' };
-let language = 'ru';
-const t = key => translations[language][key] ?? ru[key] ?? key;
+const translations = { tr, en };
+const locales = { tr: 'tr-TR', en: 'en-GB' };
+let language = 'tr';
+const t = key => translations[language][key] ?? tr[key] ?? en[key] ?? key;
 
 /* ---------- Shared state for globe.js ---------- */
 const GB = window.GB = {
@@ -874,7 +874,7 @@ function renderWindows() {
 
 /* ---------- Split-flap directions board ---------- */
 // Business day = Mon–Fri, 09:00–18:00 local time at the destination (a convention, not a claim about any office).
-const FLAP_SET = 'ABCDEFGHIJKLMNOPRSTUVYZАБВГДЕЖЗИКЛМНОПРСТУФЦЧШЭЮЯ0123456789';
+const FLAP_SET = 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ0123456789';
 const BOARD_W = { name: 16, city: 10, course: 4, km: 5, time: 5, status: 10 };
 function setFlaps(cell, text, width, delay = 0) {
   const target = text.toLocaleUpperCase(language === 'tr' ? 'tr' : language).padEnd(width).slice(0, width);

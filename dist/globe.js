@@ -462,7 +462,7 @@ async function main() {
   }
 
   /* ---- Labels ---- */
-  const nf = () => new Intl.NumberFormat({ ru: 'ru-RU', en: 'en-GB', tr: 'tr-TR' }[GB.lang]);
+  const nf = () => new Intl.NumberFormat({ en: 'en-GB', tr: 'tr-TR' }[GB.lang] || 'tr-TR');
   function renderLabels() {
     markers.forEach(m => {
       m.label.innerHTML = m.isOrigin
