@@ -48,6 +48,8 @@ Object.assign(ru, {
   regionAsia: 'Китай и Юго-Восточная Азия: Китай, Вьетнам, Индия. Проверка поставщика и инспекция партии на месте.',
   regionAfrica: 'Северная Африка: Марокко. Обсудим ваш запрос и подходящий формат торгового сотрудничества.',
   day: 'ДЕНЬ', night: 'НОЧЬ', hours: 'ч',
+  wAria: 'Рабочие часы партнёров по времени Стамбула и их пересечение со стамбульским рабочим днём', wWeekend: 'выходной',
+  bDraftEmpty: 'Выберите параметры — здесь появится текст запроса.', bFilled: 'Черновик перенесён в форму. Укажите имя и email.',
   stOpen: 'ИДЁТ', stClosed: 'ЗАКОНЧЕН', stWeekend: 'ВЫХОДНОЙ',
   deltaAhead: 'на {n} ч впереди Стамбула', deltaBehind: 'на {n} ч позади Стамбула', deltaSame: 'то же время, что в Стамбуле',
   distAria: 'Расстояние по дуге большого круга от Стамбула до ориентиров направлений',
@@ -335,6 +337,120 @@ Object.assign(tr, {
   metaDescription: 'GÜVEN BİRLİK — İstanbul’dan ithalat, ihracat ve reeksport: tedarikçi bulma ve doğrulama, kurallara uygun anlaşma, kalite kontrol. 30+ ülkede iş ortakları.'
 });
 
+Object.assign(en, {
+  builderTitle: 'ENQUIRY BUILDER',
+  bType: 'Deal type',
+  bGoods: 'Product group',
+  bMarket: 'Market',
+  bVolume: 'Lot size',
+  bVolumePh: 'e.g. 2 containers',
+  bTiming: 'Timing',
+  bT1: 'Urgent',
+  bT2: '1–3 months',
+  bT3: '3+ months',
+  bT4: 'Not decided yet',
+  bDraft: 'Draft',
+  bApply: 'Move to the enquiry form',
+  bDraftEmpty: 'Pick the parameters — your enquiry text appears here.',
+  bFilled: 'The draft is in the form. Add your name and email.',
+  windowsTitle: 'CONTACT WINDOWS',
+  windowsTz: 'ISTANBUL TIME',
+  wLegendWork: 'partner business hours',
+  wLegendOverlap: 'overlap with Istanbul',
+  wLegendNow: 'now',
+  wAria: 'Partners’ business hours on Istanbul time and their overlap with the Istanbul working day',
+  wWeekend: 'weekend',
+  consoleNote: 'Routes illustrate directions. Time, distances and business hours are calculated live; a business day is Mon–Fri, 09:00–18:00 local time.'
+});
+Object.assign(tr, {
+  builderTitle: 'TALEP OLUŞTURUCU',
+  bType: 'İşlem türü',
+  bGoods: 'Ürün grubu',
+  bMarket: 'Pazar',
+  bVolume: 'Parti büyüklüğü',
+  bVolumePh: 'örn. 2 konteyner',
+  bTiming: 'Zamanlama',
+  bT1: 'Acil',
+  bT2: '1–3 ay',
+  bT3: '3+ ay',
+  bT4: 'Henüz belli değil',
+  bDraft: 'Taslak',
+  bApply: 'Talep formuna aktar',
+  bDraftEmpty: 'Parametreleri seçin — talep metniniz burada görünecek.',
+  bFilled: 'Taslak forma aktarıldı. Adınızı ve e-postanızı ekleyin.',
+  windowsTitle: 'İLETİŞİM PENCERELERİ',
+  windowsTz: 'İSTANBUL SAATİYLE',
+  wLegendWork: 'ortağın mesai saatleri',
+  wLegendOverlap: 'İstanbul ile ortak',
+  wLegendNow: 'şimdi',
+  wAria: 'Ortakların mesai saatleri İstanbul saatiyle ve İstanbul iş günüyle örtüşmesi',
+  wWeekend: 'hafta sonu',
+  consoleNote: 'Rotalar yönleri gösterir. Saat, mesafe ve mesai saatleri anlık hesaplanır; iş günü pzt–cuma, yerel saatle 09:00–18:00.'
+});
+Object.assign(en, {
+  dsTitle: 'COMPANY DOSSIER',
+  dsCompany: 'Company',
+  dsForm: 'Legal form',
+  dsFormV: 'Joint-stock company (Anonim Şirket), Türkiye',
+  dsOffice: 'Office',
+  dsOfficeV: 'Eyüpsultan, Istanbul',
+  dsDeals: 'Deals',
+  dsDealsV: 'Import · Export · Re-export',
+  dsReach: 'Reach',
+  dsReachV: 'Partners in 30+ countries',
+  dsLangs: 'Languages',
+  dsReply: 'Enquiry reply',
+  dsReplyV: '2–4 business hours',
+  dsCompliance: 'Compliance',
+  dsComplianceV: 'No sanctioned countries or high-risk jurisdictions'
+});
+Object.assign(tr, {
+  dsTitle: 'ŞİRKET DOSYASI',
+  dsCompany: 'Şirket',
+  dsForm: 'Hukuki yapı',
+  dsFormV: 'Anonim Şirket, Türkiye',
+  dsOffice: 'Ofis',
+  dsOfficeV: 'Eyüpsultan, İstanbul',
+  dsDeals: 'İşlemler',
+  dsDealsV: 'İthalat · İhracat · Reeksport',
+  dsReach: 'Erişim',
+  dsReachV: '30+ ülkede iş ortakları',
+  dsLangs: 'Diller',
+  dsReply: 'Talebe yanıt',
+  dsReplyV: '2–4 iş saati',
+  dsCompliance: 'Uyum',
+  dsComplianceV: 'Yaptırım altındaki ülkeler ve yüksek riskli bölgeler hariç'
+});
+Object.assign(en, {
+  fSupplier: 'Supplier',
+  fCheck: 'Vetting & contract',
+  fYourMarket: 'Your market',
+  fTrMaker: 'Maker in Türkiye',
+  fBuyerSearch: 'Finding buyers',
+  fBuyerAbroad: 'Buyer abroad',
+  fOrigin: 'Goods from China / EU',
+  fViaTr: 'Via Türkiye',
+  fThird: 'Third country',
+  incLabel: 'Included',
+  incImport: 'Supplier vetting · Contract · Lot inspection',
+  incExport: 'Finding buyers · Market requirements · Deal paperwork',
+  incReexport: 'Scheme via Türkiye · Documents · Lot control'
+});
+Object.assign(tr, {
+  fSupplier: 'Tedarikçi',
+  fCheck: 'Doğrulama ve sözleşme',
+  fYourMarket: 'Sizin pazarınız',
+  fTrMaker: 'Türkiye’deki üretici',
+  fBuyerSearch: 'Alıcı arama',
+  fBuyerAbroad: 'Yurt dışındaki alıcı',
+  fOrigin: 'Çin / AB’den ürün',
+  fViaTr: 'Türkiye üzerinden',
+  fThird: 'Üçüncü ülke',
+  incLabel: 'Dahil',
+  incImport: 'Tedarikçi doğrulama · Sözleşme · Parti denetimi',
+  incExport: 'Alıcı arama · Pazar gereklilikleri · Anlaşma belgeleri',
+  incReexport: 'Türkiye üzerinden çözüm · Belgeler · Parti kontrolü'
+});
 const translations = { ru, en, tr };
 const locales = { ru: 'ru-RU', en: 'en-GB', tr: 'tr-TR' };
 let language = 'ru';
@@ -447,6 +563,7 @@ const GLOW = p => `<defs>
 </defs>`;
 
 function renderDistChart() {
+  if (!$('#dist-chart')) return;
   const svg = $('#dist-chart'); const W = 320, H = 150, top = 20, bottom = 22, left = 6, right = 6;
   const plotH = H - top - bottom, slot = (W - left - right) / HUBS.length, bw = Math.min(30, slot * 0.38);
   let out = GLOW('d-');
@@ -468,6 +585,7 @@ function renderDistChart() {
 }
 
 function renderDayChart() {
+  if (!$('#day-chart')) return;
   const svg = $('#day-chart'); const hub = hubByKey[GB.region]; const now = new Date();
   const W = 320, H = 150, top = 10, bottom = 20, left = 4, right = 4, plotW = W - left - right, plotH = H - top - bottom;
   const off = tzOffsetMin(hub.tz, now), offIst = tzOffsetMin(ORIGIN.tz, now);
@@ -581,14 +699,14 @@ function renderRegionText() {
   $('#region-description').textContent = t(regionDescKey[GB.region]);
 }
 
-function renderAll() { renderDistChart(); renderDayChart(); renderClocks(); renderGauge(); renderRegionText(); renderBoard(); }
+function renderAll() { renderClocks(); renderGauge(); renderRegionText(); renderBoard(); renderBuilder(); renderWindows(); }
 
 /* ---------- Clock tick ---------- */
 let lastMinute = -1;
 function tick() {
   const now = new Date();
   $('#utc-clock').textContent = timeIn('UTC', now, true);
-  if (now.getUTCMinutes() !== lastMinute) { lastMinute = now.getUTCMinutes(); renderClocks(); renderGauge(); renderDayChart(); renderBoard(); }
+  if (now.getUTCMinutes() !== lastMinute) { lastMinute = now.getUTCMinutes(); renderClocks(); renderGauge(); renderBoard(); renderWindows(); }
   else setHands(now);
 }
 
@@ -653,6 +771,78 @@ function initContact() {
     location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     status.textContent = t('mailReady');
   });
+}
+
+/* ---------- Inquiry builder: compose a structured enquiry, then hand it to the form ---------- */
+const builder = { type: 'import', goods: 0, };
+const TYPE_KEYS = [['import', 'importTitle'], ['export', 'exportTitle'], ['partnership', 'partnerTitle']];
+function builderText(withLabels = true) {
+  const hub = hubByKey[GB.region];
+  const type = t(TYPE_KEYS.find(k => k[0] === builder.type)[1]);
+  const goods = builder.goods ? t(`g${builder.goods}Title`) : '—';
+  const vol = ($('#b-volume')?.value || '').trim() || '—';
+  const timing = $('#b-timing') ? $('#b-timing').selectedOptions[0].textContent : '—';
+  if (!withLabels) return `${type} · ${goods} · ${t(hub.key)} (${hub.code}) · ${vol} · ${timing}`;
+  return [`${t('bType')}: ${type}`, `${t('bGoods')}: ${goods}`, `${t('bMarket')}: ${t(hub.key)} — ${hub.city}`, `${t('bVolume')}: ${vol}`, `${t('bTiming')}: ${timing}`].join('\n');
+}
+function renderBuilder() {
+  const typeEl = $('#b-type'); if (!typeEl) return;
+  typeEl.innerHTML = TYPE_KEYS.map(([v, k]) => `<button type="button" role="radio" aria-checked="${builder.type === v}" data-v="${v}">${t(k)}</button>`).join('');
+  $('#b-goods').innerHTML = Array.from({ length: 9 }, (_, i) => `<button type="button" class="chip" role="radio" aria-checked="${builder.goods === i + 1}" data-v="${i + 1}"><b>G${String(i + 1).padStart(2, '0')}</b>${t(`g${i + 1}Title`)}</button>`).join('');
+  $('#b-market').innerHTML = HUBS.map(h => `<button type="button" class="chip" role="radio" aria-checked="${GB.region === h.key}" data-v="${h.key}"><b>${h.code}</b>${t(h.key)}</button>`).join('');
+  $$('#b-type button').forEach(b => b.addEventListener('click', () => { builder.type = b.dataset.v; renderBuilder(); }));
+  $$('#b-goods button').forEach(b => b.addEventListener('click', () => { builder.goods = +b.dataset.v; renderBuilder(); }));
+  $$('#b-market button').forEach(b => b.addEventListener('click', () => setRegion(b.dataset.v)));
+  updateDraft();
+}
+function updateDraft() { const o = $('#b-draft'); if (o) o.textContent = builder.goods ? builderText(false) : t('bDraftEmpty'); }
+function initBuilder() {
+  if (!$('#b-type')) return;
+  $('#b-volume').addEventListener('input', updateDraft);
+  $('#b-timing').addEventListener('change', updateDraft);
+  $('#b-apply').addEventListener('click', () => {
+    const form = $('#inquiry-form');
+    form.elements.interest.value = builder.type;
+    form.elements.message.value = builderText(true) + '\n\n';
+    $('#contact').scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+    const status = $('#form-status'); status.classList.remove('error'); status.textContent = t('bFilled');
+    setTimeout(() => form.elements.name.focus({ preventScroll: true }), reducedMotion ? 0 : 700);
+  });
+}
+
+/* ---------- Contact windows: partners' business hours on Istanbul's clock ---------- */
+function renderWindows() {
+  const svg = $('#windows-chart'); if (!svg) return;
+  const now = new Date(), offIst = tzOffsetMin(ORIGIN.tz, now);
+  const W = 520, X0 = 92, X1 = 508, top = 30, rowH = 34, rows = [ORIGIN, ...HUBS];
+  const x = h => X0 + (X1 - X0) * h / 24;
+  const nowH = (timeIn(ORIGIN.tz, now).split(':').map(Number)).reduce((a, b, i) => a + (i ? b / 60 : b), 0);
+  const isWeekend = tz => ['Sat', 'Sun'].includes(new Intl.DateTimeFormat('en-GB', { timeZone: tz, weekday: 'short' }).format(now));
+  const segs = (a, b) => { const out = []; let s0 = ((a % 24) + 24) % 24, len = b - a; while (len > 0) { const e = Math.min(24, s0 + len); out.push([s0, e]); len -= e - s0; s0 = 0; } return out; };
+  let o = `<defs><pattern id="w-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="1.4" height="5" fill="#8fbcff" fill-opacity=".35"/></pattern>
+    <linearGradient id="w-lit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fbcff"/><stop offset="1" stop-color="#3d7cf0"/></linearGradient>
+    <filter id="w-glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>`;
+  // Istanbul's own working band across all rows
+  o += `<rect x="${x(9)}" y="${top - 6}" width="${x(18) - x(9)}" height="${rows.length * rowH + 4}" fill="rgba(143,188,255,.05)" stroke="rgba(143,188,255,.18)" stroke-dasharray="2 3"/>`;
+  for (let hh = 0; hh <= 24; hh += 3) o += `<line class="c-grid" x1="${x(hh)}" x2="${x(hh)}" y1="${top - 6}" y2="${top + rows.length * rowH - 2}"/><text class="c-lbl" x="${x(hh)}" y="${top - 12}" text-anchor="middle">${String(hh).padStart(2, '0')}</text>`;
+  rows.forEach((h, i) => {
+    const y = top + i * rowH, cy = y + rowH / 2 - 2, active = h.key === GB.region, home = h === ORIGIN;
+    const shift = (tzOffsetMin(h.tz, now) - offIst) / 60, wk = isWeekend(h.tz);
+    // the partner's 09–18 expressed in Istanbul time
+    const a = 9 - shift, b = 18 - shift;
+    const ov = Math.max(0, Math.min(18, b) - Math.max(9, a));
+    o += `<g class="w-row${active ? ' on' : ''}${home ? ' home' : ''}" data-key="${h.key}">`;
+    o += `<rect x="${X0}" y="${cy - 7}" width="${X1 - X0}" height="14" fill="rgba(143,188,255,.04)"/>`;
+    for (const [s0, e0] of segs(a, b)) o += `<rect x="${x(s0)}" y="${cy - 6}" width="${x(e0) - x(s0)}" height="12" rx="2" fill="${wk ? 'url(#w-hatch)' : 'rgba(77,148,255,.35)'}"/>`;
+    if (!wk && !home && ov > 0) o += `<rect x="${x(Math.max(9, a))}" y="${cy - 6}" width="${x(Math.min(18, b)) - x(Math.max(9, a))}" height="12" rx="2" fill="url(#w-lit)" filter="url(#w-glow)"/>`;
+    if (home && !wk) o += `<rect x="${x(9)}" y="${cy - 6}" width="${x(18) - x(9)}" height="12" rx="2" fill="#dbe9ff" opacity=".9"/>`;
+    o += `<text class="w-code" x="8" y="${cy + 4}">${h.code}</text>`;
+    o += `<text class="w-ov" x="${X0 - 8}" y="${cy + 4}" text-anchor="end">${wk ? t('wWeekend') : home ? '09–18' : `${ov % 1 ? ov.toFixed(1) : ov} ${t('hours')}`}</text></g>`;
+  });
+  o += `<line class="w-now" x1="${x(nowH)}" x2="${x(nowH)}" y1="${top - 8}" y2="${top + rows.length * rowH}"/><circle cx="${x(nowH)}" cy="${top - 8}" r="3" fill="#fff"/>`;
+  svg.innerHTML = o;
+  svg.setAttribute('aria-label', t('wAria'));
+  $$('.w-row', svg).forEach(g => { if (g.dataset.key && g.dataset.key !== 'origin') g.addEventListener('click', () => setRegion(g.dataset.key)); });
 }
 
 /* ---------- Split-flap directions board ---------- */
@@ -726,6 +916,7 @@ $$('[data-lang]').forEach(b => b.addEventListener('click', () => setLanguage(b.d
 try { const saved = localStorage.getItem('gb-language'); if (translations[saved]) language = saved; } catch { /* ignore */ }
 initIntro();
 initNeedle();
+initBuilder();
 initChrome();
 initMotion();
 initContact();

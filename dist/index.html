@@ -53,6 +53,10 @@
     <symbol id="i-play" viewBox="0 0 16 16"><path d="M5 3.5l7 4.5-7 4.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
     <symbol id="i-reset" viewBox="0 0 16 16"><path d="M3.5 8a4.5 4.5 0 1 0 1.4-3.3M3.5 2.8v2.4h2.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-pin" viewBox="0 0 16 16"><path d="M8 14s4.5-4.2 4.5-7.5a4.5 4.5 0 1 0-9 0C3.5 9.8 8 14 8 14z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="6.5" r="1.6" fill="currentColor"/></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 20V10l5 3V10l5 3V6h3v14zM16 9h4v11M3 20h18M7 16h2M12 16h2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 10v10h16V10M3 10l2-5h14l2 5zM3 10c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3M10 20v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.8 5.2 3.8 8.5S14.6 18.1 12 20.5M12 3.5C9.4 5.9 8.2 8.7 8.2 12s1.2 6.1 3.8 8.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
   </svg>
   <div class="intro" id="intro" aria-hidden="true"><div class="intro-inner"><div class="intro-emblem"><svg class="intro-ring" viewBox="0 0 100 100" aria-hidden="true"><circle class="ir-ticks" cx="50" cy="50" r="47"/><g class="ir-spin"><circle class="ir-arc" cx="50" cy="50" r="49.3"/></g></svg><img src="assets/emblem-320.png" alt="" width="132" height="132"><i class="shine"></i></div><div class="intro-word">GÜVEN BİRLİK<small><i></i>İSTANBUL TÜRKİYE<i></i></small></div><div class="intro-bar"><i></i></div></div></div>
   <a class="skip-link" href="#main" data-i18n="skip">Перейти к содержанию</a>
@@ -175,17 +179,27 @@
         </div>
 
         <div class="console-bottom">
-          <div class="panel chart-panel">
-            <div class="panel-head"><span data-i18n="distTitle">РАССТОЯНИЕ ОТ СТАМБУЛА</span><span class="mono dim">KM</span></div>
-            <svg class="chart" id="dist-chart" viewBox="0 0 320 150" role="img" aria-label=""></svg>
+          <div class="panel builder">
+            <div class="panel-head"><span data-i18n="builderTitle">КОНСТРУКТОР ЗАПРОСА</span><span class="mono dim">GB-RFQ</span></div>
+            <div class="builder-body">
+              <div class="b-row"><span class="b-label" data-i18n="bType">Тип сделки</span><div class="seg-switch" id="b-type" role="radiogroup" aria-label="Тип сделки" data-i18n-aria="bType"></div></div>
+              <div class="b-row"><span class="b-label" data-i18n="bGoods">Товарная группа</span><div class="chips" id="b-goods" role="radiogroup" aria-label="Товарная группа" data-i18n-aria="bGoods"></div></div>
+              <div class="b-row"><span class="b-label" data-i18n="bMarket">Рынок</span><div class="chips" id="b-market" role="radiogroup" aria-label="Рынок" data-i18n-aria="bMarket"></div></div>
+              <div class="b-row b-split">
+                <label class="b-field"><span class="b-label" data-i18n="bVolume">Объём партии</span><input id="b-volume" maxlength="80" autocomplete="off" data-i18n-ph="bVolumePh" placeholder="например, 2 контейнера"></label>
+                <label class="b-field"><span class="b-label" data-i18n="bTiming">Сроки</span><select id="b-timing"><option value="t1" data-i18n="bT1">Срочно</option><option value="t2" data-i18n="bT2">1–3 месяца</option><option value="t3" data-i18n="bT3">3+ месяца</option><option value="t4" data-i18n="bT4">Пока не определены</option></select></label>
+              </div>
+              <div class="b-draft"><span class="b-draft-label" data-i18n="bDraft">Черновик</span><output id="b-draft" class="mono"></output></div>
+              <button type="button" class="button button-red button-wide" id="b-apply"><span data-i18n="bApply">Перенести в форму запроса</span><svg class="ic" aria-hidden="true"><use href="#i-s"/></svg></button>
+            </div>
           </div>
-          <div class="panel chart-panel">
-            <div class="panel-head"><span data-i18n="dayTitle">СУТКИ В ТОЧКЕ НАЗНАЧЕНИЯ</span><span class="mono dim" id="day-code">BER</span></div>
-            <svg class="chart" id="day-chart" viewBox="0 0 320 150" role="img" aria-label=""></svg>
-            <div class="chart-legend"><span><i class="lg-line"></i><span data-i18n="legendSun">высота солнца</span></span><span><i class="lg-band"></i><span data-i18n="legendOverlap">общие рабочие часы с Стамбулом</span>: <b id="overlap-hours">—</b></span></div>
+          <div class="panel windows">
+            <div class="panel-head"><span data-i18n="windowsTitle">ОКНА ДЛЯ СВЯЗИ</span><span class="mono dim" data-i18n="windowsTz">ПО ВРЕМЕНИ СТАМБУЛА</span></div>
+            <svg class="chart" id="windows-chart" viewBox="0 0 520 250" role="img" aria-label=""></svg>
+            <div class="chart-legend"><span><i class="lg-work"></i><span data-i18n="wLegendWork">рабочие часы партнёра</span></span><span><i class="lg-overlap"></i><span data-i18n="wLegendOverlap">совпадают со Стамбулом</span></span><span><i class="lg-now"></i><span data-i18n="wLegendNow">сейчас</span></span></div>
           </div>
         </div>
-        <p class="console-note"><span class="red-dot"></span><span data-i18n="consoleNote">Маршруты — иллюстрация направлений, а не отслеживание грузов. Время, расстояния и положение солнца рассчитываются в реальном времени.</span></p>
+        <p class="console-note"><span class="red-dot"></span><span data-i18n="consoleNote">Маршруты — иллюстрация направлений. Время, расстояния и рабочие часы рассчитываются в реальном времени; рабочий день — пн–пт, 09:00–18:00 по местному времени.</span></p>
       </div>
       <div class="floor" aria-hidden="true"><div class="floor-line"></div><div class="floor-grid"></div></div>
     </section>
@@ -214,6 +228,19 @@
           <p data-i18n="aboutText">GÜVEN BİRLİK İÇ VE DIŞ TİCARET A.Ş. — торговая компания из Стамбула. Мы ведём сделки импорта, экспорта и реэкспорта: от поиска поставщика до подписанного контракта и проверенной партии.</p>
           <p class="secondary-copy" data-i18n="aboutText2">Мы отвечаем за результат сделки целиком, а не за отдельный её этап. Поэтому сначала разбираемся в задаче — товар, объём, рынок, сроки — и только потом предлагаем решение.</p>
         </div>
+        <div class="panel dossier reveal">
+          <div class="panel-head"><span data-i18n="dsTitle">ДОСЬЕ КОМПАНИИ</span><span class="mono dim">GB · İST</span></div>
+          <dl class="dossier-list">
+            <div><dt data-i18n="dsCompany">Компания</dt><dd>GÜVEN BİRLİK İÇ VE DIŞ TİCARET A.Ş.</dd></div>
+            <div><dt data-i18n="dsForm">Правовая форма</dt><dd data-i18n="dsFormV">Акционерное общество (Anonim Şirket), Турция</dd></div>
+            <div><dt data-i18n="dsOffice">Офис</dt><dd data-i18n="dsOfficeV">Эюпсултан, Стамбул</dd></div>
+            <div><dt data-i18n="dsDeals">Сделки</dt><dd data-i18n="dsDealsV">Импорт · Экспорт · Реэкспорт</dd></div>
+            <div><dt data-i18n="dsReach">География</dt><dd data-i18n="dsReachV">Партнёры в 30+ странах</dd></div>
+            <div><dt data-i18n="dsLangs">Языки</dt><dd>Русский · English · Türkçe</dd></div>
+            <div><dt data-i18n="dsReply">Ответ на запрос</dt><dd data-i18n="dsReplyV">2–4 рабочих часа</dd></div>
+            <div><dt data-i18n="dsCompliance">Комплаенс</dt><dd data-i18n="dsComplianceV">Без санкционных стран и юрисдикций высокого риска</dd></div>
+          </dl>
+        </div>
         <div class="pillars">
           <article class="panel pillar reveal"><span class="pillar-index">A</span><h3 data-i18n="pillar1Title">Один контакт — одна ответственность</h3><p data-i18n="pillar1Text">Поиск поставщика, проверка, договор и контроль качества — у одного партнёра. Вам не нужно координировать нескольких посредников.</p></article>
           <article class="panel pillar reveal"><span class="pillar-index">B</span><h3 data-i18n="pillar2Title">Поставщик проверен до оплаты</h3><p data-i18n="pillar2Text">Регистрация компании, полномочия подписанта, производственные мощности и история поставок. Перед отгрузкой — инспекция партии, если это важно для сделки.</p></article>
@@ -239,23 +266,26 @@
       <div class="service-grid">
         <a class="service-card panel reveal" href="#contact" data-service="import">
           <div class="card-top"><svg class="ic service-arrow" aria-hidden="true"><use href="#i-ne"/></svg></div>
-          <div class="service-art import-art" aria-hidden="true"><span class="box b1"></span><span class="box b2"></span><span class="box b3"></span><svg class="art-arrow" aria-hidden="true" viewBox="0 0 16 16"><path d="M11.5 4.5l-7 7M10 11.5H4.5V6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="flow" aria-hidden="true"><div class="fnode"><span class="foct"><svg class="ic" aria-hidden="true"><use href="#i-factory"/></svg></span><small data-i18n="fSupplier">Поставщик</small></div><span class="flink"><i></i></span><div class="fnode hub"><span class="foct"><img src="assets/emblem-176.png" alt="" width="40" height="40"></span><small data-i18n="fCheck">Проверка и договор</small></div><span class="flink"><i></i></span><div class="fnode"><span class="foct"><svg class="ic" aria-hidden="true"><use href="#i-store"/></svg></span><small data-i18n="fYourMarket">Ваш рынок</small></div></div>
           <h3 data-i18n="importTitle">Импорт</h3>
           <p class="card-description" data-i18n="importText">Закупка в Турции и через Турцию: поиск и проверка производителя, переговоры о цене, контракт и контроль качества партии.</p>
+          <p class="card-inc"><span data-i18n="incLabel">Включено</span><b data-i18n="incImport">Проверка поставщика · Контракт · Инспекция партии</b></p>
           <span class="card-footer"><span data-i18n="importCta">Обсудить импорт</span><svg class="ic" aria-hidden="true"><use href="#i-e"/></svg></span>
         </a>
         <a class="service-card panel reveal" href="#contact" data-service="export">
           <div class="card-top"><svg class="ic service-arrow" aria-hidden="true"><use href="#i-ne"/></svg></div>
-          <div class="service-art export-art" aria-hidden="true"><span class="container-shape c1"></span><span class="container-shape c2"></span><svg class="art-arrow" aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="flow" aria-hidden="true"><div class="fnode"><span class="foct"><svg class="ic" aria-hidden="true"><use href="#i-factory"/></svg></span><small data-i18n="fTrMaker">Производитель в Турции</small></div><span class="flink"><i></i></span><div class="fnode hub"><span class="foct"><img src="assets/emblem-176.png" alt="" width="40" height="40"></span><small data-i18n="fBuyerSearch">Поиск покупателя</small></div><span class="flink"><i></i></span><div class="fnode"><span class="foct"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></span><small data-i18n="fBuyerAbroad">Покупатель за рубежом</small></div></div>
           <h3 data-i18n="exportTitle">Экспорт</h3>
           <p class="card-description" data-i18n="exportText">Выход турецкого товара на зарубежный рынок: поиск покупателя, проверка требований рынка назначения, условия и оформление сделки.</p>
+          <p class="card-inc"><span data-i18n="incLabel">Включено</span><b data-i18n="incExport">Поиск покупателя · Требования рынка · Оформление сделки</b></p>
           <span class="card-footer"><span data-i18n="exportCta">Обсудить экспорт</span><svg class="ic" aria-hidden="true"><use href="#i-e"/></svg></span>
         </a>
         <a class="service-card panel reveal" href="#contact" data-service="partnership">
           <div class="card-top"><svg class="ic service-arrow" aria-hidden="true"><use href="#i-ne"/></svg></div>
-          <div class="service-art sourcing-art" aria-hidden="true"><span class="source-ring r1"></span><span class="source-ring r2"></span><span class="source-ring r3"></span><span class="source-center"></span><span class="satellite s1"></span><span class="satellite s2"></span><span class="satellite s3"></span></div>
+          <div class="flow" aria-hidden="true"><div class="fnode"><span class="foct"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></span><small data-i18n="fOrigin">Товар из Китая / ЕС</small></div><span class="flink"><i></i></span><div class="fnode hub"><span class="foct"><img src="assets/emblem-176.png" alt="" width="40" height="40"></span><small data-i18n="fViaTr">Через Турцию</small></div><span class="flink"><i></i></span><div class="fnode"><span class="foct"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg></span><small data-i18n="fThird">Третья страна</small></div></div>
           <h3 data-i18n="partnerTitle">Реэкспорт</h3>
           <p class="card-description" data-i18n="partnerText">Сделки, где Турция — промежуточная точка: товар из Китая, Азии или ЕС для покупателя в третьей стране, с корректным оформлением.</p>
+          <p class="card-inc"><span data-i18n="incLabel">Включено</span><b data-i18n="incReexport">Схема через Турцию · Документы · Контроль партии</b></p>
           <span class="card-footer"><span data-i18n="partnerCta">Обсудить реэкспорт</span><svg class="ic" aria-hidden="true"><use href="#i-e"/></svg></span>
         </a>
       </div>
