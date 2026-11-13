@@ -349,7 +349,7 @@ img { max-width: 100%; display: block; }
 .cp-ticks-maj { fill: none; stroke: var(--lume-hot); stroke-width: 11; stroke-dasharray: 1.6 64.37; stroke-dashoffset: .8; filter: drop-shadow(0 0 2px var(--lume)); }
 .cp-rose { fill: rgba(143, 188, 255, .08); stroke: rgba(143, 188, 255, .35); stroke-width: .7; }
 .cp-card { font: 700 12px var(--mono); fill: #9fc2ff; text-anchor: middle; }
-.cp-needle { transform-box: view-box; transform-origin: 100px 100px; will-change: transform; filter: drop-shadow(0 0 6px rgba(var(--lume-rgb), .85)); }
+.cp-needle { transform-box: view-box; transform-origin: 110px 110px; will-change: transform; filter: drop-shadow(0 0 6px rgba(var(--lume-rgb), .85)); }
 .cp-tail { fill: #c3cbd8; }
 .cp-pin { fill: var(--lume); filter: drop-shadow(0 0 4px var(--lume)); }
 .readouts { display: grid; grid-template-columns: repeat(3, 1fr); margin: 10px 14px 0; border-top: 1px solid var(--line); }
