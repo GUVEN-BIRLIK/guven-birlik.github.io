@@ -1225,3 +1225,8 @@ h2 .accent, .hero h1 .accent { color: transparent; text-shadow: none; }
   .fx-amt { grid-column: 1 / -1; }
 }
 .fx-rows { align-content: space-evenly; }
+/* audit fixes: readable globe labels and finger-sized links on touch screens */
+@media (max-width: 760px) {
+  .g-label, .g-label.partner b, .g-label.partner.active span { font-size: 10px; }
+  .text-link, .contact-email { min-height: 44px; display: inline-flex; align-items: center; }
+}
