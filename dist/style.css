@@ -1059,3 +1059,12 @@ h2 .accent, .hero h1 .accent { color: transparent; text-shadow: none; }
 .intro-door.bottom { top: var(--split); bottom: 0; height: auto; }
 .intro-door.bottom .intro-scene { top: calc(-1 * var(--split)); bottom: auto; }
 .intro-seam { top: var(--split); }
+
+/* world clocks removed: the compass owns the right column */
+.console-grid > .side-panels > .compass-panel { flex: 1; justify-content: center; }
+.compass-panel .compass { width: min(320px, 94%); }
+@media (min-width: 1281px) {
+  .console-grid > .side-panels { grid-row: 1; }
+  .console-grid > .board { grid-column: 1 / -1; }
+  .board-grid { min-width: 0; }
+}

@@ -620,6 +620,7 @@ function dialFace() {
   return `<svg class="sd" viewBox="0 0 64 64" aria-hidden="true"><circle class="sd-rim" cx="32" cy="32" r="31"/><circle class="sd-face" cx="32" cy="32" r="28.5"/><circle class="sd-min" cx="32" cy="32" r="26"/><circle class="sd-hr" cx="32" cy="32" r="26"/><line class="sd-h" x1="32" y1="34" x2="32" y2="18"/><line class="sd-m" x1="32" y1="35" x2="32" y2="10"/><line class="sd-s" x1="32" y1="38" x2="32" y2="8"/><circle class="sd-pin" cx="32" cy="32" r="2.2"/></svg>`;
 }
 function renderClocks() {
+  if (!$('#clock-list')) return;
   const now = new Date();
   $('#clock-list').innerHTML = [ORIGIN, ...HUBS].map(h => {
     const off = tzOffsetMin(h.tz, now); const day = sunElevation(h.coord, now) > -0.833;
@@ -629,6 +630,7 @@ function renderClocks() {
   setHands(now);
 }
 function setHands(now = new Date()) {
+  if (!$('#clock-list')) return;
   $$('#clock-list .clock').forEach(li => {
     const [h, m, sec] = timeIn(li.dataset.tz, now, true).split(':').map(Number);
     const rot = (sel, deg) => { li.querySelector(sel).style.transform = `rotate(${deg}deg)`; };
