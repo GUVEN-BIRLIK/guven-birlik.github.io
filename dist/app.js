@@ -374,7 +374,7 @@ Object.assign(en, {
   wLegendNow: 'now',
   wAria: 'Partners’ business hours on Istanbul time and their overlap with the Istanbul working day',
   wWeekend: 'weekend',
-  consoleNote: 'Routes illustrate directions. Time, distances and business hours are calculated live; a business day is Mon–Fri, 09:00–18:00 local time.'
+  consoleNote: 'Routes illustrate trade directions; distances and courses are calculated live.'
 });
 Object.assign(tr, {
   builderTitle: 'TALEP OLUŞTURUCU',
@@ -399,7 +399,7 @@ Object.assign(tr, {
   wLegendNow: 'şimdi',
   wAria: 'Ortakların mesai saatleri İstanbul saatiyle ve İstanbul iş günüyle örtüşmesi',
   wWeekend: 'hafta sonu',
-  consoleNote: 'Rotalar yönleri gösterir. Saat, mesafe ve mesai saatleri anlık hesaplanır; iş günü pzt–cuma, yerel saatle 09:00–18:00.'
+  consoleNote: 'Rotalar ticaret yönlerini gösterir; mesafe ve rota anlık hesaplanır.'
 });
 Object.assign(en, {
   dsTitle: 'COMPANY DOSSIER',
@@ -519,6 +519,46 @@ Object.assign(tr, { bInc: 'Teslim şekli (Incoterms)', incLink: 'Talep oluşturu
 Object.assign(en, { bInc: 'Delivery terms (Incoterms)', incLink: 'Added to the enquiry builder:' });
 Object.assign(tr, { liveOn: 'Canlı pusula', liveHint: 'Telefonunuzu çevirin — N gerçek kuzeyi, ok seçilen şehrin yönünü gösterir.', liveNoSensor: 'Bu cihazda pusula sensörü bulunamadı.', liveDenied: 'Sensör izni verilmedi. Tarayıcı ayarlarından izin verebilirsiniz.' });
 Object.assign(en, { liveOn: 'Live compass', liveHint: 'Turn your phone — N points to true north, the needle to the selected city.', liveNoSensor: 'No compass sensor found on this device.', liveDenied: 'Sensor access was not granted. You can allow it in the browser settings.' });
+Object.assign(tr, {
+  dealTitle: 'CANLI İŞLEM AKIŞI',
+  dealTag: 'ÖRNEK',
+  dealNote: 'Örnek akıştır; ödeme ve teslim koşulları her işlemde sözleşmeyle belirlenir.',
+  dealDone: 'TAMAM',
+  dealNow: 'SÜRÜYOR',
+  dealWait: 'SIRADA',
+  d1T: 'Sipariş ve avans',
+  d1S: 'Sözleşme imzalanır, avans ödenir',
+  d2T: 'Üretim',
+  d2S: 'Doğrulanmış tedarikçide üretim takibi',
+  d3T: 'Kalite denetimi',
+  d3S: 'Sevkiyat öncesi denetim ve fotoğraflı rapor',
+  d4T: 'Kalan ödeme',
+  d4S: 'Yalnızca denetim onayından sonra — paranız korunur',
+  d5T: 'Belgeler',
+  d5S: 'Fatura, çeki listesi, menşe belgesi',
+  d6T: 'Teslim',
+  d6S: '{inc} koşuluyla, sözleşmeye göre'
+});
+Object.assign(en, {
+  dealTitle: 'LIVE DEAL FLOW',
+  dealTag: 'EXAMPLE',
+  dealNote: 'An illustrative flow; payment and delivery terms are set in each contract.',
+  dealDone: 'DONE',
+  dealNow: 'IN PROGRESS',
+  dealWait: 'NEXT',
+  d1T: 'Order and advance',
+  d1S: 'Contract signed, advance paid',
+  d2T: 'Production',
+  d2S: 'Monitored at a vetted supplier',
+  d3T: 'Quality inspection',
+  d3S: 'Pre-shipment inspection and photo report',
+  d4T: 'Balance payment',
+  d4S: 'Only after the inspection is approved — your money stays protected',
+  d5T: 'Documents',
+  d5S: 'Invoice, packing list, certificate of origin',
+  d6T: 'Handover',
+  d6S: 'Under {inc}, as per the contract'
+});
 const translations = { tr, en };
 const locales = { tr: 'tr-TR', en: 'en-GB' };
 let language = 'tr';
@@ -780,7 +820,7 @@ function renderRegionText() {
   $('#region-description').textContent = t(regionDescKey[GB.region]);
 }
 
-function renderAll() { renderClocks(); renderGauge(); renderRegionText(); renderBoard(); renderIncoterms(); renderBuilder(); renderWindows(); }
+function renderAll() { renderClocks(); renderGauge(); renderRegionText(); renderBoard(); renderIncoterms(); renderBuilder(); renderWindows(); renderDeal(); }
 
 /* ---------- Clock tick ---------- */
 let lastMinute = -1;
@@ -961,7 +1001,7 @@ const INCOTERMS = {
 };
 const incState = { term: 'FOB' };
 // one source of truth: the Incoterms panel and the builder row always show the same term
-function setIncoterm(term) { if (!INCOTERMS[term]) return; incState.term = term; renderIncoterms(); renderBuilder(); }
+function setIncoterm(term) { if (!INCOTERMS[term]) return; incState.term = term; renderIncoterms(); renderBuilder(); renderDeal(); }
 function renderIncoterms() {
   const wrap = $('#inc-terms'); if (!wrap) return;
   wrap.innerHTML = Object.keys(INCOTERMS).map(k => `<button type="button" role="radio" aria-checked="${incState.term === k}" data-v="${k}">${k}</button>`).join('');
@@ -975,6 +1015,41 @@ function renderIncoterms() {
   $('#inc-code').textContent = incState.term;
   const lk = $('#inc-linked'); if (lk) lk.textContent = incState.term;
   $('#inc-desc').innerHTML = `<b>${incState.term}</b> — ${t('inc' + incState.term)}`;
+}
+
+/* ---------- Live deal flow (illustrative): a packet moves through the stages of a deal ---------- */
+const DEAL_STEPS = [['pen', 'd1'], ['factory', 'd2'], ['search', 'd3'], ['shield', 'd4'], ['doc', 'd5'], ['box', 'd6']];
+const deal = { at: 0, timer: 0, paused: false };
+function renderDeal() {
+  const ol = $('#deal-track'); if (!ol) return;
+  ol.innerHTML = DEAL_STEPS.map(([ic, k], i) => `<li class="deal-step${i === 3 ? ' guard' : ''}" style="--i:${i}">
+      <span class="deal-node"><svg class="ic" aria-hidden="true"><use href="#i-${ic}"/></svg></span>
+      <div class="deal-text"><b>${t(k + 'T')}</b><small>${i === 5 ? t(k + 'S').replace('{inc}', incState.term) : t(k + 'S')}</small></div>
+      <span class="deal-state"></span></li>`).join('') + '<span class="deal-rail" aria-hidden="true"><i></i></span>';
+  paintDeal();
+}
+function paintDeal() {
+  const steps = $$('#deal-track .deal-step'); if (!steps.length) return;
+  steps.forEach((li, i) => {
+    li.classList.toggle('done', i < deal.at);
+    li.classList.toggle('current', i === deal.at);
+    li.querySelector('.deal-state').textContent = i < deal.at ? t('dealDone') : i === deal.at ? t('dealNow') : t('dealWait');
+  });
+  const fill = $('#deal-track .deal-rail i');
+  if (fill) fill.style.transform = `scaleY(${Math.min(1, (deal.at + 0.5) / steps.length)})`;
+}
+function initDeal() {
+  const ol = $('#deal-track'); if (!ol) return;
+  if (reducedMotion) { deal.at = DEAL_STEPS.length; paintDeal(); return; }
+  ol.addEventListener('pointerenter', () => { deal.paused = true; });
+  ol.addEventListener('pointerleave', () => { deal.paused = false; });
+  let visible = false;
+  if ('IntersectionObserver' in window) new IntersectionObserver(([en]) => { visible = en.isIntersecting; }).observe(ol); else visible = true;
+  deal.timer = setInterval(() => {
+    if (deal.paused || !visible || document.hidden) return;
+    deal.at = deal.at >= DEAL_STEPS.length ? 0 : deal.at + 1;   // one beat with everything done, then restart
+    paintDeal();
+  }, 1900);
 }
 
 /* ---------- Split-flap directions board ---------- */
@@ -1100,6 +1175,7 @@ $$('[data-lang]').forEach(b => b.addEventListener('click', () => setLanguage(b.d
 try { const saved = localStorage.getItem('gb-language'); if (translations[saved]) language = saved; } catch { /* ignore */ }
 initIntro();
 initNeedle();
+initDeal();
 initLiveCompass();
 initSteps();
 initBuilder();
