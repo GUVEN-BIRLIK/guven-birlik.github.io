@@ -453,6 +453,54 @@ Object.assign(tr, {
 });
 Object.assign(en, { mapHead: 'OFFICE ON THE MAP' });
 Object.assign(tr, { mapHead: 'HARİTADA OFİS' });
+Object.assign(tr, {
+  incTitle: 'INCOTERMS® 2020 — KİM ÖDER, RİSK NEREDE?',
+  incSeller: 'Satıcı öder',
+  incBuyer: 'Alıcı öder',
+  incRisk: 'Risk alıcıya geçer',
+  incNote: 'Genel bilgi amaçlıdır; her işlemde sözleşmedeki koşullar esastır. Seçtiğiniz koşul talep taslağına eklenir.',
+  incSellerShort: 'Satıcı',
+  incBuyerShort: 'Alıcı',
+  incSellerSoft: 'Satıcı*',
+  incL0: 'Fabrikada yükleme',
+  incL1: 'İhracat gümrüğü',
+  incL2: 'Limana taşıma',
+  incL3: 'Gemiye yükleme',
+  incL4: 'Ana navlun',
+  incL5: 'Sigorta',
+  incL6: 'İthalat gümrüğü ve vergiler',
+  incL7: 'Varış yerine teslim',
+  incEXW: 'Satıcı malı kendi tesisinde hazır eder; yükleme, gümrük ve taşımanın tamamı alıcıya aittir. Risk en baştan alıcıda.',
+  incFCA: 'Satıcı ihracat gümrüğünü yapar ve malı alıcının taşıyıcısına belirlenen yerde teslim eder. Risk bu teslimle geçer.',
+  incFOB: 'Deniz yolu. Satıcı malı yükleme limanında gemiye yükler; navlun ve sigorta alıcıya aittir. Risk mal gemiye yüklenince geçer.',
+  incCIF: 'Deniz yolu. Satıcı navlunu ve asgari sigortayı öder, ancak risk yine yükleme limanında, mal gemiye yüklenince alıcıya geçer.',
+  incDAP: 'Satıcı malı varış yerine kadar getirir; ithalat gümrüğü ve vergiler alıcıya aittir. Risk varış yerinde geçer. *Sigorta zorunlu değildir, risk satıcıda olduğu için genelde satıcı yaptırır.',
+  incDDP: 'Satıcı her şeyi üstlenir: taşıma, ithalat gümrüğü ve vergiler dahil. Risk varış yerinde geçer. *Sigorta zorunlu değildir.'
+});
+Object.assign(en, {
+  incTitle: 'INCOTERMS® 2020 — WHO PAYS, WHERE IS THE RISK?',
+  incSeller: 'Seller pays',
+  incBuyer: 'Buyer pays',
+  incRisk: 'Risk passes to buyer',
+  incNote: 'General information only; the terms in your contract always prevail. The term you pick is added to your enquiry draft.',
+  incSellerShort: 'Seller',
+  incBuyerShort: 'Buyer',
+  incSellerSoft: 'Seller*',
+  incL0: 'Loading at the factory',
+  incL1: 'Export clearance',
+  incL2: 'Carriage to port',
+  incL3: 'Loading on board',
+  incL4: 'Main freight',
+  incL5: 'Insurance',
+  incL6: 'Import clearance and duties',
+  incL7: 'Delivery to destination',
+  incEXW: 'The seller makes the goods available at its premises; loading, customs and all carriage are the buyer’s. Risk is the buyer’s from the start.',
+  incFCA: 'The seller clears export and hands the goods to the buyer’s carrier at the named place. Risk passes at that handover.',
+  incFOB: 'Sea only. The seller loads the goods on board at the port of shipment; freight and insurance are the buyer’s. Risk passes once on board.',
+  incCIF: 'Sea only. The seller pays freight and minimum insurance, yet risk still passes at the port of shipment once the goods are on board.',
+  incDAP: 'The seller brings the goods to the named destination; import clearance and duties are the buyer’s. Risk passes at destination. *Insurance is not required; the seller usually buys it as it carries the risk.',
+  incDDP: 'The seller takes on everything, including import clearance and duties. Risk passes at destination. *Insurance is not required.'
+});
 const translations = { tr, en };
 const locales = { tr: 'tr-TR', en: 'en-GB' };
 let language = 'tr';
@@ -714,7 +762,7 @@ function renderRegionText() {
   $('#region-description').textContent = t(regionDescKey[GB.region]);
 }
 
-function renderAll() { renderClocks(); renderGauge(); renderRegionText(); renderBoard(); renderBuilder(); renderWindows(); }
+function renderAll() { renderClocks(); renderGauge(); renderRegionText(); renderBoard(); renderIncoterms(); renderBuilder(); renderWindows(); }
 
 /* ---------- Clock tick ---------- */
 let lastMinute = -1;
@@ -806,8 +854,8 @@ function builderText(withLabels = true) {
   const goods = builder.goods ? t(`g${builder.goods}Title`) : '—';
   const vol = ($('#b-volume')?.value || '').trim() || '—';
   const timing = $('#b-timing') ? $('#b-timing').selectedOptions[0].textContent : '—';
-  if (!withLabels) return `${type} · ${goods} · ${t(hub.key)} (${hub.code}) · ${vol} · ${timing}`;
-  return [`${t('bType')}: ${type}`, `${t('bGoods')}: ${goods}`, `${t('bMarket')}: ${t(hub.key)} — ${hub.city}`, `${t('bVolume')}: ${vol}`, `${t('bTiming')}: ${timing}`].join('\n');
+  if (!withLabels) return `${type} · ${goods} · ${t(hub.key)} (${hub.code}) · ${vol} · ${timing} · ${incState.term}`;
+  return [`${t('bType')}: ${type}`, `${t('bGoods')}: ${goods}`, `${t('bMarket')}: ${t(hub.key)} — ${hub.city}`, `${t('bVolume')}: ${vol}`, `${t('bTiming')}: ${timing}`, `Incoterms: ${incState.term}`].join('\n');
 }
 function renderBuilder() {
   const typeEl = $('#b-type'); if (!typeEl) return;
@@ -873,6 +921,34 @@ function renderWindows() {
   svg.innerHTML = o;
   svg.setAttribute('aria-label', t('wAria'));
   $$('.w-row', svg).forEach(g => { if (g.dataset.key && g.dataset.key !== 'origin') g.addEventListener('click', () => setRegion(g.dataset.key)); });
+}
+
+/* ---------- Incoterms 2020: who pays each leg, where the risk passes ---------- */
+// legs: 0 loading at seller, 1 export clearance, 2 carriage to port/terminal, 3 loading on board,
+//       4 main freight, 5 insurance, 6 import clearance & duties, 7 delivery to destination
+const INC_LEGS = [['factory', 'incL0'], ['stamp', 'incL1'], ['truck', 'incL2'], ['crane', 'incL3'], ['ship', 'incL4'], ['umbrella', 'incL5'], ['stamp', 'incL6'], ['home', 'incL7']];
+const INCOTERMS = {
+  // pay: S = seller, B = buyer, s = seller bears it in practice (not an obligation); risk: legs after this index are the buyer's risk
+  EXW: { pay: 'BBBBBBBB', risk: 0 },
+  FCA: { pay: 'SSSBBBBB', risk: 3 },
+  FOB: { pay: 'SSSSBBBB', risk: 4 },
+  CIF: { pay: 'SSSSSSBB', risk: 4 },
+  DAP: { pay: 'SSSSSsBS', risk: 8 },
+  DDP: { pay: 'SSSSSsSS', risk: 8 },
+};
+const incState = { term: 'FOB' };
+function renderIncoterms() {
+  const wrap = $('#inc-terms'); if (!wrap) return;
+  wrap.innerHTML = Object.keys(INCOTERMS).map(k => `<button type="button" role="radio" aria-checked="${incState.term === k}" data-v="${k}">${k}</button>`).join('');
+  $$('#inc-terms button').forEach(b => b.addEventListener('click', () => { incState.term = b.dataset.v; renderIncoterms(); updateDraft(); }));
+  const it = INCOTERMS[incState.term];
+  $('#inc-chain').innerHTML = INC_LEGS.map(([ic, key], i) => {
+    const who = it.pay[i], buyer = who === 'B', soft = who === 's';
+    const risk = i === it.risk ? '<span class="inc-risk" aria-hidden="true"></span>' : '';
+    return `${risk}<div class="inc-leg ${buyer ? 'b' : 's'}${soft ? ' soft' : ''}${i >= it.risk ? ' at-risk' : ''}" style="--i:${i}"><span class="inc-ic"><svg class="ic" aria-hidden="true"><use href="#i-${ic}"/></svg></span><b>${t(key)}</b><small>${t(buyer ? 'incBuyerShort' : soft ? 'incSellerSoft' : 'incSellerShort')}</small></div>`;
+  }).join('') + (it.risk === 8 ? '<span class="inc-risk end" aria-hidden="true"></span>' : '');
+  $('#inc-code').textContent = incState.term;
+  $('#inc-desc').innerHTML = `<b>${incState.term}</b> — ${t('inc' + incState.term)}`;
 }
 
 /* ---------- Split-flap directions board ---------- */

@@ -116,6 +116,12 @@
     <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 15l5 5M8 10.5l1.8 1.8 3.2-3.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-box" viewBox="0 0 24 24"><path d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5zM3.5 7.5L12 12l8.5-4.5M12 12v9M7.8 5.3l8.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c.8-3.6 3.6-5.6 7-5.6s6.2 2 7 5.6M17.5 4.5l1.6 1.6 3-3.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v9h-11zM13.5 9.5h4l3 3v3h-7M6 18.5a1.6 1.6 0 1 0 0-.1M17 18.5a1.6 1.6 0 1 0 0-.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-ship" viewBox="0 0 24 24"><path d="M3 15l2 4.5h14l2-4.5zM6 15V9h12v6M9 9V5h6v4M2.5 21.5c2 0 2-1 4-1s2 1 4 1 2-1 4-1 2 1 4 1 2-1 3-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-crane" viewBox="0 0 24 24"><path d="M5 21V4h2v17M3 21h8M7 5h13M15 5v5M13 10h4v3h-4zM7 9l4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-stamp" viewBox="0 0 24 24"><path d="M9 3h6v5l-1.5 2.5H18v4H6v-4h4.5L9 8zM5 18h14M7 21h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-umbrella" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 18 0zM12 12v6.5a2 2 0 0 1-4 0M12 3v-.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 11L12 4l8.5 7M6 9.5V20h12V9.5M10 20v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
     <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
   </svg>
   <div class="intro" id="intro" aria-hidden="true"><div class="intro-door top"><div class="intro-scene"><div class="intro-inner"><div class="intro-emblem"><svg class="intro-ring" viewBox="0 0 100 100" aria-hidden="true"><circle class="ir-ticks" cx="50" cy="50" r="47"/><g class="ir-spin"><circle class="ir-arc" cx="50" cy="50" r="49.3"/></g></svg><img src="assets/emblem-320.png" alt="" width="132" height="132"><i class="shine"></i></div><div class="intro-word">GÜVEN BİRLİK<small><i></i>İSTANBUL TÜRKİYE<i></i></small></div><div class="intro-bar"><i></i></div></div></div></div><div class="intro-door bottom"><div class="intro-scene"><div class="intro-inner"><div class="intro-emblem"><svg class="intro-ring" viewBox="0 0 100 100" aria-hidden="true"><circle class="ir-ticks" cx="50" cy="50" r="47"/><g class="ir-spin"><circle class="ir-arc" cx="50" cy="50" r="49.3"/></g></svg><img src="assets/emblem-320.png" alt="" width="132" height="132"><i class="shine"></i></div><div class="intro-word">GÜVEN BİRLİK<small><i></i>İSTANBUL TÜRKİYE<i></i></small></div><div class="intro-bar"><i></i></div></div></div></div><span class="intro-seam"></span></div>
@@ -191,13 +197,16 @@
             </div>
           </div>
 
-          <div class="panel board">
-            <div class="panel-head"><span data-i18n="boardTitle">YÖN PANOSU</span><span class="mono dim">İSTANBUL · UTC+3</span></div>
-            <div class="board-scroll">
-              <div class="board-grid" role="group" aria-label="YÖN PANOSU" data-i18n-aria="boardTitle">
-                <div class="board-row board-hd" aria-hidden="true"><span data-i18n="bhDest">Yön</span><span data-i18n="bhCity">Nokta</span><span data-i18n="bhCourse">Rota</span><span data-i18n="bhKm">Km</span><span data-i18n="bhTime">Saat</span><span data-i18n="bhStatus">İş günü</span></div>
-                <div id="board-rows"></div>
+          <div class="panel board incoterms">
+            <div class="panel-head"><span data-i18n="incTitle">INCOTERMS® 2020 — KİM ÖDER, RİSK NEREDE?</span><span class="mono dim" id="inc-code">FOB</span></div>
+            <div class="inc-body">
+              <div class="inc-terms" id="inc-terms" role="radiogroup" aria-label="Incoterms"></div>
+              <div class="inc-chain" id="inc-chain"></div>
+              <div class="inc-foot">
+                <p class="inc-desc" id="inc-desc" aria-live="polite"></p>
+                <div class="inc-legend"><span><i class="lg-s"></i><span data-i18n="incSeller">Satıcı öder</span></span><span><i class="lg-b"></i><span data-i18n="incBuyer">Alıcı öder</span></span><span><i class="lg-r"></i><span data-i18n="incRisk">Risk alıcıya geçer</span></span></div>
               </div>
+              <p class="inc-note" data-i18n="incNote">Genel bilgi amaçlıdır; her işlemde sözleşmedeki koşullar esastır. Seçtiğiniz koşul talep taslağına eklenir.</p>
             </div>
           </div>
           <aside class="side-panels">
