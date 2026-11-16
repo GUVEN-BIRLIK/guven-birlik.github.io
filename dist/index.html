@@ -228,7 +228,7 @@
                   <polygon points="147.89,18.54 201.46,72.11 201.46,147.89 147.89,201.46 72.11,201.46 18.54,147.89 18.54,72.11 72.11,18.54" fill="url(#cp-steelB)"/>
                   <circle cx="110" cy="110" r="90" fill="#0a1534"/>
                   <circle cx="110" cy="110" r="88" fill="url(#cp-dial)"/>
-                  <circle class="cp-ring" cx="110" cy="110" r="78"/>
+                  <g id="cp-rot" class="cp-rot"><circle class="cp-ring" cx="110" cy="110" r="78"/>
                   <circle class="cp-course" id="cp-course" cx="110" cy="110" r="78"/>
                   <circle class="cp-ticks" cx="110" cy="110" r="84"/>
                   <circle class="cp-ticks-maj" cx="110" cy="110" r="84"/>
@@ -238,7 +238,7 @@
                   <g class="cp-bug" id="cp-bug"><polygon points="110.00,31.00 104.50,21.00 115.50,21.00"/></g>
                   <g class="cp-needle" id="cp-needle" filter="url(#cp-glow)"><polygon fill="#3b4760" points="110,140 105,110 110,110"/><polygon fill="#232c40" points="110,140 110,110 115,110"/><circle cx="110" cy="138" r="4" fill="#2b3550" stroke="#6b7690" stroke-width=".8"/><polygon fill="#e8f1ff" points="110,30 103,110 110,110"/><polygon fill="#5aa0ff" points="110,30 110,110 117,110"/><circle cx="110" cy="30" r="2.6" fill="#fff"/></g>
                   <circle cx="110" cy="110" r="11" fill="url(#cp-hub)"/>
-                  <circle cx="110" cy="110" r="4.2" class="cp-pin"/>
+                  <circle cx="110" cy="110" r="4.2" class="cp-pin"/></g>
                   <path class="cp-glassy" d="M 34.1 69.6 A 86 86 0 0 1 185.9 69.6 Q 110 70 34.1 69.6 Z" fill="url(#cp-glass)"/>
                   <polygon class="cp-lubber" points="110.00,9.00 104.00,1.00 116.00,1.00"/>
                 </svg>
@@ -249,6 +249,10 @@
                 <div><dt data-i18n="rLocal">Saat</dt><dd><b class="ro seg" id="gauge-time" data-ghost="88:88">--:--</b><small id="gauge-utc"></small></dd></div>
               </dl>
               <p class="gauge-delta" id="gauge-delta"></p>
+              <div class="live-compass" id="live-compass" hidden>
+                <button type="button" class="live-btn" id="live-btn" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span data-i18n="liveOn">Canlı pusula</span></button>
+                <p class="live-hint" id="live-hint" data-i18n="liveHint">Telefonunuzu çevirin — N gerçek kuzeyi, ok seçilen şehrin yönünü gösterir.</p>
+              </div>
             </div>
           </aside>
         </div>

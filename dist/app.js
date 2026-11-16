@@ -517,6 +517,8 @@ Object.assign(en, {
 });
 Object.assign(tr, { bInc: 'Teslim şekli (Incoterms)', incLink: 'Talep oluşturucuya eklendi:' });
 Object.assign(en, { bInc: 'Delivery terms (Incoterms)', incLink: 'Added to the enquiry builder:' });
+Object.assign(tr, { liveOn: 'Canlı pusula', liveHint: 'Telefonunuzu çevirin — N gerçek kuzeyi, ok seçilen şehrin yönünü gösterir.', liveNoSensor: 'Bu cihazda pusula sensörü bulunamadı.', liveDenied: 'Sensör izni verilmedi. Tarayıcı ayarlarından izin verebilirsiniz.' });
+Object.assign(en, { liveOn: 'Live compass', liveHint: 'Turn your phone — N points to true north, the needle to the selected city.', liveNoSensor: 'No compass sensor found on this device.', liveDenied: 'Sensor access was not granted. You can allow it in the browser settings.' });
 const translations = { tr, en };
 const locales = { tr: 'tr-TR', en: 'en-GB' };
 let language = 'tr';
@@ -1026,6 +1028,54 @@ function renderBoard() {
   });
 }
 
+/* ---------- Live compass on phones: the dial turns with the device heading ---------- */
+function initLiveCompass() {
+  const box = $('#live-compass'), btn = $('#live-btn'), rot = $('#cp-rot');
+  if (!box || !rot || !('DeviceOrientationEvent' in window)) return;
+  if (!matchMedia('(pointer: coarse)').matches) return;            // phones and tablets only
+  box.hidden = false;
+  let on = false, heading = null, shown = 0, raf = 0, got = false;
+  const onOrient = e => {
+    let hd = null;
+    if (typeof e.webkitCompassHeading === 'number') hd = e.webkitCompassHeading;          // iOS: degrees clockwise from north
+    else if (e.absolute && typeof e.alpha === 'number') hd = 360 - e.alpha;                 // Android absolute event
+    if (hd == null || Number.isNaN(hd)) return;
+    const so = (screen.orientation && screen.orientation.angle) || window.orientation || 0;  // landscape correction
+    heading = (hd + so + 360) % 360; got = true;
+    if (!raf) raf = requestAnimationFrame(tickRot);
+  };
+  const tickRot = () => {
+    raf = 0; if (!on || heading == null) return;
+    const goal = -heading, diff = ((goal - shown + 540) % 360) - 180;    // shortest way round
+    shown += diff * 0.18;                                                 // smooth out sensor jitter
+    rot.style.transform = `rotate(${shown.toFixed(2)}deg)`;
+    if (Math.abs(diff) > 0.05) raf = requestAnimationFrame(tickRot);
+  };
+  const start = () => {
+    window.addEventListener('deviceorientationabsolute', onOrient, true);
+    window.addEventListener('deviceorientation', onOrient, true);
+    on = true; btn.setAttribute('aria-pressed', 'true'); box.classList.add('on');
+    $('#live-hint').textContent = t('liveHint');
+    setTimeout(() => { if (on && !got) $('#live-hint').textContent = t('liveNoSensor'); }, 2500);
+  };
+  const stop = () => {
+    window.removeEventListener('deviceorientationabsolute', onOrient, true);
+    window.removeEventListener('deviceorientation', onOrient, true);
+    on = false; heading = null; btn.setAttribute('aria-pressed', 'false'); box.classList.remove('on');
+    shown = 0; rot.style.transform = '';
+  };
+  btn.addEventListener('click', async () => {
+    if (on) { stop(); return; }
+    try {
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {          // iOS 13+: must ask on a tap
+        const r = await DeviceOrientationEvent.requestPermission();
+        if (r !== 'granted') { $('#live-hint').textContent = t('liveDenied'); return; }
+      }
+      start();
+    } catch { $('#live-hint').textContent = t('liveDenied'); }
+  });
+}
+
 /* ---------- Intro splash (shown once per session; CSS hides it on repeat visits) ---------- */
 function initIntro() {
   const el = $('#intro');
@@ -1050,6 +1100,7 @@ $$('[data-lang]').forEach(b => b.addEventListener('click', () => setLanguage(b.d
 try { const saved = localStorage.getItem('gb-language'); if (translations[saved]) language = saved; } catch { /* ignore */ }
 initIntro();
 initNeedle();
+initLiveCompass();
 initSteps();
 initBuilder();
 initChrome();
