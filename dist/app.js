@@ -15,6 +15,19 @@ const HUBS = [
   { key: 'africa',     code: 'CAS', city: 'CASABLANCA', coord: [-7.5898, 33.5731], tz: 'Africa/Casablanca' }
 ];
 const hubByKey = Object.fromEntries(HUBS.map(h => [h.key, h]));
+// secondary partner cities per direction (all outside sanctions regimes); drawn on the globe only
+const PARTNERS = [
+  { code: 'MIL', city: 'MILANO', coord: [9.19, 45.4642], region: 'europe' },
+  { code: 'WAW', city: 'WARSZAWA', coord: [21.0122, 52.2297], region: 'europe' },
+  { code: 'RTM', city: 'ROTTERDAM', coord: [4.4777, 51.9244], region: 'europe' },
+  { code: 'MAD', city: 'MADRID', coord: [-3.7038, 40.4168], region: 'europe' },
+  { code: 'ALA', city: 'ALMATY', coord: [76.886, 43.2389], region: 'cis' },
+  { code: 'FRU', city: 'BISHKEK', coord: [74.5698, 42.8746], region: 'cis' },
+  { code: 'RUH', city: 'RIYADH', coord: [46.6753, 24.7136], region: 'middleEast' },
+  { code: 'DOH', city: 'DOHA', coord: [51.531, 25.2854], region: 'middleEast' },
+  { code: 'SGN', city: 'HO CHI MINH', coord: [106.6297, 10.8231], region: 'asia' },
+  { code: 'BOM', city: 'MUMBAI', coord: [72.8777, 19.076], region: 'asia' },
+].map(p => ({ ...p, key: 'p-' + p.code }));
 
 function haversineKm([lon1, lat1], [lon2, lat2]) {
   const dLat = (lat2 - lat1) * RAD, dLon = (lon2 - lon1) * RAD;
@@ -28,6 +41,7 @@ function bearingDeg([lon1, lat1], [lon2, lat2]) {
   return (Math.atan2(y, x) / RAD + 360) % 360;
 }
 HUBS.forEach(h => { h.km = Math.round(haversineKm(ORIGIN.coord, h.coord) / 10) * 10; h.bearing = Math.round(bearingDeg(ORIGIN.coord, h.coord)); });
+PARTNERS.forEach(h => { h.km = Math.round(haversineKm(ORIGIN.coord, h.coord) / 10) * 10; });
 const MAX_KM = Math.max(...HUBS.map(h => h.km));
 
 /* ---------- Translations ---------- */
@@ -508,7 +522,7 @@ const t = key => translations[language][key] ?? tr[key] ?? en[key] ?? key;
 
 /* ---------- Shared state for globe.js ---------- */
 const GB = window.GB = {
-  origin: ORIGIN, hubs: HUBS, region: 'europe', reducedMotion,
+  origin: ORIGIN, hubs: HUBS, partners: PARTNERS, region: 'europe', reducedMotion,
   events: new EventTarget(), t, get lang() { return language; },
   sunPosition, // used by the globe for the live day/night terminator
   emit(type, detail) { this.events.dispatchEvent(new CustomEvent(type, { detail })); }

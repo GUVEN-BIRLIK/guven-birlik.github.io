@@ -249,6 +249,7 @@ async function main() {
   };
   addMarker(GB.origin, true);
   GB.hubs.forEach(h => addMarker(h, false));
+  (GB.partners || []).forEach(h => { const m = addMarker(h, false); m.partner = true; m.group.scale.setScalar(0.62); m.label.classList.add('partner'); });
 
   /* ---- Arcs ---- */
   const arcs = new Map();
@@ -272,6 +273,25 @@ async function main() {
     head.scale.setScalar(0.06); globe.add(head);
     const mid = toLonLat(vo.clone().add(vb));
     arcs.set(h.key, { curve, mat, head, offset: i * 0.21, active: 0, reveal: 1, mid, ang });
+  });
+  // thin arcs to the partner cities; they light up with their direction
+  (GB.partners || []).forEach((h, i) => {
+    const vb = toVec(h.coord); const ang = vo.angleTo(vb); const lift = 0.03 + ang * 0.14;
+    const pts = [];
+    for (let k = 0; k <= 60; k++) {
+      const t = k / 60, s = Math.sin(ang);
+      const v = vo.clone().multiplyScalar(Math.sin((1 - t) * ang) / s).add(vb.clone().multiplyScalar(Math.sin(t * ang) / s));
+      pts.push(v.multiplyScalar(1.002 + lift * Math.sin(Math.PI * t)));
+    }
+    const curve = new THREE.CatmullRomCurve3(pts);
+    const mat = new THREE.ShaderMaterial({
+      vertexShader: arcVert, fragmentShader: arcFrag, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      uniforms: { uHead: { value: 0 }, uActive: { value: 0 }, uReveal: { value: 1 }, uColor: { value: RED.clone() } }
+    });
+    globe.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 100, small ? 0.004 : 0.0032, 6, false), mat));
+    const head = new THREE.Sprite(new THREE.SpriteMaterial({ map: markerTex, color: 0xffffff, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+    head.scale.setScalar(0.04); globe.add(head);
+    arcs.set(h.key, { curve, mat, head, offset: 0.13 + i * 0.17, active: 0, reveal: 1, mid: toLonLat(vo.clone().add(vb)), ang, region: h.region, partner: true });
   });
 
   /* ---- View state ---- */
@@ -401,7 +421,8 @@ async function main() {
     const fm = markers.get(GB.region); if (fm) globeMat.uniforms.uFocus.value.lerp(fm.v, 1 - Math.exp(-dt / 300)).normalize();
     arcs.forEach((a, key) => {
       const isActive = key === GB.region ? 1 : 0;
-      a.active += (isActive - a.active) * (1 - Math.exp(-dt / 250));
+      const want = a.partner ? (a.region === GB.region ? 0.55 : 0) : isActive;
+      a.active += (want - a.active) * (1 - Math.exp(-dt / 250));
       a.reveal = Math.min(1, a.reveal + dt / (reduced ? 1 : 1100));
       const cycle = reduced ? 0.75 : ((animT * 0.00011 * (isActive ? 1.35 : 1)) + a.offset) % 1;
       const head = cycle * 1.3 - 0.05;
@@ -418,7 +439,7 @@ async function main() {
     camDir.copy(camera.position).normalize();
     const w = stage.clientWidth, h = stage.clientHeight;
     markers.forEach(m => {
-      const want = m.isOrigin || m.hub.key === GB.region ? 1 : 0;
+      const want = m.isOrigin || m.hub.key === GB.region ? 1 : (m.partner && m.hub.region === GB.region ? 0.6 : 0);
       m.active += (want - m.active) * (1 - Math.exp(-dt / 250));
       const pulse = reduced ? 0.5 : (Math.sin(animT * 0.004 + m.phase) + 1) / 2;
       const s = 1 + pulse * (0.6 + 0.8 * m.active);
@@ -467,7 +488,7 @@ async function main() {
     markers.forEach(m => {
       m.label.innerHTML = m.isOrigin
         ? `<i></i><b>IST</b><span>İSTANBUL</span>`
-        : `<i></i><b>${m.hub.code}</b><span>${m.hub.city} · ≈${nf().format(m.hub.km)} km</span>`;
+        : m.partner ? `<i></i><b title="${m.hub.city}">${m.hub.code}</b>` : `<i></i><b>${m.hub.code}</b><span>${m.hub.city} · ≈${nf().format(m.hub.km)} km</span>`;
       // measure both states once, so the render loop never forces layout
       const had = m.label.classList.contains('active');
       m.label.classList.add('active'); m.wActive = m.label.offsetWidth;

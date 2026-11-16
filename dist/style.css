@@ -662,6 +662,7 @@ h2 .accent, .hero h1 .accent { color: transparent; text-shadow: none; }
   .globe-controls .hint { display: none; }
   .globe-controls button { width: 42px; height: 38px; }
   .g-label { font-size: 9px; }
+  .g-label.partner:not(.active) { display: none; }
   .side-panels, .console-grid > .side-panels { grid-template-columns: minmax(0, 1fr); }
   .board-grid { min-width: 0; }
   .board-hd { display: none; }
@@ -1114,3 +1115,12 @@ h2 .accent, .hero h1 .accent { color: transparent; text-shadow: none; }
   .inc-terms button { font-size: 12px; padding: 9px 2px; }
   .inc-leg { flex: 1 1 calc(50% - 6px); }
 }
+
+/* partner-city labels on the globe: small code, city appears with its direction */
+.g-label.partner b { font-size: 9.5px; padding: 1px 4px; color: rgba(185, 205, 240, .8); background: rgba(var(--ground-rgb), .7); border-color: rgba(143, 188, 255, .25); }
+.g-label.partner.active b { color: #fff; background: rgba(33, 96, 220, .85); border-color: var(--lume); box-shadow: none; }
+.g-label.partner.active span { font-size: 9.5px; padding: 1px 5px; }
+.g-label.partner span, .g-label.partner.active span { display: none !important; }
+.g-label.partner i { width: 6px; }
+.g-label:not(.partner).active, .g-label.origin { z-index: 2; }
+.g-label.partner { z-index: 1; }
