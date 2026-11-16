@@ -273,10 +273,22 @@
               <button type="button" class="button button-red button-wide" id="b-apply"><span data-i18n="bApply">Talep formuna aktar</span><svg class="ic" aria-hidden="true"><use href="#i-s"/></svg></button>
             </div>
           </div>
-          <div class="panel deal">
-            <div class="panel-head"><span data-i18n="dealTitle">CANLI İŞLEM AKIŞI</span><span class="deal-tag" data-i18n="dealTag">ÖRNEK</span></div>
-            <ol class="deal-track" id="deal-track" aria-live="off"></ol>
-            <p class="deal-note"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg><span data-i18n="dealNote">Örnek akıştır; ödeme ve teslim koşulları her işlemde sözleşmeyle belirlenir.</span></p>
+          <div class="panel fx">
+            <div class="panel-head"><span data-i18n="fxTitle">DÖVİZ KURLARI</span><span class="mono dim" id="fx-date">ECB</span></div>
+            <div class="fx-body">
+              <div class="fx-rows" id="fx-rows" role="list"><p class="fx-status" id="fx-status" data-i18n="fxLoading">Kurlar yükleniyor…</p></div>
+              <div class="fx-conv">
+                <span class="b-label" data-i18n="fxConv">Hızlı çevirici</span>
+                <div class="fx-conv-row">
+                  <label class="fx-amt"><span class="sr-only" data-i18n="fxAmount">Tutar</span><input id="fx-amt" type="number" inputmode="decimal" min="0" step="any" value="10000"></label>
+                  <select id="fx-from" aria-label="From"><option value="USD">USD</option><option value="EUR">EUR</option><option value="TRY">TRY</option><option value="CNY">CNY</option><option value="GBP">GBP</option></select>
+                  <button type="button" class="fx-swap" id="fx-swap" aria-label="Swap" data-i18n-aria="fxSwap"><svg class="ic" aria-hidden="true"><use href="#i-e"/></svg></button>
+                  <select id="fx-to" aria-label="To"><option value="USD">USD</option><option value="EUR">EUR</option><option value="TRY">TRY</option><option value="CNY">CNY</option><option value="GBP">GBP</option></select>
+                </div>
+                <output class="fx-out" id="fx-out">—</output>
+              </div>
+              <p class="fx-note"><span data-i18n="fxNote">Avrupa Merkez Bankası (ECB) referans kurları; iş günlerinde güncellenir. Bilgi amaçlıdır, işlem kuru değildir.</span></p>
+            </div>
           </div>
         </div>
         <p class="console-note"><span class="red-dot"></span><span data-i18n="consoleNote">Rotalar ticaret yönlerini gösterir; mesafe ve rota anlık hesaplanır.</span></p>

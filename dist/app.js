@@ -559,6 +559,8 @@ Object.assign(en, {
   d6T: 'Handover',
   d6S: 'Under {inc}, as per the contract'
 });
+Object.assign(tr, { fxTitle: 'DÖVİZ KURLARI', fxLoading: 'Kurlar yükleniyor…', fxError: 'Kurlar şu anda yüklenemedi. Lütfen daha sonra tekrar deneyin.', fxConv: 'Hızlı çevirici', fxAmount: 'Tutar', fxSwap: 'Para birimlerini değiştir', fx30: '30 günlük değişim', fxNote: 'Avrupa Merkez Bankası (ECB) referans kurları; iş günlerinde güncellenir. Bilgi amaçlıdır, işlem kuru değildir.' });
+Object.assign(en, { fxTitle: 'EXCHANGE RATES', fxLoading: 'Loading rates…', fxError: 'Rates could not be loaded right now. Please try again later.', fxConv: 'Quick converter', fxAmount: 'Amount', fxSwap: 'Swap currencies', fx30: '30-day change', fxNote: 'European Central Bank (ECB) reference rates, updated on business days. For information only — not a dealing rate.' });
 const translations = { tr, en };
 const locales = { tr: 'tr-TR', en: 'en-GB' };
 let language = 'tr';
@@ -820,7 +822,7 @@ function renderRegionText() {
   $('#region-description').textContent = t(regionDescKey[GB.region]);
 }
 
-function renderAll() { renderClocks(); renderGauge(); renderRegionText(); renderBoard(); renderIncoterms(); renderBuilder(); renderWindows(); renderDeal(); }
+function renderAll() { renderClocks(); renderGauge(); renderRegionText(); renderBoard(); renderIncoterms(); renderBuilder(); renderWindows(); renderDeal(); renderFx(); }
 
 /* ---------- Clock tick ---------- */
 let lastMinute = -1;
@@ -1052,6 +1054,78 @@ function initDeal() {
   }, 1900);
 }
 
+/* ---------- FX rates: ECB reference rates via frankfurter.dev, 30-day sparklines + converter ---------- */
+const FX_PAIRS = [['USD', 'TRY'], ['EUR', 'TRY'], ['CNY', 'TRY'], ['GBP', 'TRY'], ['EUR', 'USD']];
+const fx = { days: [], rates: {}, ok: false };   // rates[date][CUR] = units of CUR per 1 EUR
+const perEur = (day, c) => c === 'EUR' ? 1 : fx.rates[day]?.[c];
+const cross = (day, a, b) => perEur(day, b) / perEur(day, a);           // how many b for 1 a
+const fxDec = (a, b) => b === 'USD' ? 4 : (a === 'CNY' ? 3 : 2);
+async function loadFx() {
+  const KEY = 'gb-fx-v1';
+  try { const c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (c && Date.now() - c.at < 6 * 3600e3) { Object.assign(fx, c.data, { ok: true }); return; } } catch {}
+  const start = new Date(Date.now() - 45 * 864e5).toISOString().slice(0, 10);
+  const r = await fetch(`https://api.frankfurter.dev/v1/${start}..?base=EUR&symbols=USD,TRY,CNY,GBP`);
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  const data = await r.json();
+  fx.rates = data.rates; fx.days = Object.keys(data.rates).sort().slice(-22); fx.ok = true;   // ~30 calendar days of business days
+  try { localStorage.setItem(KEY, JSON.stringify({ at: Date.now(), data: { rates: fx.rates, days: fx.days } })); } catch {}
+}
+function fmtFx(v, dec) { return v.toLocaleString(language === 'tr' ? 'tr-TR' : 'en-GB', { minimumFractionDigits: dec, maximumFractionDigits: dec }); }
+function renderFx() {
+  const rows = $('#fx-rows'); if (!rows) return;
+  if (!fx.ok) return;
+  const last = fx.days[fx.days.length - 1], first = fx.days[0];
+  const dt = new Date(last + 'T12:00:00Z');
+  $('#fx-date').textContent = `ECB · ${dt.toLocaleDateString(language === 'tr' ? 'tr-TR' : 'en-GB', { day: '2-digit', month: 'short' })}`;
+  rows.innerHTML = FX_PAIRS.map(([a, b]) => {
+    const series = fx.days.map(dd => cross(dd, a, b)), v = series[series.length - 1], v0 = series[0];
+    const ch = (v / v0 - 1) * 100, dec = fxDec(a, b);
+    const lo = Math.min(...series), hi = Math.max(...series), W = 120, H = 30, pad = 3;
+    const pts = series.map((s, i) => [pad + (W - 2 * pad) * i / (series.length - 1), pad + (H - 2 * pad) * (1 - (s - lo) / ((hi - lo) || 1))]);
+    const path = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('');
+    const end = pts[pts.length - 1];
+    const sign = ch > 0.005 ? 'up' : ch < -0.005 ? 'down' : 'flat';
+    return `<div class="fx-row" role="listitem" data-pair="${a}${b}">
+      <span class="fx-pair"><b>${a}</b><i>/</i>${b}</span>
+      <svg class="fx-spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><path class="fx-area" d="${path}L${end[0].toFixed(1)} ${H}L${pts[0][0].toFixed(1)} ${H}Z"/><path class="fx-line" d="${path}"/><circle class="fx-end" cx="${end[0].toFixed(1)}" cy="${end[1].toFixed(1)}" r="2.6"/><line class="fx-x" x1="0" x2="0" y1="0" y2="${H}"/></svg>
+      <b class="fx-val mono">${fmtFx(v, dec)}</b>
+      <span class="fx-ch ${sign}"><svg class="ic" aria-hidden="true"><use href="#i-${sign === 'down' ? 's' : sign === 'up' ? 'n' : 'e'}"/></svg>${ch > 0 ? '+' : ''}${fmtFx(ch, 2)}%</span>
+      <span class="sr-only">${a}/${b} ${fmtFx(v, dec)}; ${t('fx30')}: ${ch > 0 ? '+' : ''}${fmtFx(ch, 2)}%</span>
+    </div>`;
+  }).join('') + `<p class="fx-legend"><span>${t('fx30')}</span><span>${fmtFx(0, 0) === '0' ? '' : ''}${new Date(first + 'T12:00:00Z').toLocaleDateString(language === 'tr' ? 'tr-TR' : 'en-GB', { day: '2-digit', month: 'short' })} → ${new Date(last + 'T12:00:00Z').toLocaleDateString(language === 'tr' ? 'tr-TR' : 'en-GB', { day: '2-digit', month: 'short' })}</span></p>`;
+  // hover: crosshair + value for the day under the pointer
+  $$('.fx-row', rows).forEach(row => {
+    const svg = row.querySelector('.fx-spark'), x = row.querySelector('.fx-x'), val = row.querySelector('.fx-val');
+    const [a, b] = [row.dataset.pair.slice(0, 3), row.dataset.pair.slice(3)], dec = fxDec(a, b), base = val.textContent;
+    svg.addEventListener('pointermove', e => {
+      const r = svg.getBoundingClientRect(), f = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+      const i = Math.round(f * (fx.days.length - 1)), px = 3 + 114 * i / (fx.days.length - 1);
+      x.setAttribute('x1', px); x.setAttribute('x2', px); row.classList.add('hover');
+      const day = new Date(fx.days[i] + 'T12:00:00Z').toLocaleDateString(language === 'tr' ? 'tr-TR' : 'en-GB', { day: '2-digit', month: 'short' });
+      val.textContent = `${fmtFx(cross(fx.days[i], a, b), dec)}`; val.dataset.day = day;
+    });
+    svg.addEventListener('pointerleave', () => { row.classList.remove('hover'); val.textContent = base; delete val.dataset.day; });
+  });
+  convertFx();
+}
+function convertFx() {
+  const out = $('#fx-out'); if (!out || !fx.ok) return;
+  const amt = parseFloat(String($('#fx-amt').value).replace(',', '.')), a = $('#fx-from').value, b = $('#fx-to').value;
+  const last = fx.days[fx.days.length - 1];
+  if (!(amt >= 0)) { out.textContent = '—'; return; }
+  const res = amt * cross(last, a, b);
+  out.innerHTML = `${fmtFx(amt, 2)} ${a} = <b>${fmtFx(res, 2)} ${b}</b>`;
+}
+async function initFx() {
+  if (!$('#fx-rows')) return;
+  $('#fx-from').value = 'USD'; $('#fx-to').value = 'TRY';
+  ['input', 'change'].forEach(ev => { $('#fx-amt').addEventListener(ev, convertFx); });
+  $('#fx-from').addEventListener('change', convertFx); $('#fx-to').addEventListener('change', convertFx);
+  $('#fx-swap').addEventListener('click', () => { const f = $('#fx-from').value; $('#fx-from').value = $('#fx-to').value; $('#fx-to').value = f; convertFx(); });
+  try { await loadFx(); renderFx(); }
+  catch { const s = $('#fx-status'); if (s) s.textContent = t('fxError'); }
+}
+
 /* ---------- Split-flap directions board ---------- */
 // Business day = Mon–Fri, 09:00–18:00 local time at the destination (a convention, not a claim about any office).
 const FLAP_SET = 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ0123456789';
@@ -1175,6 +1249,7 @@ $$('[data-lang]').forEach(b => b.addEventListener('click', () => setLanguage(b.d
 try { const saved = localStorage.getItem('gb-language'); if (translations[saved]) language = saved; } catch { /* ignore */ }
 initIntro();
 initNeedle();
+initFx();
 initDeal();
 initLiveCompass();
 initSteps();

@@ -1184,3 +1184,44 @@ h2 .accent, .hero h1 .accent { color: transparent; text-shadow: none; }
   .console-bottom { display: grid; grid-template-columns: minmax(0, 1fr); overflow: visible; gap: 14px; padding: 0 14px 14px; }
   .console-bottom > .panel { flex: none; }
 }
+
+/* ---------- FX rates panel ---------- */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.fx { display: flex; flex-direction: column; }
+.fx-body { flex: 1; display: grid; grid-template-rows: 1fr auto auto; gap: 16px; padding: 12px 18px 16px; }
+.fx-rows { display: grid; align-content: start; }
+.fx-status { padding: 24px 0; color: var(--muted); font-size: 13px; }
+.fx-row { display: grid; grid-template-columns: 92px 1fr 104px 84px; align-items: center; gap: 14px; padding: 12px 4px; border-bottom: 1px solid var(--line); }
+.fx-pair { font: 600 13px var(--mono); color: var(--muted); letter-spacing: .04em; }
+.fx-pair b { color: #fff; font-weight: 700; } .fx-pair i { font-style: normal; color: var(--dim); margin: 0 2px; }
+.fx-spark { width: 100%; height: 32px; overflow: visible; cursor: crosshair; }
+.fx-line { fill: none; stroke: var(--lume); stroke-width: 2; vector-effect: non-scaling-stroke; stroke-linejoin: round; filter: drop-shadow(0 0 3px rgba(var(--lume-rgb), .6)); }
+.fx-area { fill: rgba(var(--lume-rgb), .1); }
+.fx-end { fill: #fff; stroke: var(--lume); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.fx-x { stroke: rgba(255, 255, 255, .7); stroke-width: 1; vector-effect: non-scaling-stroke; stroke-dasharray: 2 2; opacity: 0; }
+.fx-row.hover .fx-x { opacity: 1; }
+.fx-val { position: relative; text-align: right; font-size: 16px; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
+.fx-row.hover .fx-val { color: var(--lume-hot); }
+.fx-val[data-day]::after { content: attr(data-day); position: absolute; right: 0; top: -14px; font: 600 9.5px var(--mono); color: var(--muted); letter-spacing: .06em; white-space: nowrap; }
+.fx-ch { display: inline-flex; align-items: center; justify-content: flex-end; gap: 4px; font: 600 12px var(--mono); color: var(--text-2); font-variant-numeric: tabular-nums; }
+.fx-ch .ic { font-size: 12px; color: var(--lume-hot); } .fx-ch.down .ic { color: #aeb8c8; }
+.fx-legend { display: flex; justify-content: space-between; gap: 12px; padding-top: 8px; font: 600 10.5px var(--mono); letter-spacing: .06em; color: var(--dim); text-transform: uppercase; }
+.fx-conv { display: grid; gap: 8px; }
+.fx-conv-row { display: grid; grid-template-columns: 1.4fr 1fr 40px 1fr; gap: 8px; }
+.fx-conv input, .fx-conv select { width: 100%; padding: 11px 12px; font: 600 14px var(--mono); color: var(--text); border-radius: 0; background: #050d24; border: 1px solid rgba(143, 188, 255, .22); box-shadow: inset 0 2px 8px rgba(0, 0, 0, .45); }
+.fx-conv select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--lume-hot) 50%), linear-gradient(135deg, var(--lume-hot) 50%, transparent 50%); background-position: calc(100% - 15px) 52%, calc(100% - 10px) 52%; background-size: 5px 5px; background-repeat: no-repeat; }
+.fx-conv input:focus, .fx-conv select:focus { outline: none; border-color: var(--lume); box-shadow: inset 0 2px 8px rgba(0, 0, 0, .45), 0 0 0 3px rgba(var(--lume-rgb), .22); }
+.fx-swap { display: grid; place-items: center; font-size: 16px; color: var(--lume-hot); box-shadow: inset 0 0 0 1px var(--line-2); transition: transform .3s var(--ease-out), color .2s; }
+.fx-swap:hover { color: #fff; } .fx-swap:active { transform: rotate(180deg) scale(.95); }
+.fx-out { font: 500 14px var(--mono); color: var(--text-2); padding: 10px 12px; background: rgba(3, 9, 26, .7); border-left: 2px solid var(--lume); }
+.fx-out b { color: #fff; font-size: 16px; }
+.fx-note { font-size: 12px; line-height: 1.55; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+@media (max-width: 760px) {
+  .fx-body { padding: 10px 12px 14px; }
+  .fx-row { grid-template-columns: 76px 1fr 86px; gap: 10px; }
+  .fx-ch { grid-column: 3; justify-self: end; margin-top: -6px; }
+  .fx-val { font-size: 15px; }
+  .fx-conv-row { grid-template-columns: 1fr 40px 1fr; }
+  .fx-amt { grid-column: 1 / -1; }
+}
+.fx-rows { align-content: space-evenly; }
