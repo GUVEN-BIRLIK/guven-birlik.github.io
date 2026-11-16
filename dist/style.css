@@ -1142,3 +1142,9 @@ h2 .accent, .hero h1 .accent { color: transparent; text-shadow: none; }
 .live-compass.on .live-btn { color: #fff; background: linear-gradient(180deg, #3a7ff2, #1d55c8); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 0 14px rgba(var(--lume-rgb), .45); }
 .live-compass.on .live-btn .ic { color: #fff; }
 .live-hint { font-size: 12px; line-height: 1.5; color: var(--muted); text-align: center; max-width: 34ch; }
+
+/* narrow screens: globe, then compass, then Incoterms */
+@media (max-width: 1280px) {
+  .console-grid > .side-panels { order: 1; }
+  .console-grid > .board { order: 2; }
+}
