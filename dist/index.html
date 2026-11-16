@@ -206,6 +206,7 @@
                 <p class="inc-desc" id="inc-desc" aria-live="polite"></p>
                 <div class="inc-legend"><span><i class="lg-s"></i><span data-i18n="incSeller">Satıcı öder</span></span><span><i class="lg-b"></i><span data-i18n="incBuyer">Alıcı öder</span></span><span><i class="lg-r"></i><span data-i18n="incRisk">Risk alıcıya geçer</span></span></div>
               </div>
+              <a class="text-link inc-link" href="#b-inc"><span data-i18n="incLink">Talep oluşturucuya eklendi:</span> <b class="mono" id="inc-linked">FOB</b><svg class="ic" aria-hidden="true"><use href="#i-s"/></svg></a>
               <p class="inc-note" data-i18n="incNote">Genel bilgi amaçlıdır; her işlemde sözleşmedeki koşullar esastır. Seçtiğiniz koşul talep taslağına eklenir.</p>
             </div>
           </div>
@@ -259,6 +260,7 @@
               <div class="b-row"><span class="b-label" data-i18n="bType">Hizmet</span><div class="seg-switch" id="b-type" role="radiogroup" aria-label="Hizmet" data-i18n-aria="bType"></div></div>
               <div class="b-row"><span class="b-label" data-i18n="bGoods">Ürün grubu</span><div class="chips" id="b-goods" role="radiogroup" aria-label="Ürün grubu" data-i18n-aria="bGoods"></div></div>
               <div class="b-row"><span class="b-label" data-i18n="bMarket">Pazar</span><div class="chips" id="b-market" role="radiogroup" aria-label="Pazar" data-i18n-aria="bMarket"></div></div>
+              <div class="b-row"><span class="b-label" data-i18n="bInc">Teslim şekli (Incoterms)</span><div class="seg-switch inc-mini" id="b-inc" role="radiogroup" aria-label="Incoterms"></div></div>
               <div class="b-row b-split">
                 <label class="b-field"><span class="b-label" data-i18n="bVolume">Parti büyüklüğü</span><input id="b-volume" maxlength="80" autocomplete="off" data-i18n-ph="bVolumePh" placeholder="örn. 2 konteyner"></label>
                 <label class="b-field"><span class="b-label" data-i18n="bTiming">Zamanlama</span><select id="b-timing"><option value="t1" data-i18n="bT1">Acil</option><option value="t2" data-i18n="bT2">1–3 ay</option><option value="t3" data-i18n="bT3">3+ ay</option><option value="t4" data-i18n="bT4">Henüz belli değil</option></select></label>

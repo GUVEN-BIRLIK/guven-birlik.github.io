@@ -1124,3 +1124,10 @@ h2 .accent, .hero h1 .accent { color: transparent; text-shadow: none; }
 .g-label.partner i { width: 6px; }
 .g-label:not(.partner).active, .g-label.origin { z-index: 2; }
 .g-label.partner { z-index: 1; }
+
+/* Incoterms ↔ builder link */
+.seg-switch.inc-mini { grid-template-columns: repeat(6, 1fr); }
+.seg-switch.inc-mini button { font: 700 12.5px var(--mono); letter-spacing: .06em; padding: 9px 2px; }
+.inc-link { justify-self: start; font-size: 13px; }
+.inc-link b { color: var(--lume-hot); letter-spacing: .06em; }
+#b-inc { scroll-margin-top: 140px; }

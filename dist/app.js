@@ -515,6 +515,8 @@ Object.assign(en, {
   incDAP: 'The seller brings the goods to the named destination; import clearance and duties are the buyer’s. Risk passes at destination. *Insurance is not required; the seller usually buys it as it carries the risk.',
   incDDP: 'The seller takes on everything, including import clearance and duties. Risk passes at destination. *Insurance is not required.'
 });
+Object.assign(tr, { bInc: 'Teslim şekli (Incoterms)', incLink: 'Talep oluşturucuya eklendi:' });
+Object.assign(en, { bInc: 'Delivery terms (Incoterms)', incLink: 'Added to the enquiry builder:' });
 const translations = { tr, en };
 const locales = { tr: 'tr-TR', en: 'en-GB' };
 let language = 'tr';
@@ -879,9 +881,14 @@ function renderBuilder() {
   $$('#b-type button').forEach(b => b.addEventListener('click', () => { builder.type = b.dataset.v; renderBuilder(); }));
   $$('#b-goods button').forEach(b => b.addEventListener('click', () => { builder.goods = +b.dataset.v; renderBuilder(); }));
   $$('#b-market button').forEach(b => b.addEventListener('click', () => setRegion(b.dataset.v)));
+  const inc = $('#b-inc');
+  if (inc) {
+    inc.innerHTML = Object.keys(INCOTERMS).map(k => `<button type="button" role="radio" aria-checked="${incState.term === k}" data-v="${k}">${k}</button>`).join('');
+    $$('#b-inc button').forEach(b => b.addEventListener('click', () => setIncoterm(b.dataset.v)));
+  }
   updateDraft();
 }
-function updateDraft() { const o = $('#b-draft'); if (o) o.textContent = builder.goods ? builderText(false) : t('bDraftEmpty'); }
+function updateDraft() { const o = $('#b-draft'); if (o) o.textContent = builder.goods ? builderText(false) : `${t('bDraftEmpty')} · Incoterms: ${incState.term}`; }
 function initBuilder() {
   if (!$('#b-type')) return;
   // a goods row picks that group in the builder and brings the builder into view
@@ -951,10 +958,12 @@ const INCOTERMS = {
   DDP: { pay: 'SSSSSsSS', risk: 8 },
 };
 const incState = { term: 'FOB' };
+// one source of truth: the Incoterms panel and the builder row always show the same term
+function setIncoterm(term) { if (!INCOTERMS[term]) return; incState.term = term; renderIncoterms(); renderBuilder(); }
 function renderIncoterms() {
   const wrap = $('#inc-terms'); if (!wrap) return;
   wrap.innerHTML = Object.keys(INCOTERMS).map(k => `<button type="button" role="radio" aria-checked="${incState.term === k}" data-v="${k}">${k}</button>`).join('');
-  $$('#inc-terms button').forEach(b => b.addEventListener('click', () => { incState.term = b.dataset.v; renderIncoterms(); updateDraft(); }));
+  $$('#inc-terms button').forEach(b => b.addEventListener('click', () => setIncoterm(b.dataset.v)));
   const it = INCOTERMS[incState.term];
   $('#inc-chain').innerHTML = INC_LEGS.map(([ic, key], i) => {
     const who = it.pay[i], buyer = who === 'B', soft = who === 's';
@@ -962,6 +971,7 @@ function renderIncoterms() {
     return `${risk}<div class="inc-leg ${buyer ? 'b' : 's'}${soft ? ' soft' : ''}${i >= it.risk ? ' at-risk' : ''}" style="--i:${i}"><span class="inc-ic"><svg class="ic" aria-hidden="true"><use href="#i-${ic}"/></svg></span><b>${t(key)}</b><small>${t(buyer ? 'incBuyerShort' : soft ? 'incSellerSoft' : 'incSellerShort')}</small></div>`;
   }).join('') + (it.risk === 8 ? '<span class="inc-risk end" aria-hidden="true"></span>' : '');
   $('#inc-code').textContent = incState.term;
+  const lk = $('#inc-linked'); if (lk) lk.textContent = incState.term;
   $('#inc-desc').innerHTML = `<b>${incState.term}</b> — ${t('inc' + incState.term)}`;
 }
 
