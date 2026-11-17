@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://guven-birlik.github.io/sitemap.xml
+Sitemap: https://guven-birlik.com/sitemap.xml
